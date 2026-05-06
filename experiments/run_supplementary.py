@@ -73,17 +73,22 @@ def exp1_cooperative_ablation(loader):
             for fi in range(len(s['frames'])):
                 frame = loader.load_frame(si, fi)
 
-                # Filter invisible agents if ego-only
+                # Keep original frame for collision checking (GT)
+                gt_frame = frame
+
+                # Filter invisible agents if ego-only (for method input only)
                 if cfg["filter_invisible"]:
-                    frame.perception = PerceptionResult(
+                    perception_input = PerceptionResult(
                         timestamp=frame.perception.timestamp,
                         ego=frame.perception.ego,
                         agents=[a for a in frame.perception.agents if a.is_visible],
                         lanes=frame.perception.lanes,
                     )
+                else:
+                    perception_input = frame.perception
 
                 base_wp = simulate_codriving_waypoints(frame)
-                modified_wp, stats = hybrid.constrain_waypoints(base_wp, frame.perception)
+                modified_wp, stats = hybrid.constrain_waypoints(base_wp, perception_input)
                 was_modified = stats.get('n_collisions_detected', 0) > 0
 
                 if was_modified:
@@ -93,7 +98,8 @@ def exp1_cooperative_ablation(loader):
                         false_alarm += 1
                     modifications += 1
 
-                wp_coll_total += check_waypoint_collision(modified_wp, frame)
+                # Check collision against ALL agents (GT), not filtered perception
+                wp_coll_total += check_waypoint_collision(modified_wp, gt_frame)
 
             result.total_frames += len(s['frames'])
             result.modified_frames += modifications
