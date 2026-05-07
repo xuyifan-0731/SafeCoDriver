@@ -49,7 +49,7 @@ class HybridSafetyConstraint:
                  push_clearance: float = 1.0,
                  smooth_weight: float = 0.3,
                  v_max: float = 20.0,
-                 detection_threshold: float = 0.5):
+                 detection_threshold: float = 0.3):
         """
         Args:
             detector_model: CollisionPredictionNetwork (V1) for detection
