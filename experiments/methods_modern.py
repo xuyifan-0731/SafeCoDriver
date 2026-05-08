@@ -124,13 +124,21 @@ class RiskPotentialField:
 
         coords = np.array(feasible.exterior.coords) if hasattr(feasible, 'exterior') else boundary
 
+        # Set mode based on actual risk level (bug fix 260508)
+        if min_ttc < 2.0 or len(reasoning) >= 2:
+            mode = ConstraintMode.MINIMUM_HARM
+        elif min_ttc < 5.0 or len(reasoning) >= 1:
+            mode = ConstraintMode.CONSERVATIVE
+        else:
+            mode = ConstraintMode.NORMAL
+
         return SafeActionSpace(
             feasible_region=coords,
             max_acceleration=params.max_acceleration,
             min_acceleration=-params.max_deceleration,
             max_steering=params.max_steering_angle,
             max_speed=params.max_speed,
-            mode=ConstraintMode.NORMAL,
+            mode=mode,
             safety_margin_ttc=min_ttc,
             reasoning=reasoning if reasoning else ["RPF: no significant risk"],
         )
@@ -218,13 +226,23 @@ class TTCReachability:
             # No safe trajectory — emergency stop zone
             feasible_coords = np.array(Point(ego.x, ego.y).buffer(2.0).exterior.coords)
 
+        # Set mode based on number of safe trajectories and TTC
+        n_total = self.n_trajectory_samples ** 2
+        n_safe = len(safe_endpoints)
+        if n_safe == 0 or min_ttc_global < 2.0:
+            mode = ConstraintMode.MINIMUM_HARM
+        elif n_safe < n_total * 0.5 or min_ttc_global < 5.0:
+            mode = ConstraintMode.CONSERVATIVE
+        else:
+            mode = ConstraintMode.NORMAL
+
         return SafeActionSpace(
             feasible_region=feasible_coords,
             max_acceleration=params.max_acceleration,
             min_acceleration=-params.max_deceleration,
             max_steering=params.max_steering_angle,
             max_speed=params.max_speed,
-            mode=ConstraintMode.NORMAL,
+            mode=mode,
             safety_margin_ttc=min_ttc_global,
             reasoning=[f"TTCReach: {len(safe_endpoints)}/{self.n_trajectory_samples**2} trajectories safe"],
         )
@@ -302,13 +320,22 @@ class SocialForceSafety:
 
         coords = np.array(feasible.exterior.coords) if hasattr(feasible, 'exterior') else boundary
 
+        # Set mode based on social force level and TTC (bug fix 260508)
+        # Reuse min_ttc; if no agents triggered exclusion, mode is NORMAL
+        if min_ttc < 2.0:
+            mode = ConstraintMode.MINIMUM_HARM
+        elif min_ttc < 5.0:
+            mode = ConstraintMode.CONSERVATIVE
+        else:
+            mode = ConstraintMode.NORMAL
+
         return SafeActionSpace(
             feasible_region=coords,
             max_acceleration=params.max_acceleration,
             min_acceleration=-params.max_deceleration,
             max_steering=params.max_steering_angle,
             max_speed=params.max_speed,
-            mode=ConstraintMode.NORMAL,
+            mode=mode,
             safety_margin_ttc=min_ttc,
             reasoning=[f"SFS: {len(perception.agents)} agents, force-based exclusion"],
         )

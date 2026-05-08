@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    <vType id="car" length="4.5" width="1.8" maxSpeed="16.67" accel="3.0" decel="6.0"
+           sigma="0.8" minGap="0.5" tau="0.5" speedDev="0.2"/>
+    <vType id="pedestrian" length="0.6" width="0.6" maxSpeed="2.0" accel="1.0" decel="2.0"
+           sigma="0.9" minGap="0.1" tau="0.2"/>
+    <vehicle id="ego" type="car" depart="0" departSpeed="12">
+        <route edges="B1A1 A1B2"/>
+    </vehicle>
+    <vehicle id="coop" type="car" depart="0" departSpeed="9">
+        <route edges="B2A1 A1B3"/>
+    </vehicle>
+    <vehicle id="veh0" type="car" depart="1.2" departSpeed="13.7">
+        <route edges="B1A1 A1B2"/>
+    </vehicle>
+    <vehicle id="veh1" type="car" depart="2.3" departSpeed="11.6">
+        <route edges="B2A1 A1B3"/>
+    </vehicle>
+    <vehicle id="veh2" type="car" depart="2.1" departSpeed="12.8">
+        <route edges="B1A1 A1B2"/>
+    </vehicle>
+    <vehicle id="veh3" type="car" depart="0.6" departSpeed="12.7">
+        <route edges="B2A1 A1B3"/>
+    </vehicle>
+    <vehicle id="veh4" type="car" depart="1.7" departSpeed="10.1">
+        <route edges="B3A1 A1B2"/>
+    </vehicle>
+    <vehicle id="veh5" type="car" depart="1.0" departSpeed="10.9">
+        <route edges="B3A1 A1B1"/>
+    </vehicle>
+    <vehicle id="veh6" type="car" depart="0.9" departSpeed="9.7">
+        <route edges="B1A1 A1B2"/>
+    </vehicle>
+    <vehicle id="veh7" type="car" depart="2.2" departSpeed="10.6">
+        <route edges="B2A1 A1B1"/>
+    </vehicle>
+</routes>

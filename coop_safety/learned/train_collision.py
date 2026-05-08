@@ -32,11 +32,83 @@ MODEL_DIR = "/raid/xuyifan/jiqiuyu/models"
 MAX_AGENTS = 30
 
 
+def make_scenario_split(loader, train_ratio=0.8, seed=42):
+    """Split scenarios into train/val while keeping accident/normal pairs together.
+
+    DeepAccident has paired scenarios: same intersection layout exists in
+    both accident and normal versions. We split by intersection name, so
+    a paired (accident, normal) goes to the same split. This prevents the
+    model from learning "intersection X = accident" leakage.
+    """
+    # Group scenarios by their base name (strip _accident/_normal suffix)
+    name_to_indices = {}
+    for si, s in enumerate(loader.scenarios):
+        # Name format: "type1_subtype1_accident/Town01_..." or "..._normal/..."
+        prefix, sub = s['name'].split('/', 1)
+        # base intersection name (excluding accident/normal designation)
+        base = sub
+        if base not in name_to_indices:
+            name_to_indices[base] = []
+        name_to_indices[base].append(si)
+
+    # Shuffle base names deterministically and split
+    bases = sorted(name_to_indices.keys())
+    rng = np.random.RandomState(seed)
+    rng.shuffle(bases)
+    split_idx = int(len(bases) * train_ratio)
+    train_bases = set(bases[:split_idx])
+    val_bases = set(bases[split_idx:])
+
+    train_indices = []
+    val_indices = []
+    for base, indices in name_to_indices.items():
+        if base in train_bases:
+            train_indices.extend(indices)
+        else:
+            val_indices.extend(indices)
+
+    print(f"[Split] {len(bases)} unique intersections: {len(train_bases)} train + {len(val_bases)} val")
+    print(f"[Split] Train scenarios: {len(train_indices)}, Val scenarios: {len(val_indices)}")
+    return sorted(train_indices), sorted(val_indices)
+
+
 class DeepAccidentDataset(Dataset):
-    def __init__(self, loader: DeepAccidentLoader, split='train', train_ratio=0.8):
-        # Collect all frames
+    def __init__(self, loader: DeepAccidentLoader, split='train', train_ratio=0.8,
+                 scenario_split: list = None):
+        """
+        Bug fix (260508): split by SCENARIO, not by frame, to prevent data leakage.
+        Adjacent frames are nearly identical, so frame-level shuffle put both halves
+        of every scenario into both train and val.
+
+        Args:
+            scenario_split: optional explicit list of scenario indices to use.
+                            If None, deterministic 80/20 split by scenario_idx.
+        """
+        # Determine which scenarios go to this split
+        n_scenarios = len(loader.scenarios)
+        if scenario_split is not None:
+            scenario_indices = scenario_split
+        else:
+            # Deterministic split: shuffle scenario indices, take first 80% / last 20%
+            rng = np.random.RandomState(42)
+            all_indices = np.arange(n_scenarios)
+            rng.shuffle(all_indices)
+            split_idx = int(n_scenarios * train_ratio)
+            if split == 'train':
+                scenario_indices = all_indices[:split_idx].tolist()
+            else:
+                scenario_indices = all_indices[split_idx:].tolist()
+
+        # Stratify check: are accident/normal balanced in each split?
+        n_acc = sum(1 for si in scenario_indices if loader.scenarios[si]['is_accident'])
+        n_norm = len(scenario_indices) - n_acc
+        print(f"  {split}: {len(scenario_indices)} scenarios "
+              f"(acc={n_acc}, norm={n_norm}), scenario_indices[:5]={scenario_indices[:5]}")
+
+        # Collect frames only from selected scenarios
         self.samples = []
-        for si, s in enumerate(loader.scenarios):
+        for si in scenario_indices:
+            s = loader.scenarios[si]
             collision_frame = s.get('collision_frame', -1)
             for fi in range(len(s['frames'])):
                 frame = loader.load_frame(si, fi)
@@ -63,24 +135,14 @@ class DeepAccidentDataset(Dataset):
                     'is_dangerous': float(is_dangerous),
                     'ttc': ttc,
                     'n_agents': min(len(frame.perception.agents), MAX_AGENTS),
+                    'scenario_idx': si,  # for traceability
                 })
-
-        # Shuffle samples before splitting (ensure both splits have pos/neg)
-        np.random.seed(42)
-        np.random.shuffle(self.samples)
-
-        # Split
-        n = len(self.samples)
-        split_idx = int(n * train_ratio)
-        if split == 'train':
-            self.samples = self.samples[:split_idx]
-        else:
-            self.samples = self.samples[split_idx:]
 
         # Stats
         n_pos = sum(1 for s in self.samples if s['is_dangerous'] > 0.5)
         n_neg = len(self.samples) - n_pos
-        print(f"  {split}: {len(self.samples)} samples (pos={n_pos}, neg={n_neg}, ratio={n_pos/max(len(self.samples),1):.1%})")
+        print(f"  {split} frames: {len(self.samples)} (pos={n_pos}, neg={n_neg}, "
+              f"ratio={n_pos/max(len(self.samples),1):.1%})")
 
     def __len__(self):
         return len(self.samples)
@@ -103,8 +165,10 @@ def train():
     loader = DeepAccidentLoader(split='all')
 
     print("Building datasets...")
-    train_ds = DeepAccidentDataset(loader, split='train')
-    val_ds = DeepAccidentDataset(loader, split='val')
+    # Split by intersection (accident/normal pairs stay together) — bug fix 260508
+    train_idx, val_idx = make_scenario_split(loader, train_ratio=0.8, seed=42)
+    train_ds = DeepAccidentDataset(loader, split='train', scenario_split=train_idx)
+    val_ds = DeepAccidentDataset(loader, split='val', scenario_split=val_idx)
 
     # Balance training with oversampling positives
     pos_indices = [i for i, s in enumerate(train_ds.samples) if s['is_dangerous'] > 0.5]
@@ -210,6 +274,8 @@ def train():
                 'model': model.state_dict(),
                 'epoch': epoch,
                 'auc': auc,
+                'train_scenario_idx': train_idx,
+                'val_scenario_idx': val_idx,
             }, f"{MODEL_DIR}/collision_net_best.pt")
             marker = " *best*"
 

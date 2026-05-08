@@ -111,6 +111,7 @@ class UniE2EV2XSafety:
             "method": self.name,
             "n_collisions_detected": n_collisions,
             "modification_rate": n_collisions / max(len(waypoints), 1),
+            "n_geometric_threats": n_collisions,
         }
         return modified, stats
 
@@ -238,6 +239,7 @@ class MAPSafety:
             "method": self.name,
             "n_collisions_detected": n_collisions,
             "modification_rate": n_collisions / max(len(waypoints), 1),
+            "n_geometric_threats": n_collisions,
         }
         return modified, stats
 
@@ -384,6 +386,9 @@ class RiskMMSafety:
             "method": self.name,
             "n_modifications": n_modifications,
             "modification_rate": n_modifications / max(len(waypoints) * 5, 1),
+            # Bug fix 260508: add standard fields for evaluation compatibility
+            "n_collisions_detected": 1 if n_modifications > 0 else 0,
+            "n_geometric_threats": n_modifications,
         }
         return modified, stats
 

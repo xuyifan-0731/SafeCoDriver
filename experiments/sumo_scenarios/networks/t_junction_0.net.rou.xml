@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="car" length="4.5" width="1.8" maxSpeed="16.67" accel="3.0" decel="6.0"
+           sigma="0.7" minGap="0.5" tau="0.5"/>
+    <vType id="pedestrian" length="0.5" width="0.5" maxSpeed="2.0" accel="1.0" decel="2.0"
+           sigma="0.9" minGap="0.2" tau="0.3"/>
+
+    <route id="straight_E" edges="E0 E1"/>
+    <route id="straight_W" edges="-E1 -E0"/>
+    <route id="from_south" edges="E2 -E0"/>
+    <route id="from_south_R" edges="E2 E1"/>
+    <vehicle id="ego" type="car" route="straight_E" depart="0" departSpeed="12"/>chr(10)    <vehicle id="coop" type="car" route="straight_W" depart="0" departSpeed="8"/>chr(10)    <vehicle id="veh0" type="car" route="from_south" depart="0.6" departSpeed="9.7"/>chr(10)    <vehicle id="veh1" type="car" route="from_south" depart="0.8" departSpeed="8.6"/>chr(10)    <vehicle id="veh2" type="car" route="from_south" depart="2.0" departSpeed="8.2"/>chr(10)    <vehicle id="veh3" type="car" route="from_south" depart="1.0" departSpeed="11.0"/>chr(10)    <vehicle id="veh4" type="car" route="from_south" depart="1.9" departSpeed="12.3"/>chr(10)    <vehicle id="veh5" type="car" route="from_south_R" depart="1.1" departSpeed="11.5"/>chr(10)    <vehicle id="veh6" type="car" route="from_south" depart="2.4" departSpeed="9.0"/>
+</routes>

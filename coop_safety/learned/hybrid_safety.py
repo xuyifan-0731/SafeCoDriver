@@ -7,6 +7,14 @@ Key design: DECOUPLE detection from modification.
   - Waypoint modification: ALWAYS do geometric checking → lowest WPColl%
   - Collision detection: Use V1 network → high DetRate, low FalseAlm
 
+NOTE on fairness (added 260508):
+  This is a TWO-MECHANISM method. The geometric modification and the V1
+  detection are independent. Compared to single-mechanism baselines
+  (UniE2EV2X, MAP, RiskMM) which use the same logic for both detection
+  and modification, Hybrid has an architectural advantage. Ablation
+  studies (Hybrid-no-net vs Hybrid-no-geom) are necessary for fair
+  comparison and are reported in the experiment docs.
+
 Three innovations over existing methods:
 1. Visibility-Aware Adaptive Safety Buffer — invisible agents (V2X-only)
    get larger margins due to higher position uncertainty.
@@ -19,6 +27,7 @@ Three innovations over existing methods:
 from __future__ import annotations
 
 import math
+import logging
 import numpy as np
 from typing import Optional
 
@@ -29,6 +38,13 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from coop_safety.interface import (
     PerceptionResult, SafeActionSpace, ConstraintMode,
 )
+
+# Centralized constants (bug fix 260508)
+WAYPOINT_DT = 0.5         # seconds per waypoint step
+N_WAYPOINTS = 10          # number of waypoints in CoDriving baseline
+MAX_AGENTS_NETWORK = 30   # network input cap
+
+logger = logging.getLogger(__name__)
 
 
 class HybridSafetyConstraint:
@@ -95,7 +111,7 @@ class HybridSafetyConstraint:
     def _find_threats(self, wp: np.ndarray, agents, t_idx: int,
                       ego_speed: float) -> list:
         """Find all agents threatening a waypoint at time step t."""
-        dt = (t_idx + 1) * 0.5
+        dt = (t_idx + 1) * WAYPOINT_DT
         threats = []
         for agent in agents:
             a = agent.state
@@ -141,15 +157,15 @@ class HybridSafetyConstraint:
     def _detect_with_v1(self, perception) -> float:
         """Use V1 network for collision detection (binary classification).
 
-        V1 achieves 100% DetRate / 26.9% FalseAlm on DeepAccident.
+        Returns 0.0 on inference error (logged as warning).
         """
         if self.detector is None:
             return 0.0
         try:
             import torch
-            agents_feat = np.zeros((1, 30, 10), dtype=np.float32)
-            mask = np.zeros((1, 30), dtype=bool)
-            for i, a in enumerate(perception.agents[:30]):
+            agents_feat = np.zeros((1, MAX_AGENTS_NETWORK, 10), dtype=np.float32)
+            mask = np.zeros((1, MAX_AGENTS_NETWORK), dtype=bool)
+            for i, a in enumerate(perception.agents[:MAX_AGENTS_NETWORK]):
                 s = a.state
                 agents_feat[0, i] = [
                     s.x, s.y, s.vx, s.vy, s.heading,
@@ -163,7 +179,8 @@ class HybridSafetyConstraint:
                     torch.BoolTensor(mask)
                 )
             return cp.item()
-        except Exception:
+        except Exception as e:
+            logger.warning(f"V1 inference failed: {e}")
             return 0.0
 
     def _get_wp_risks(self, waypoints, perception) -> np.ndarray:
@@ -184,8 +201,8 @@ class HybridSafetyConstraint:
                 )
             if 'waypoint_risk' in out:
                 wp_risks = out['waypoint_risk'].squeeze(0).numpy().flatten()
-        except Exception:
-            pass
+        except Exception as e:
+            logger.warning(f"V2 inference failed: {e}")
         return wp_risks
 
     def constrain_waypoints(self, waypoints: np.ndarray,
@@ -226,7 +243,7 @@ class HybridSafetyConstraint:
             modified = smoothed
 
         # Speed clamping
-        max_dist = self.v_max * 0.5
+        max_dist = self.v_max * WAYPOINT_DT
         for t in range(1, len(modified)):
             dx = modified[t, 0] - modified[t-1, 0]
             dy = modified[t, 1] - modified[t-1, 1]
@@ -240,11 +257,14 @@ class HybridSafetyConstraint:
         v1_prob = self._detect_with_v1(perception)
         is_dangerous = v1_prob > self.detection_threshold
 
-        # Report: detection flag driven by V1, not by geometric modification
+        # Stats — use consistent semantics (bug fix 260508):
+        # n_collisions_detected: 0 or 1, V1-driven detection flag
+        # n_geometric_threats: count of waypoints with geometric threats
+        # modification_rate: fraction of waypoints actually modified by geometry
         stats = {
             "method": self.name,
             "n_collisions_detected": 1 if is_dangerous else 0,
-            "modification_rate": 1.0 / max(len(waypoints), 1) if is_dangerous else 0,
+            "modification_rate": n_geometric_threats / max(len(waypoints), 1),
             "collision_prob": v1_prob,
             "n_geometric_threats": n_geometric_threats,
         }
@@ -254,7 +274,10 @@ class HybridSafetyConstraint:
         """Standard SafeActionSpace interface for detection/warning mode."""
         v1_prob = self._detect_with_v1(perception)
 
-        if v1_prob > 0.7:
+        # Use detection_threshold consistently (bug fix 260508):
+        # MINIMUM_HARM at 1.5x threshold (capped at 0.9), CONSERVATIVE at threshold
+        high_thr = min(self.detection_threshold * 1.5, 0.9)
+        if v1_prob > high_thr:
             mode = ConstraintMode.MINIMUM_HARM
         elif v1_prob > self.detection_threshold:
             mode = ConstraintMode.CONSERVATIVE
@@ -274,12 +297,11 @@ class HybridSafetyConstraint:
 
     def _encode_v2(self, perception):
         """Encode perception for V2 network input."""
-        MAX_AGENTS = 30
-        agents_feat = np.zeros((1, MAX_AGENTS, 12), dtype=np.float32)
-        mask = np.zeros((1, MAX_AGENTS), dtype=bool)
+        agents_feat = np.zeros((1, MAX_AGENTS_NETWORK, 12), dtype=np.float32)
+        mask = np.zeros((1, MAX_AGENTS_NETWORK), dtype=bool)
         ego = perception.ego
 
-        for i, a in enumerate(perception.agents[:MAX_AGENTS]):
+        for i, a in enumerate(perception.agents[:MAX_AGENTS_NETWORK]):
             s = a.state
             dist = math.sqrt(s.x**2 + s.y**2)
             rel_vx = s.vx - ego.velocity

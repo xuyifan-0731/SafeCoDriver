@@ -120,13 +120,22 @@ class RSSOnly:
 
         coords = np.array(feasible.exterior.coords) if hasattr(feasible, 'exterior') else boundary
 
+        # Set mode based on actual safety state
+        # Bug fix (260508): mode was hardcoded to NORMAL, making RSS unable to signal danger
+        if min_ttc < 2.0 or len(reasoning) >= 2:
+            mode = ConstraintMode.MINIMUM_HARM
+        elif min_ttc < 5.0 or len(reasoning) >= 1:
+            mode = ConstraintMode.CONSERVATIVE
+        else:
+            mode = ConstraintMode.NORMAL
+
         return SafeActionSpace(
             feasible_region=coords,
             max_acceleration=params.max_acceleration,
             min_acceleration=-params.max_deceleration,
             max_steering=params.max_steering_angle,
             max_speed=params.max_speed,
-            mode=ConstraintMode.NORMAL,
+            mode=mode,
             safety_margin_ttc=min_ttc,
             reasoning=reasoning if reasoning else ["RSS: no constraint needed"],
         )
@@ -218,13 +227,21 @@ class CBFBased:
 
         coords = np.array(feasible.exterior.coords) if hasattr(feasible, 'exterior') else boundary
 
+        # Set mode based on actual safety state (bug fix 260508)
+        if min_ttc < 2.0 or len(reasoning) >= 2:
+            mode = ConstraintMode.MINIMUM_HARM
+        elif min_ttc < 5.0 or len(reasoning) >= 1:
+            mode = ConstraintMode.CONSERVATIVE
+        else:
+            mode = ConstraintMode.NORMAL
+
         return SafeActionSpace(
             feasible_region=coords,
             max_acceleration=params.max_acceleration,
             min_acceleration=-params.max_deceleration,
             max_steering=params.max_steering_angle,
             max_speed=params.max_speed,
-            mode=ConstraintMode.NORMAL,
+            mode=mode,
             safety_margin_ttc=min_ttc,
             reasoning=reasoning if reasoning else ["CBF: no constraint needed"],
         )

@@ -1,21 +1,27 @@
 """FINAL VERSION: Fair evaluation on SUMO + DeepAccident.
 
-Fairness fixes:
+Fairness fixes (260508):
 1. ALL methods (including NoConstraint) disable SUMO car-following
    NoConstraint = CoDriving only (constant velocity, no safety logic)
 2. Collision deduplication: same pair counted once
 3. Multiple seeds for variance estimation
 4. Both platforms evaluated with identical algorithm
+5. V1 model trained with scenario-level split (no leakage)
+6. RSS/APF/CBF mode signaling fixed (was hardcoded NORMAL)
+7. RiskMM stats dict now includes n_collisions_detected/n_geometric_threats
 
 Evaluation:
 - DeepAccident (104 scenarios): DetRate, EarlyWarn, FalseAlm, WPColl%, ModRate
 - SUMO (30 scenarios × 3 seeds): UniqueCollisions, SecondaryColl, SecRate, Severity, WPColl%
 """
 from __future__ import annotations
-import sys, os, math, time, random
+import sys, os, math, time, random, logging
 import numpy as np
 from pathlib import Path
 from dataclasses import dataclass, field
+
+logging.basicConfig(level=logging.WARNING, format='[%(levelname)s] %(message)s')
+logger = logging.getLogger(__name__)
 
 os.environ['SUMO_HOME'] = str(Path(sys.executable).parent.parent / 'lib/python3.10/site-packages/sumo')
 import traci
@@ -166,8 +172,9 @@ def control_vehicle(vid, method, perception):
                 mod_wp, stats = method.constrain_waypoints(base_wp, perception)
                 n_threats = stats.get('n_geometric_threats', 0)
                 n_det = stats.get('n_collisions_detected', 0)
+                n_mod = stats.get('n_modifications', 0)  # for RiskMM compat
 
-                if n_threats > 0 or n_det > 0:
+                if n_threats > 0 or n_det > 0 or n_mod > 0:
                     warned = True
                     dist = math.sqrt(mod_wp[0,0]**2 + mod_wp[0,1]**2)
                     target_speed = min(max(dist/0.5, 0), ego_speed)
@@ -180,7 +187,8 @@ def control_vehicle(vid, method, perception):
                                 traci.vehicle.changeLane(vid, cl+1, 2.0)
                             elif mod_wp[1,1] < 0 and cl > 0:
                                 traci.vehicle.changeLane(vid, cl-1, 2.0)
-                        except: pass
+                        except Exception as e:
+                            logger.debug(f"Lane change failed for {vid}: {e}")
             else:
                 # Old-style methods (RSS, etc.)
                 safe = method.constrain(perception)
@@ -190,8 +198,8 @@ def control_vehicle(vid, method, perception):
                 elif safe.mode == ConstraintMode.CONSERVATIVE:
                     warned = True
                     target_speed = max(ego_speed * 0.6, 0)
-        except:
-            pass
+        except Exception as e:
+            logger.warning(f"Method {method.__class__.__name__} failed for {vid}: {e}")
 
     try:
         traci.vehicle.setSpeed(vid, max(target_speed, 0))

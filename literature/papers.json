@@ -1,0 +1,2188 @@
+{
+  "baseline_cooperative_perception": [
+    {
+      "title": "BM2CP: Efficient Collaborative Perception with LiDAR-Camera Modalities",
+      "authors": [
+        "Binyu Zhao",
+        "Wei Zhang",
+        "Zhaonian Zou"
+      ],
+      "year": 2023,
+      "venue": "Conference on Robot Learning",
+      "citation_count": 26,
+      "abstract": "Collaborative perception enables agents to share complementary perceptual information with nearby agents. This would improve the perception performance and alleviate the issues of single-view perception, such as occlusion and sparsity. Most existing approaches mainly focus on single modality (especially LiDAR), and not fully exploit the superiority of multi-modal perception. We propose a collaborative perception paradigm, BM2CP, which employs LiDAR and camera to achieve efficient multi-modal per",
+      "url": "https://www.semanticscholar.org/paper/b8540acc38d9419cb345b8e61612a773357bdf30",
+      "arxiv_id": "2310.14702",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "Practical Collaborative Perception: A Framework for Asynchronous and Multi-Agent 3D Object Detection",
+      "authors": [
+        "Minh-Quan Dao",
+        "J. S. Berrio",
+        "Vincent Frémont",
+        "Mao Shan",
+        "Elwan Héry"
+      ],
+      "year": 2023,
+      "venue": "IEEE transactions on intelligent transportation systems (Print)",
+      "citation_count": 25,
+      "abstract": "Occlusion is a major challenge for LiDAR-based object detection methods as it renders regions of interest unobservable to the ego vehicle. A proposed solution to this problem comes from collaborative perception via Vehicle-to-Everything (V2X) communication, which leverages a diverse perspective thanks to the presence of connected agents (vehicles and intelligent roadside units) at multiple locations to form a complete scene representation. The major challenge of V2X collaboration is the performa",
+      "url": "https://www.semanticscholar.org/paper/eb0211b0919d7e61eef0f3822fba204fad4e2123",
+      "arxiv_id": "2307.01462",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "Multi-Modal Virtual-Real Fusion based Transformer for Collaborative Perception",
+      "authors": [
+        "Hui Zhang",
+        "Guiyang Luo",
+        "Yuanzhouhan Cao",
+        "Yi Jin",
+        "Yidong Li"
+      ],
+      "year": 2022,
+      "venue": "International Symposium on Parallel Architectures, Algorithms and Programming",
+      "citation_count": 14,
+      "abstract": "Automobile intelligence and networking have become the inevitable trend in the future development of the automotive industry. Existing intelligent and connected vehicles rely on single-agent intelligence to perform the basic perception, which is still weak in dealing with the problem of accurate recognition and positioning in complex traffic scenes such as small and far away objects. To tackle this issue, we propose a multi-model virtual-real fusion Transformer for collaborative perception. Spec",
+      "url": "https://www.semanticscholar.org/paper/26f9c965c517f69bfbe0f3de98d34e52501d4f82",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "Weather-Aware Collaborative Perception With Uncertainty Reduction",
+      "authors": [
+        "Ping Jiang",
+        "Xiaoheng Deng",
+        "Weishang Wu",
+        "Lixin Lin",
+        "Xuechen Chen"
+      ],
+      "year": 2024,
+      "venue": "IEEE transactions on intelligent transportation systems (Print)",
+      "citation_count": 11,
+      "abstract": "Although collaborative 3D perception has successfully improved detection performance by sharing LIDAR information among multiple agents, its impact under adverse weather is under poor investigation. It is non-trivial to reduce the noise effect in the multi-agent system, as each agent may generate defective feature representations with aleatoric uncertainty, and such uncertainty will be further amplified in the collaborative stage due to deterministic collaboration models. To mitigate the negativ",
+      "url": "https://www.semanticscholar.org/paper/27cf8c092d74c341c77182fb8e4f0045a25ac38f",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "IFTR: An Instance-Level Fusion Transformer for Visual Collaborative Perception",
+      "authors": [
+        "Shaohong Wang",
+        "Lu Bin",
+        "Xinyu Xiao",
+        "Zhiyu Xiang",
+        "Hangguan Shan"
+      ],
+      "year": 2024,
+      "venue": "European Conference on Computer Vision",
+      "citation_count": 10,
+      "abstract": "Multi-agent collaborative perception has emerged as a widely recognized technology in the field of autonomous driving in recent years. However, current collaborative perception predominantly relies on LiDAR point clouds, with significantly less attention given to methods using camera images. This severely impedes the development of budget-constrained collaborative systems and the exploitation of the advantages offered by the camera modality. This work proposes an instance-level fusion transforme",
+      "url": "https://www.semanticscholar.org/paper/b976e6cb472dcd2f360ce0bef0524fb5398ca345",
+      "arxiv_id": "2407.09857",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "Multi-agent Collaborative Perception for Robotic Fleet: A Systematic Review",
+      "authors": [
+        "Apoorv Singh",
+        "G. Raut",
+        "Alka Choudhary"
+      ],
+      "year": 2024,
+      "venue": "ECCV Workshops",
+      "citation_count": 4,
+      "abstract": "Collaborative perception in multi-robot fleets is a way to incorporate the power of unity in robotic fleets. Collaborative perception refers to the collective ability of multiple entities or agents to share and integrate their sensory information for a more comprehensive understanding of their environment. In other words, it involves the collaboration and fusion of data from various sensors or sources to enhance perception and decision-making capabilities. By combining data from diverse sources,",
+      "url": "https://www.semanticscholar.org/paper/ffc4a7bcc559b5bc0d2118c3dd7ce49565810661",
+      "arxiv_id": "2405.15777",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "DOtA++: Unsupervisely and Collaboratively Detect Objects From Multi-Agent Observations With Multi-Modal Prior Constraints.",
+      "authors": [
+        "Qiming Xia",
+        "Longhui Zheng",
+        "Shijia Zhao",
+        "Xun Huang",
+        "Hai Wu"
+      ],
+      "year": 2026,
+      "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+      "citation_count": 1,
+      "abstract": "Enhancing perception performance via multi-agent collaboration has gained increasing attention in the field of autonomous driving. However, as the number of agents grows, the manual annotation required for training collaborative detectors increases significantly. To tackle this problem, we introduce an unsupervised method that learns to Detect Objects from Multi-Agent LiDAR scans, named DOtA, without using labels from external. DOtA first generates preliminary labels by an initial detector, whic",
+      "url": "https://www.semanticscholar.org/paper/976c2b3a2f7c7186459942179f0a0c299eba700e",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "Collaborative Multi-Agent Platform with LIDAR Recognition and Web Integration for STEM Education",
+      "authors": [
+        "David Cruz García",
+        "Sergio García González",
+        "Arturo Álvarez Sánchez",
+        "Rubén Herrero Pérez",
+        "Gabriel Villarrubia González"
+      ],
+      "year": 2025,
+      "venue": "Applied Sciences",
+      "citation_count": 0,
+      "abstract": "STEM (Science, Technology, Engineering, and Mathematics) education faces the challenge of incorporating advanced technologies that foster motivation, collaboration, and hands-on learning. This study proposes a portable system capable of transforming ordinary surfaces into interactive learning spaces through gamification and spatial perception. A prototype based on multi-agent architecture was developed on the PANGEA (Platform for automatic coNstruction of orGanizations of intElligent agents) pla",
+      "url": "https://www.semanticscholar.org/paper/5cc3f961240c60eae17eba5e0c9a22ff4372d783",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "Synesthesia of Machines (SoM)-Aided LiDAR Point Cloud Transmission for Collaborative Perception",
+      "authors": [
+        "Ensong Liu",
+        "Rongqing Zhang",
+        "Xiang Cheng",
+        "Jian Tang"
+      ],
+      "year": 2025,
+      "venue": "",
+      "citation_count": 0,
+      "abstract": "Collaborative perception enables more accurate and comprehensive scene understanding by learning how to share information between agents, with LiDAR point clouds providing essential precise spatial data. Due to the substantial data volume generated by LiDAR sensors, efficient point cloud transmission is essential for low-latency multi-agent collaboration. In this work, we propose an efficient, robust and applicable LiDAR point cloud transmission system via the Synesthesia of Machines (SoM), term",
+      "url": "https://www.semanticscholar.org/paper/2ac642022219d0436953aecd5943e7dc82f6528c",
+      "arxiv_id": "2509.06506",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "INSTINCT: Instance-Level Interaction Architecture for Query-Based Collaborative Perception",
+      "authors": [
+        "Yunjiang Xu",
+        "Lingzhi Li",
+        "Jin Wang",
+        "Y. Ouyang",
+        "Benyuan Yang"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "citation_count": 0,
+      "abstract": "Collaborative perception systems overcome single-vehicle limitations in long-range detection and occlusion scenarios by integrating multi-agent sensory data, improving accuracy and safety. However, frequent cooperative interactions and real-time requirements impose stringent bandwidth constraints. Previous works proves that query-based instance-level interaction reduces bandwidth demands and manual priors, however, LiDAR-focused implementations in collaborative perception remain underdeveloped, ",
+      "url": "https://www.semanticscholar.org/paper/7dc8d107678fa294b2832c45c1458b3464b83537",
+      "arxiv_id": "2509.23700",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "WaveComm: Lightweight Communication for Collaborative Perception via Wavelet Feature Distillation",
+      "authors": [
+        "Erdemt Bao",
+        "J. Yang"
+      ],
+      "year": 2026,
+      "venue": "",
+      "citation_count": 0,
+      "abstract": "In multi-agent collaborative sensing systems, substantial communication overhead from information exchange significantly limits scalability and real-time performance, especially in bandwidth-constrained environments. This often results in degraded performance and reduced reliability. To address this challenge, we propose WaveComm, a wavelet-based communication framework that drastically reduces transmission loads while preserving sensing performance in low-bandwidth scenarios. The core innovatio",
+      "url": "https://www.semanticscholar.org/paper/1f26bcc32e45afe4db7195d15c1b785842fabd72",
+      "arxiv_id": "2603.13365",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "SiMO: Single-Modality-Operable Multimodal Collaborative Perception",
+      "authors": [
+        "Jiageng Wen",
+        "Shengjie Zhao",
+        "Bing Li",
+        "Jiafeng Huang",
+        "Kenan Ye"
+      ],
+      "year": 2026,
+      "venue": "",
+      "citation_count": 0,
+      "abstract": "Collaborative perception integrates multi-agent perspectives to enhance the sensing range and overcome occlusion issues. While existing multimodal approaches leverage complementary sensors to improve performance, they are highly prone to failure--especially when a key sensor like LiDAR is unavailable. The root cause is that feature fusion leads to semantic mismatches between single-modality features and the downstream modules. This paper addresses this challenge for the first time in the field o",
+      "url": "https://www.semanticscholar.org/paper/bcbee9c4df6b22d4dad033c0d372ea986060ea0a",
+      "arxiv_id": "2603.08240",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "RC-GeoCP: Geometric Consensus for Radar-Camera Collaborative Perception",
+      "authors": [
+        "Xiaokai Bai",
+        "Lianqing Zheng",
+        "Runwei Guan",
+        "Si-Yuan Cao",
+        "Hui Shen"
+      ],
+      "year": 2026,
+      "venue": "arXiv.org",
+      "citation_count": 0,
+      "abstract": "Collaborative perception (CP) enhances scene understanding through multi-agent information sharing. While LiDAR-centric systems offer precise geometry, high costs and performance degradation in adverse weather necessitate multi-modal alternatives. Despite dense visual semantics and robust spatial measurements, the synergy between cameras and 4D radar remains underexplored in collaborative settings. This work introduces RC-GeoCP, the first framework to explore the fusion of 4D radar and images in",
+      "url": "https://www.semanticscholar.org/paper/f27b1a89f576da35366bf644a47dfe5903abf516",
+      "arxiv_id": "2603.00654",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "IMAGINE: Intelligent Multi-Agent Godot-based Indoor Networked Exploration",
+      "authors": [
+        "Tiago Leite",
+        "Maria Inês Conceição",
+        "Ant´onio Grilo"
+      ],
+      "year": 2026,
+      "venue": "arXiv.org",
+      "citation_count": 0,
+      "abstract": "The exploration of unknown, Global Navigation Satellite System (GNSS) denied environments by an autonomous communication-aware and collaborative group of Unmanned Aerial Vehicles (UAVs) presents significant challenges in coordination, perception, and decentralized decision-making. This paper implements Multi-Agent Reinforcement Learning (MARL) to address these challenges in a 2D indoor environment, using high-fidelity game-engine simulations (Godot) and continuous action spaces. Policy training ",
+      "url": "https://www.semanticscholar.org/paper/f8b3ce3b74453b9103ad63d830e922d6e148ad7f",
+      "arxiv_id": "2602.02858",
+      "category": "baseline_cooperative_perception"
+    },
+    {
+      "title": "Collaborative Exploration and Mapping with Multimodal LiDAR Sensors",
+      "authors": [
+        "Yuhang Xu",
+        "Liuchun Li",
+        "Shan Sun",
+        "Weitong Wu",
+        "Ang Jin"
+      ],
+      "year": 2023,
+      "venue": "2023 IEEE International Conference on Unmanned Systems (ICUS)",
+      "citation_count": 0,
+      "abstract": "Exploration and mapping unknown environments have placed elevated demands on the spatial intelligence perception capabilities of unmanned systems. Traditional single unmanned systems suffer from issues such as low exploration efficiency. This paper introduces the LuoJia-Explorer system, an unmanned multi-robot system that can achieve autonomous collaborative exploration and mapping with multimodal LiDAR sensors. For individual agent in the system, the robot achieves tightly-coupled multi-LiDAR-i",
+      "url": "https://www.semanticscholar.org/paper/c0f7787ad4181e673528ac57961f4c21ffd1b66e",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_perception"
+    }
+  ],
+  "baseline_cooperative_planning": [
+    {
+      "title": "Cooperative Lane-Change Motion Planning for Connected and Automated Vehicle Platoons in Multi-Lane Scenarios",
+      "authors": [
+        "Xuting Duan",
+        "Chen Sun",
+        "Daxin Tian",
+        "Jianshan Zhou",
+        "Dongpu Cao"
+      ],
+      "year": 2023,
+      "venue": "IEEE transactions on intelligent transportation systems (Print)",
+      "citation_count": 54,
+      "abstract": "Multi-vehicle motion planning (MVMP) has become an emerging paradigm in connected and automated vehicles (CAVs). The cooperative lane-change movements with the coexistence of platoons and CAVs are typical scenarios on the muti-lane roads. This paper proposes an optimal control framework with the advantages of completeness and universality for platoons and CAVs’ cooperative lane-change motion planning in different task scenarios. Two typical cooperative scenarios are designed for the subsequent s",
+      "url": "https://www.semanticscholar.org/paper/75553a9bb0eb6c112daaefc2fa0834f75aa2b565",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "An Integrated Approach to Optimal Merging Sequence Generation and Trajectory Planning of Connected Automated Vehicles for Freeway On-Ramp Merging Sections",
+      "authors": [
+        "Jieming Chen",
+        "Yue Zhou",
+        "E-S Chung"
+      ],
+      "year": 2024,
+      "venue": "IEEE transactions on intelligent transportation systems (Print)",
+      "citation_count": 27,
+      "abstract": "Intensive interactions among vehicles at freeway on-ramp merging areas lead to congestion and accidents. The emergence of connected automated vehicles (CAVs) has shown great potential to improve this issue. In this paper, a mixed integer nonlinear programming (MINLP) model is proposed and solved for the task of a cooperative merging of two traffic streams at a freeway on-ramp merging section. The proposed model simultaneously optimizes multiple vehicles’ trajectories and their merging sequence t",
+      "url": "https://www.semanticscholar.org/paper/162962133f1981b45520a2a9a983c5939ee46702",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Distributed Cooperative Control and Optimization of Connected Automated Vehicles Platoon Against Cut-In Behaviors of Social Drivers",
+      "authors": [
+        "Bohui Wang",
+        "Rong Su",
+        "Lingying Huang",
+        "Yun Lu",
+        "Nanbin Zhao"
+      ],
+      "year": 2024,
+      "venue": "IEEE Transactions on Automatic Control",
+      "citation_count": 25,
+      "abstract": "In this article, we propose a dynamic platoon management and cooperative driving framework for a mixed traffic flow consisting of multiple connected automated vehicles (CAVs) and possible human-driven vehicles (HDVs) that can be regarded as the surrounding vehicles (SVs). Specifically, the proposed framework consists of three stages. At the first stage, the cruising information of all the SVs will be collected by the leader CAV through the cellular-vehicle-to-X (C-V2X) infrastructure, while an a",
+      "url": "https://www.semanticscholar.org/paper/5af20671c3eb4c8a1ea567468f91dab4cfc08341",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Towards the Next Level of Vehicle Automation Through Cooperative Driving: A Roadmap From Planning and Control Perspective",
+      "authors": [
+        "Haoran Wang",
+        "Yongwei Feng",
+        "Yonglin Tian",
+        "Ziran Wang",
+        "Jia Hu"
+      ],
+      "year": 2024,
+      "venue": "IEEE Transactions on Intelligent Vehicles",
+      "citation_count": 22,
+      "abstract": "Cooperative Driving Automation (CDA) stands at the forefront of the evolving landscape of vehicle automation, elevating driving capabilities within intricate real-world environments. This research aims to navigate the path toward the future of CDA by offering a thorough examination from the perspective of Planning and Control (PnC). It classifies state-of-the-art literature according to the CDA classes defined by the Society of Automotive Engineers (SAE). The strengths, weaknesses, and requireme",
+      "url": "https://www.semanticscholar.org/paper/1e47ee10e8476708a198b772f80859f89d1afb68",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Collision-Free Cooperative Motion Planning and Decision-Making for Connected and Automated Vehicles at Unsignalized Intersections",
+      "authors": [
+        "Xinle Gong",
+        "Bowen Wang",
+        "Sheng Liang"
+      ],
+      "year": 2024,
+      "venue": "IEEE Transactions on Systems, Man, and Cybernetics: Systems",
+      "citation_count": 20,
+      "abstract": "This article proposes a novel cooperative motion planning and decision-making approach for connected and automated vehicles (CAVs) at unsignalized intersections, where a multivehicle collision-free trajectories generating problem is modeled as a constrained optimization problem. A learning-based iterative optimization (LBIO) algorithm is developed to solve the problem iteratively and obtain velocity-optimal trajectories using the historical vehicle states at previous iterations as data sets. To ",
+      "url": "https://www.semanticscholar.org/paper/5596e848f06703c5b709776429b5c5784dd50800",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Multiple-Vehicle Cooperative Autonomous Parking Trajectory Planning Using Connected Fifth Degree Polynomials and Genetic Algorithm Optimization",
+      "authors": [
+        "Hamed Kouhi",
+        "Abbas Moradi"
+      ],
+      "year": 2026,
+      "venue": "IEEE Transactions on Intelligent Vehicles",
+      "citation_count": 9,
+      "abstract": "",
+      "url": "https://www.semanticscholar.org/paper/05ac83c86ee43234931988f864f97b93f8ff00b0",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Planning trajectories for connected and automated vehicle platoon on curved roads: A two-dimensional cooperative approach",
+      "authors": [
+        "Shengyue Yao",
+        "Yang Zhou",
+        "Bernhard Friedrich",
+        "Soyoung Ahn"
+      ],
+      "year": 2024,
+      "venue": "Transportation Research Part C: Emerging Technologies",
+      "citation_count": 8,
+      "abstract": "",
+      "url": "https://www.semanticscholar.org/paper/ee8f2bd329c58423e2bc682e6ba3935d67b6e2bc",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "A Novel Intelligent Intersection Management Scheme Focusing on Cooperative Trajectory Planning of Connected Automated Vehicles",
+      "authors": [
+        "Bikang Hua",
+        "Hankun Jiang",
+        "Runqi Chai",
+        "Jinning Zhang",
+        "Ishrak MD Farhan"
+      ],
+      "year": 2024,
+      "venue": "IEEE Transactions on Intelligent Vehicles",
+      "citation_count": 6,
+      "abstract": "In the context of rapid development of the digital era, connected automated vehicle (CAV) technology brings revolutionary changes to the transportation field. This paper aims to study a novel intelligent traffic intersection management scheme, which focuses on the cooperative trajectory planning problem of a group of CAVs driving at the intersection. First, we model the intelligent intersection management scheme, which incorporates ethical and social considerations to align it more closely with ",
+      "url": "https://www.semanticscholar.org/paper/dd7a76213f24287b933d2b641383d7942040992d",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Distributed Cooperative Driving Strategy for Connected Automated Vehicles at Unsignalized Intersections Based on Monte Carlo Method",
+      "authors": [
+        "Haoming Li",
+        "Wei Dong",
+        "Linjun Lu",
+        "Ying Wang",
+        "Xianing Wang"
+      ],
+      "year": 2024,
+      "venue": "Journal of Advanced Transportation",
+      "citation_count": 5,
+      "abstract": "One of the most important goals of cooperative driving is to control connected automated vehicles (CAVs) passing through conflict areas safely and efficiently without traffic signals. As a typical application scenario, allocating right-of-way reasonably at unsignalized intersections can effectively avoid collisions and reduce traffic delays. Proposed here is a new cooperative driving strategy for CAVs at unsignalized intersections based on distributed Monte Carlo tree search (MCTS). A task-area ",
+      "url": "https://www.semanticscholar.org/paper/9c157d449e6124748118625266065905d9c6f9fa",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Cooperative Motion Planning for Connected and Automated Vehicle Platoons at Unsignalized Intersections",
+      "authors": [
+        "Zhongqi Zhang",
+        "Linjie Gao",
+        "Jiajin Chen",
+        "Mingyang Xu",
+        "Qi Wang"
+      ],
+      "year": 2023,
+      "venue": "2023 International Symposium on Intelligent Robotics and Systems (ISoIRS)",
+      "citation_count": 2,
+      "abstract": "Against the backdrop of the rapid development of computer-related technologies, Connected and Automated Vehicle (CAV) have become a hot research issue in the field of transportation science and engineering. In the field of autonomous driving, there are insufficient research on the coordinated movement of multi-vehicle formations and the coordinated passage of intersections. In this paper, we propose a multi-vehicle cooperative formation motion planning method at non-signal intersections, based o",
+      "url": "https://www.semanticscholar.org/paper/1591eaf88b54d6859fc065a05fbe9580262aba4c",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Occlusion-Aware Planning for Connected and Automated Vehicles with Cooperative Perception at Unsignalized Intersection",
+      "authors": [
+        "Hao Su",
+        "S. Arakawa",
+        "Masayuki Murata"
+      ],
+      "year": 2025,
+      "venue": "2025 IEEE Intelligent Vehicles Symposium (IV)",
+      "citation_count": 2,
+      "abstract": "Achieving safe and efficient navigation in urban environments remains a significant challenge for autonomous driving, primarily due to frequent occlusions that hinder perception. Cooperative perception (CP) has emerged as a promising solution, offering enhanced sensing capabilities by enabling information sharing among vehicles. In this work, we propose an occlusion-aware motion planning framework that integrates CP to optimize vehicle speed, minimizing risk while ensuring efficient navigation. ",
+      "url": "https://www.semanticscholar.org/paper/b32728bf2c6ca7a767d30f89ea9ff86f20d0c924",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Cooperative Motion Planning with 3D Spatio-temporal Map for Connected and Automated Vehicles in Intersection",
+      "authors": [
+        "Yongxing Cao",
+        "Bi-jun Li",
+        "Hongjuan Zhang",
+        "Duanfeng Chu",
+        "Yuanxian Huang"
+      ],
+      "year": 2022,
+      "venue": "2022 6th CAA International Conference on Vehicular Control and Intelligence (CVCI)",
+      "citation_count": 1,
+      "abstract": "Connected and automated vehicles (CAV s) are considered to improve road transportation safety and traffic efficiency. For motion planning of CAVs in signalized intersections, we need to consider the right-of-way constraints while satisfying safety and efficiency constraints. However, due to the perception range limitation of a single CAV, it is hard to obtain a satisfying planning result that balances safety, efficiency and legality. In this paper, a hierarchical cooperative motion planning (CMP",
+      "url": "https://www.semanticscholar.org/paper/93a61954ed966f22d8f17df4a7a8c6dfd4089857",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Enhanced Cooperative Perception Through Asynchronous Vehicle to Infrastructure Framework with Delay Mitigation for Connected and Automated Vehicles",
+      "authors": [
+        "Nithish Kumar Saravanan",
+        "V. Jammula",
+        "Yezhou Yang",
+        "Jeffrey Wishart",
+        "Junfeng Zhao"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "citation_count": 0,
+      "abstract": "Perception is a key component of Automated vehicles (AVs). However, sensors mounted to the AVs often encounter blind spots due to obstructions from other vehicles, infrastructure, or objects in the surrounding area. While recent advancements in planning and control algorithms help AVs react to sudden object appearances from blind spots at low speeds and less complex scenarios, challenges remain at high speeds and complex intersections. Vehicle to Infrastructure (V2I) technology promises to enhan",
+      "url": "https://www.semanticscholar.org/paper/6920526b1568d961bb63a4c7a75ec511377ffa29",
+      "arxiv_id": "2504.08172",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Cooperative Handling of Cut-Ins and Emergency Braking for Connected Automated Vehicles with Heterogeneous Powertrains",
+      "authors": [
+        "Dimitris Kapsalis",
+        "J. Spring",
+        "Xiao-Yun Lu"
+      ],
+      "year": 2025,
+      "venue": "IEEE Conference on Decision and Control",
+      "citation_count": 0,
+      "abstract": "The widespread adoption of Connected Auto-mated Vehicles (CAVs) is highly dependent on their ability to handle real-world traffic conditions, including cut-in/cut-out maneuvers and emergency braking scenarios. This paper presents a Cooperative Adaptive Cruise Control (CACC) frame-work enhanced with motion planning and control strategies to robustly manage these challenges in mixed traffic environments with heterogeneous powertrains and dynamics. The proposed control architecture builds upon prev",
+      "url": "https://www.semanticscholar.org/paper/54f112153dd379172f1c825d2c1e89266b3c0061",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    },
+    {
+      "title": "Distributed Multi-Vehicle Cooperative Trajectory Planning and Control for Ramp Merging and Diverging Based on Deep Neural Networks and MPC",
+      "authors": [
+        "Linhua Nie",
+        "Tingyan Zhang",
+        "Yunqing Zhao",
+        "Yaqiu Li",
+        "Haoran Li"
+      ],
+      "year": 2026,
+      "venue": "Machines",
+      "citation_count": 0,
+      "abstract": "With the deep integration of the modern automotive industry and artificial intelligence technologies, connected and automated vehicles (CAVs) have emerged as a key breakthrough for improving traffic safety and operational efficiency. This study proposes a distributed multi-vehicle cooperative trajectory planning and control framework for ramp merging and diverging scenarios, integrating Deep Neural Networks (DNNs) with Model Predictive Control (MPC). The methodology consists of three key compone",
+      "url": "https://www.semanticscholar.org/paper/f1398c2e6ea51d5b7b5721e12bbc3da1657134b3",
+      "arxiv_id": "",
+      "category": "baseline_cooperative_planning"
+    }
+  ],
+  "safety_constraint_methods": [
+    {
+      "title": "RiskNet: Interaction-Aware Risk Forecasting for Autonomous Driving in Long-Tail Scenarios",
+      "authors": [
+        "Qichao Liu",
+        "Heye Huang",
+        "Shiyue Zhao",
+        "Lei Shi",
+        "Soyoung Ahn"
+      ],
+      "year": 2025,
+      "venue": "Transportation Research Part E: Logistics and Transportation Review",
+      "citation_count": 9,
+      "abstract": "Ensuring the safety of autonomous vehicles (AVs) in long-tail scenarios remains a critical challenge, particularly under high uncertainty and complex multi-agent interactions. To address this, we propose RiskNet, an interaction-aware risk forecasting framework, which integrates deterministic risk modeling with probabilistic behavior prediction for comprehensive risk assessment. At its core, RiskNet employs a field-theoretic model that captures interactions among ego vehicle, surrounding agents, ",
+      "url": "https://www.semanticscholar.org/paper/e591098f6008c3cdc51d771bfaa87e161c8320fd",
+      "arxiv_id": "2504.15541",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "An Emergency Driving Intervention System Designed for Driver Disability Scenarios Based on Emergency Risk Field",
+      "authors": [
+        "Yuning Wang",
+        "Shuocheng Yang",
+        "Jinhao Li",
+        "Shaobing Xu",
+        "Jianqiang Wang"
+      ],
+      "year": 2023,
+      "venue": "International Journal of Environmental Research and Public Health",
+      "citation_count": 9,
+      "abstract": "Driver disability has become an increasing factor leading to traffic accidents, especially for commercial vehicle drivers who endure high mental and physical pressure because of long periods of work. Once driver disability occurs, e.g., heart disease or heat stroke, the loss of driving control may lead to serious traffic incidents and public damage. This paper proposes a novel driving intervention system for autonomous danger avoidance under driver disability conditions, including a quantitative",
+      "url": "https://www.semanticscholar.org/paper/f09dae86dacb88e6eab0f2561fbb11ec16d5104a",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "Online Safety Verification of Autonomous Driving Decision-Making Based on Dynamic Reachability Analysis",
+      "authors": [
+        "Fei Gao",
+        "Cheng Luo",
+        "Fangyuan Shi",
+        "Xianqing Chen",
+        "Zhenhai Gao"
+      ],
+      "year": 2023,
+      "venue": "IEEE Access",
+      "citation_count": 8,
+      "abstract": "Addressing decision safety in the unpredictable arena of complex traffic scenarios represents a significant hurdle for autonomous driving systems. Considering the inherent spatial-temporal uncertainties associated with the future actions of surrounding traffic participants, real-time safety verification of autonomous driving decisions is crucial to maintaining vehicular safety. Existing online verification methodologies, such as Responsibility Sensitive Safety (RSS) and Safety Force Field (SFF),",
+      "url": "https://www.semanticscholar.org/paper/959634250f4ada391dbe64f80cfd5644ee89695b",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "Analysis of the Potential of Onboard Vehicle Sensors for Model-based Maximum Friction Coefficient Estimation",
+      "authors": [
+        "Nicolas Lampe",
+        "Zygimantas Ziaukas",
+        "C. Westerkamp",
+        "Hans-Georg Jacob"
+      ],
+      "year": 2023,
+      "venue": "American Control Conference",
+      "citation_count": 7,
+      "abstract": "Advanced driver assistance systems (ADAS) have led to a steady improvement in driving comfort and safety. Knowledge of vehicle dynamics and perception of the vehicle’s environment are necessary for optimized ADAS and autonomous driving. A crucial parameter influencing vehicle dynamics is the maximum friction coefficient between the tire and the road. As this coefficient cannot be measured economically in serial production cars via existing vehicle sensors, model-based estimation algorithms are a",
+      "url": "https://www.semanticscholar.org/paper/9871a04b7a117177206622d4b7eb88799a2526c5",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "Risk Assessment of Roundabout Scenarios in Virtual Testing Based on an Improved Driving Safety Field",
+      "authors": [
+        "Wentao Chen",
+        "Aoxue Li",
+        "Haobin Jiang"
+      ],
+      "year": 2024,
+      "venue": "Italian National Conference on Sensors",
+      "citation_count": 6,
+      "abstract": "With the advancement of autonomous driving technology, scenario-based testing has become the mainstream testing method for intelligent vehicles. However, traditional risk indicators often fail in roundabout scenarios and cannot accurately define dangerous situations. To accurately quantify driving risks in roundabout scenarios, an improved driving safety field model is proposed in this paper. First, considering the unique traffic flow characteristics of roundabouts, the dynamic characteristics o",
+      "url": "https://www.semanticscholar.org/paper/a9cbfccf402185ca08450c1983b68d255a5fa33c",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "Autonomous vehicle platoon overtaking at a uniform speed based on improved artificial potential field method",
+      "authors": [
+        "Yan Chen",
+        "Liang Su",
+        "Yong Zhang",
+        "Feng Zhang",
+        "G. Gong"
+      ],
+      "year": 2024,
+      "venue": "Proceedings of the Institution of mechanical engineers. Part D, journal of automobile engineering",
+      "citation_count": 5,
+      "abstract": "Amidst the advancements in autonomous driving technology, platoons composed of autonomous vehicles have garnered significant attention due to their potential to alleviate traffic congestion and enhance transportation capacity. Addressing the issue of slow-moving vehicles obstructing the roadway, this study introduces a consistent overtaking strategy, leveraging an improved artificial potential field (IAPF) method. Through the incorporation of a velocity repulsive force field, a refined obstacle ",
+      "url": "https://www.semanticscholar.org/paper/2df62d5bb08ef2d81ae27f1afb72b9ac0e7d075a",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "Rationale-aware Autonomous Driving Policy utilizing Safety Force Field implemented on CARLA Simulator",
+      "authors": [
+        "H. Suk",
+        "Taewoo Kim",
+        "Hyungbin Park",
+        "Pamul Yadav",
+        "Junyong Lee"
+      ],
+      "year": 2022,
+      "venue": "arXiv.org",
+      "citation_count": 4,
+      "abstract": "Despite the rapid improvement of autonomous driving technology in recent years, automotive manufacturers must resolve liability issues to commercialize autonomous passenger car of SAE J3016 Level 3 or higher. To cope with the product liability law, manufacturers develop autonomous driving systems in compliance with international standards for safety such as ISO 26262 and ISO 21448. Con-cerning the safety of the intended functionality (SOTIF) requirement in ISO 26262, the driving policy recommend",
+      "url": "https://www.semanticscholar.org/paper/bae08ec59f84901602ecdd10b3d903bf58c531b0",
+      "arxiv_id": "2211.10237",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "Safety Field-Based Vehicle-Infrastructure Cooperative Perception for Autonomous Driving Using 3D Point Clouds",
+      "authors": [
+        "Cong Zhao",
+        "Delong Ding",
+        "Cailin Lei",
+        "Shiyu Wang",
+        "Yuxiong Ji"
+      ],
+      "year": 2025,
+      "venue": "IEEE transactions on intelligent transportation systems (Print)",
+      "citation_count": 2,
+      "abstract": "Cooperative perception, using vehicle-to-everything (V2X) technologies for perceptual data sharing between autonomous vehicles (AVs) and intelligent infrastructure, is considered a solution to many single-agent perception challenges. Early fusion, a data fusion scheme for the cooperative perception of AVs, provides a universally available data-sharing approach but has been criticized for its huge bandwidth consumption. This paper proposes a safety field (SF)-based vehicle-infrastructure cooperat",
+      "url": "https://www.semanticscholar.org/paper/04ad897f55ece782d0b594552c8ba7d412613afd",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "FSTAN: A Two-Stage Traffic Conflict Prediction Framework Based on Vehicle Trajectory",
+      "authors": [
+        "Zhenyu Liu",
+        "Qiaojun Xiang"
+      ],
+      "year": 2025,
+      "venue": "IEEE Transactions on Instrumentation and Measurement",
+      "citation_count": 1,
+      "abstract": "Microscopic traffic conflict prediction is critical to improving road safety. For autonomous driving in highway scenarios, we develop a two-stage conflict prediction framework. In the first stage, a field force-based spatiotemporal attention network field-based spatial-temporal attention network (FSTAN) for trajectory prediction is proposed, which models vehicle interaction perception as a measurement process. The FSTAN network applies spatiotemporal transformer blocks (STTBs) with multiple atte",
+      "url": "https://www.semanticscholar.org/paper/e4356335d65adcde6f640d501ac123a69ab7ce42",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "Lumbar and neck injuries of occupants in different reclining postures",
+      "authors": [
+        "Diyi Liu",
+        "Sen Xiao",
+        "Feifei Han",
+        "Botao Hu"
+      ],
+      "year": 2024,
+      "venue": "Chinese journal of traumatology = Zhonghua chuang shang za zhi",
+      "citation_count": 1,
+      "abstract": "Purpose With the increasing level of automation in automobiles, the advent of autonomous vehicles has reduced the tendency of drivers and passengers to focus on the task of driving. The increasing automation in automobiles reduced the drivers' and passengers' focus on driving, which allowed occupants to choose a more relaxed and comfortable sitting position. Meanwhile, the occupant's sitting position went from a frontal, upright position to a more relaxed and reclined one, which resulted in the ",
+      "url": "https://www.semanticscholar.org/paper/008f7a6bac1ae0afe6eef546289f07861c68ae5f",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "How Do Different HMIs of Autonomous Driving Monitoring Systems Influence the Perceived Safety of Robotaxis Passengers? a Field Study",
+      "authors": [
+        "Yaoqin Gu",
+        "Youyu Sheng",
+        "Yujia Duan",
+        "Jingyu Zhang"
+      ],
+      "year": 2024,
+      "venue": "Interacción",
+      "citation_count": 1,
+      "abstract": "",
+      "url": "https://www.semanticscholar.org/paper/a9cf22072f3c7036a217539bb18e110c9eb6ea9a",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "Exploring the Current Development Status of Autonomous Driving Technology",
+      "authors": [
+        "Jiawei Kang"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the 3rd International Conference on Computer Science and Mechatronics",
+      "citation_count": 0,
+      "abstract": ": Autonomous driving technology has rapidly evolved in recent years, driven by advancements in artificial intelligence, sensor systems, and vehicle automation. The necessity of research in this field lies in its potential to revolutionize transportation, enhance road safety, and optimize traffic efficiency.This paper explores the key components and technologies underlying autonomous driving, including sensor technologies, deep learning algorithms, and their applications. It also examines current",
+      "url": "https://www.semanticscholar.org/paper/5356df5d345eb9fa238636d5baae46142ef5f080",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "Improved Method of Driving Safety Field Modeling by Considering the Abnormal Transfer of Energy Between Vehicles",
+      "authors": [
+        "Huilan Li",
+        "Xunjia Zheng",
+        "Xiangyang Xu"
+      ],
+      "year": 2025,
+      "venue": "IEEE Access",
+      "citation_count": 0,
+      "abstract": "This study presents a Driving Safety Field (DSF) modeling method for quantifying the risks faced by autonomous vehicles, aiming to address the real-time and precise quantification of risks posed by other road participants during the driving process. The proposed modeling method is based on the concept that accidents involve abnormal energy transfer. By considering the interactions between the ego vehicle and other road participants, the model introduces reduced mass and vector velocity and utili",
+      "url": "https://www.semanticscholar.org/paper/c8b369be80da902da08a7c624969fb2863d90300",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "Interconnection and Autonomous Driving: Concepts, Development process and Applications",
+      "authors": [
+        "Zhicong Sun"
+      ],
+      "year": 2024,
+      "venue": "Highlights in Science Engineering and Technology",
+      "citation_count": 0,
+      "abstract": "This paper provides an in-depth discussion on the concepts, development process, applications and integration of interconnection technology and autonomous driving technology. Through a comprehensive introduction to these two technologies, it reveals their positive impacts in the field of transportation and analyzes the advantages of their integration. As a technology which can connect various domains, interconnection has become a transformative force. Its implications are far-reaching, which imp",
+      "url": "https://www.semanticscholar.org/paper/7e0c2cb5900648eb3bcf589703b6dc8e862ad16e",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    },
+    {
+      "title": "Lane-changing decision-making model for autonomous vehicles in dense traffic scenarios: integrating game-theoretic framework with social force modeling",
+      "authors": [
+        "Liquan Huang",
+        "Qian Wan",
+        "Qianqian Liu",
+        "Jinzhu Li"
+      ],
+      "year": 2025,
+      "venue": "International Conference on Electromechanical Control Technology and Transportation",
+      "citation_count": 0,
+      "abstract": "The rapid advancement of autonomous driving technology has created an urgent demand for robust decision-making frameworks that balance safety and efficiency in dense traffic scenarios. To address the limitations of existing lanechanging models in handling dynamic multi-vehicle interactions, which often result in conservative driving behaviors or traffic flow disturbances, this paper proposes a safety-efficiency co-optimization lane-changing decision-making model for autonomous vehicles that inte",
+      "url": "https://www.semanticscholar.org/paper/2db80772b51cb1d6a11b3c285394eeec96cbf789",
+      "arxiv_id": "",
+      "category": "safety_constraint_methods"
+    }
+  ],
+  "cooperative_safety": [
+    {
+      "title": "FedVCP: A Federated-Learning-Based Cooperative Positioning Scheme for Social Internet of Vehicles",
+      "authors": [
+        "Xiangjie Kong",
+        "Haoran Gao",
+        "Guojiang Shen",
+        "Gaohui Duan",
+        "S. Das"
+      ],
+      "year": 2022,
+      "venue": "IEEE Transactions on Computational Social Systems",
+      "citation_count": 100,
+      "abstract": "Intelligent vehicle applications, such as autonomous driving and collision avoidance, put forward a higher demand for precise positioning of vehicles. The current widely used global navigation satellite systems (GNSS) cannot meet the precision requirements of the submeter level. Due to the development of sensing techniques and vehicle-to-infrastructure (V2I) communications, some vehicles can interact with surrounding landmarks to achieve precise positioning. Existing work aims to realize the pos",
+      "url": "https://www.semanticscholar.org/paper/5c32f9faff55bec9cc0e7577e1f92ff37cb15a5d",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "BEV-V2X: Cooperative Birds-Eye-View Fusion and Grid Occupancy Prediction via V2X-Based Data Sharing",
+      "authors": [
+        "Chen Chang",
+        "Jiawei Zhang",
+        "Kunpeng Zhang",
+        "Wenqi Zhong",
+        "Xinyu Peng"
+      ],
+      "year": 2023,
+      "venue": "IEEE Transactions on Intelligent Vehicles",
+      "citation_count": 65,
+      "abstract": "Birds-Eye-View (BEV) perception can naturally represent natural scenes, which is conducive to multimodal data processing and fusion. BEV data contain rich semantics and integrate the information of driving scenes, which play an important role in researches related to autonomous driving. However, BEV constructed by single vehicle perception encounter certain issues, such as low accuracy and insufficient range, and thus cannot be well applied to scenario understanding and driving situation predict",
+      "url": "https://www.semanticscholar.org/paper/c5331648f7bc5ac1e5acc7c1bafc6ba41df79bdd",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Design of V2X-Based Vehicular Contents Centric Networks for Autonomous Driving",
+      "authors": [
+        "Sanghoon Lee",
+        "Younghwan Jung",
+        "Young-Hoon Park",
+        "Seong-Woo Kim"
+      ],
+      "year": 2022,
+      "venue": "IEEE transactions on intelligent transportation systems (Print)",
+      "citation_count": 31,
+      "abstract": "Recent technical innovation has driven the evolution of autonomous vehicles. To improve safety as well as on-road vehicular experience, vehicles should be connected with each other or to vehicular networks. Some specification groups, e.g., IEEE and 3GPP, have studied and released vehicular communication requirements and architecture. IEEE’s Wireless Access in Vehicular Environment focuses on dedicated and short-range communication, while 3GPP’s New Radio V2X supports not only sidelink but also u",
+      "url": "https://www.semanticscholar.org/paper/627981d25f4277d7752a179c441eee5b5f4b209b",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Deep-Reinforcement-Learning-Based Collision Avoidance of Autonomous Driving System for Vulnerable Road User Safety",
+      "authors": [
+        "Haochong Chen",
+        "Xincheng Cao",
+        "Levent Guvenç",
+        "Bilin Aksun-Guvenc"
+      ],
+      "year": 2024,
+      "venue": "Electronics",
+      "citation_count": 24,
+      "abstract": "The application of autonomous driving system (ADS) technology can significantly reduce potential accidents involving vulnerable road users (VRUs) due to driver error. This paper proposes a novel hierarchical deep reinforcement learning (DRL) framework for high-performance collision avoidance, which enables the automated driving agent to perform collision avoidance maneuvers while maintaining appropriate speeds and acceptable social distancing. The novelty of the DRL method proposed here is its a",
+      "url": "https://www.semanticscholar.org/paper/400fc46c23569104b3f9355103e1380c420e46a0",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Deep Reinforcement Learning Based Integrated Eco-Driving Strategy for Connected and Automated Electric Vehicles in Complex Urban Scenarios",
+      "authors": [
+        "Jiawei Fan",
+        "Xiaodong Wu",
+        "Jie Li",
+        "Min Xu"
+      ],
+      "year": 2024,
+      "venue": "IEEE Transactions on Vehicular Technology",
+      "citation_count": 19,
+      "abstract": "With vehicle-to-everything (V2X) information, connected and automated vehicle (CAV) eco-driving strategy allows the vehicle to plan its speed and choose the optimal lane based on actual conditions, resulting in improved driving performance. This study presents a novel eco-driving strategy framework based on deep reinforcement learning (DRL) techniques for CAVs driving in urban scenarios. This framework integrates longitudinal speed planning with lateral lane change decision-making and aims to co",
+      "url": "https://www.semanticscholar.org/paper/a9c4a19766c063eaf1bf6cdf137bb2bbc720a1a0",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Real-time energy optimization of HEVs under-connected environment: a benchmark problem and receding horizon-based solution",
+      "authors": [
+        "Fuguo Xu",
+        "Hiroki Tsunogawa",
+        "J. Kako",
+        "Xiaosong Hu",
+        "S. Li"
+      ],
+      "year": 2022,
+      "venue": "Control Theory and Technology",
+      "citation_count": 13,
+      "abstract": "",
+      "url": "https://www.semanticscholar.org/paper/9d955d52dce673218af94f6032320d49d2d4d1ea",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Multiple-Vehicle Cooperative Autonomous Parking Trajectory Planning Using Connected Fifth Degree Polynomials and Genetic Algorithm Optimization",
+      "authors": [
+        "Hamed Kouhi",
+        "Abbas Moradi"
+      ],
+      "year": 2026,
+      "venue": "IEEE Transactions on Intelligent Vehicles",
+      "citation_count": 9,
+      "abstract": "",
+      "url": "https://www.semanticscholar.org/paper/05ac83c86ee43234931988f864f97b93f8ff00b0",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Autonomous Emergency Collision Avoidance and Collaborative Stability Control Technologies for Intelligent Vehicles: A Survey",
+      "authors": [
+        "Xiaoqiang Tan",
+        "Guangqiang Wu",
+        "Zefan Li",
+        "Kai Liu",
+        "Chengbao Zhang"
+      ],
+      "year": 2025,
+      "venue": "IEEE Transactions on Intelligent Vehicles",
+      "citation_count": 8,
+      "abstract": "This paper presents a comprehensive literature review on intelligent driving technologies, with a special emphasis on Automatic Emergency Collision Avoidance Technology (AECA) and Collaborative Stability Control (CSC). These technologies play a crucial role in the active safety of vehicles. AECA proactively detects and responds to potential collisions, and CSC enhances vehicle stability by integrating various systems across multiple driving scenarios. The synergy between AECA and CSC is essentia",
+      "url": "https://www.semanticscholar.org/paper/983b43ed3d5a6428c3a3513d3b69da07fe2fd04b",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Efficient Uncertainty-Aware Collision Avoidance for Autonomous Driving Using Convolutions",
+      "authors": [
+        "Chaojie Zhang",
+        "Xichao Wu",
+        "Jun Wang",
+        "Mengxuan Song"
+      ],
+      "year": 2024,
+      "venue": "IEEE transactions on intelligent transportation systems (Print)",
+      "citation_count": 8,
+      "abstract": "Motion planning directly in the spatiotemporal dimension can generate trajectories of higher quality compared to decoupled methods for autonomous driving. However, it requires a greater amount of computational resources. This paper proposes an efficient motion planning method based on convolution in the spatiotemporal dimension, which takes into account the uncertainty of localization and obstacle intention. Firstly, a three-dimensional probability occupancy grid map with uncertainty is construc",
+      "url": "https://www.semanticscholar.org/paper/41d55059835fa5ae561d77b311947ff945934158",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "V2X assisted co‐design of motion planning and control for connected automated vehicle",
+      "authors": [
+        "Jiahang Li",
+        "Cailian Chen",
+        "Bo Yang"
+      ],
+      "year": 2024,
+      "venue": "IET Intelligent Transport Systems",
+      "citation_count": 6,
+      "abstract": "The rapid development of vehicle‐to‐everything (V2X) communication technologies significantly promotes the revolution of intelligent transportation systems. V2X communication is expected to play a critical role in enhancing the safety and efficiency of connected and automated vehicles (CAVs), especially for mixed traffic scenarios. Additionally, the computational and storage capabilities of roadside units (RSUs) will be harnessed to effectively enhance the motion planning and control performance",
+      "url": "https://www.semanticscholar.org/paper/7bba4f21ff642d17c9f59a772fd97f28955871ed",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "An interaction-fair semi-decentralized trajectory planner for connected and autonomous vehicles",
+      "authors": [
+        "Zhengqin Liu",
+        "Jinlong Lei",
+        "Peng Yi",
+        "Yiguang Hong"
+      ],
+      "year": 2025,
+      "venue": "Autonomous Intelligent Systems",
+      "citation_count": 5,
+      "abstract": "Lately, there has been a lot of interest in game-theoretic approaches to the trajectory planning of autonomous vehicles (AVs). But most methods solve the game independently for each AV while lacking coordination mechanisms, and hence result in redundant computation and fail to converge to the same equilibrium, which presents challenges in computational efficiency and safety. Moreover, most studies rely on the strong assumption of knowing the intentions of all other AVs. This paper designs a nove",
+      "url": "https://www.semanticscholar.org/paper/1d793190eb9d76dbe4a333dbdd497d1db322663f",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Collision Avoidance Control for Autonomous Driving With Multiple Dynamic Obstacles in IoV: A Prediction-Enhanced APF-Based Approach",
+      "authors": [
+        "Zenghui Qian",
+        "Ruoyang Chen",
+        "Changyan Yi",
+        "X. Zhai",
+        "Bing Chen"
+      ],
+      "year": 2025,
+      "venue": "IEEE Internet of Things Journal",
+      "citation_count": 5,
+      "abstract": "With the rapid development of autonomous driving, how to enable unmanned vehicles (UVs) to efficiently avoid multiple dynamically moving obstacles, especially obstacle vehicles (OVs), has become a vital issue in the context of the Internet of Vehicles (IoV). This requires not only high-level adaptability to dynamic and complex traffic environments, but also extraordinarily agility in reacting to possible collision hazards with safer and proactive collision avoidance. Conventional methods, e.g., ",
+      "url": "https://www.semanticscholar.org/paper/9baccafb231b023c80babc3d2eba19e7f026c31c",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "REACT: Runtime-Enabled Active Collision-avoidance Technique for Autonomous Driving",
+      "authors": [
+        "Heye Huang",
+        "Hao Cheng",
+        "Zhiyuan Zhou",
+        "Zijin Wang",
+        "Qichao Liu"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "citation_count": 5,
+      "abstract": "Achieving rapid and effective active collision avoidance in dynamic interactive traffic remains a core challenge for autonomous driving. This paper proposes REACT (Runtime-Enabled Active Collision-avoidance Technique), a closed-loop framework that integrates risk assessment with active avoidance control. By leveraging energy transfer principles and human-vehicle-road interaction modeling, REACT dynamically quantifies runtime risk and constructs a continuous spatial risk field. The system incorpo",
+      "url": "https://www.semanticscholar.org/paper/fbf29a22a6c4fa75caed86e41004c9265a75a8a8",
+      "arxiv_id": "2505.11474",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Driver Intent-Based Intersection Autonomous Driving Collision Avoidance Reinforcement Learning Algorithm",
+      "authors": [
+        "Ting Chen",
+        "Youjing Chen",
+        "Hao Li",
+        "Tao Gao",
+        "H. Tu"
+      ],
+      "year": 2022,
+      "venue": "Italian National Conference on Sensors",
+      "citation_count": 3,
+      "abstract": "With the rapid development of artificial intelligent technology, the deep learning method is widely applied to predict human driving intentions due to its relative accuracy of prediction, which is one of critical links for security guarantee in the distributed, mixed driving scenario. In order to sense the intention of human-driven vehicles and reduce the self-driving collision avoidance rate, an improved intention prediction method for human-driving vehicles based on unsupervised, deep inverse ",
+      "url": "https://www.semanticscholar.org/paper/b1da8de77face6abc54529b81ee97d38f95826e0",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "V2X-Assisted Distributed Computing and Control Framework for Connected and Automated Vehicles under Ramp Merging Scenario",
+      "authors": [
+        "Qiong Wu",
+        "Jiahou Chu",
+        "Pingyi Fan",
+        "Kezhi Wang",
+        "Nan Cheng"
+      ],
+      "year": 2024,
+      "venue": "arXiv.org",
+      "citation_count": 2,
+      "abstract": "This paper investigates distributed computing and cooperative control of connected and automated vehicles (CAVs) in ramp merging scenario under transportation cyber-physical system. Firstly, a centralized cooperative trajectory planning problem is formulated subject to the safely constraints and traffic performance in ramp merging scenario, where the trajectories of all vehicles are jointly optimized. To get rid of the reliance on a central controller and reduce computation time, a distributed s",
+      "url": "https://www.semanticscholar.org/paper/b98c9ae786a956e392851b2074a094eee60e6602",
+      "arxiv_id": "2410.22987",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "An Autonomous Driving Model Integrated with BEV-V2X Perception, Fusion Prediction of Motion and Occupancy, and Driving Planning, in Complex Traffic Intersections",
+      "authors": [
+        "Fukang Li",
+        "Wen Ou",
+        "Kunpeng Gao",
+        "Y. Pang",
+        "Yifei Li"
+      ],
+      "year": 2023,
+      "venue": "",
+      "citation_count": 2,
+      "abstract": "The comprehensiveness of vehicle-to-everything (V2X) recognition enriches and holistically shapes the global Birds-Eye-View (BEV) perception, incorporating rich semantics and integrating driving scene information, thereby serving features of vehicle state prediction, decision-making and driving planning. Utilizing V2X message sets to form BEV map proves to be an effective perception method for connected and automated vehicles (CAVs). Specifically, Map Msg. (MAP), Signal Phase And Timing (SPAT) a",
+      "url": "https://www.semanticscholar.org/paper/138126b732057be74af5bc8a9f3e20488a181770",
+      "arxiv_id": "2312.05104",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Optimized Broad-Range Null-Steering Incorporated with O-RAN-Based Beam Tracking for Millimeter-Wave V2X",
+      "authors": [
+        "Sojin Ozawa",
+        "Yuki Sasaki",
+        "Jin Nakazato",
+        "Kazuki Maruta"
+      ],
+      "year": 2025,
+      "venue": "2025 IEEE 101st Vehicular Technology Conference (VTC2025-Spring)",
+      "citation_count": 2,
+      "abstract": "The coordination of connected autonomous vehicles (CAVs) is expected to facilitate more efficient route planning and improve safety by enabling the exchange of sensor data between roadside infrastructure and other vehicles. Given the substantial volume of sensor data involved, the utilization of the millimeter-wave (mmWave) band is essential. While mmWave supports high-speed and high-capacity data transmission, wireless communication systems for CAVs are subject to radio signal degradation cause",
+      "url": "https://www.semanticscholar.org/paper/ff7aaed0cc0268f1789d521619166b5aea50f320",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Advanced Longitudinal Control and Collision Avoidance for High-Risk Edge Cases in Autonomous Driving",
+      "authors": [
+        "Dianwei Chen",
+        "Yaobang Gong",
+        "X. Yang"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "citation_count": 2,
+      "abstract": "Advanced Driver Assistance Systems (ADAS) and Advanced Driving Systems (ADS) are key to improving road safety, yet most existing implementations focus primarily on the vehicle ahead, neglecting the behavior of following vehicles. This shortfall often leads to chain reaction collisions in high speed, densely spaced traffic particularly when a middle vehicle suddenly brakes and trailing vehicles cannot respond in time. To address this critical gap, we propose a novel longitudinal control and colli",
+      "url": "https://www.semanticscholar.org/paper/bc75642f364ee881b4a38ee6dd05a7d7497d25a3",
+      "arxiv_id": "2504.18931",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "V2X Communication Assisted Hierarchical Path Planning for Connected and Automated Vehicles",
+      "authors": [
+        "Jiahang Li",
+        "Cailian Chen",
+        "Fengkun Gao",
+        "Bo Yang",
+        "Xinping Guan"
+      ],
+      "year": 2023,
+      "venue": "ACM Cloud and Autonomic Computing Conference",
+      "citation_count": 1,
+      "abstract": "Connected and Automated Vehicles (CAVs) have attracted increasing attention in intelligent transportation systems. An effective path planning enables the efficient operation of CAVs so that they can coordinate traffic flow and avoid accidents. This paper presents a framework of V2X communication assisted hierarchical path planning system for CAVs that aims to improve computational efficiency and safety performance. The proposed framework consists of two stages: pre-planning and online-planning. ",
+      "url": "https://www.semanticscholar.org/paper/5b95c511e1602b7b7b117e6803dceec3f0df25f4",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "A Semi-Decentralized and Variational-Equilibrium-Based Trajectory Planner for Connected and Autonomous Vehicles",
+      "authors": [
+        "Zhengqin Liu",
+        "Jinlong Lei",
+        "Peng Yi"
+      ],
+      "year": 2024,
+      "venue": "2024 IEEE 27th International Conference on Intelligent Transportation Systems (ITSC)",
+      "citation_count": 1,
+      "abstract": "This paper designs a novel trajectory planning approach to resolve the computational efficiency and safety problems in uncoordinated methods by exploiting vehicle-to-everything (V2X) technology. The trajectory planning for connected and autonomous vehicles (CAVs) is formulated as a game with coupled safety constraints. We then define interaction-fair trajectories and prove that they correspond to the variational equilibrium (VE) of this game. We propose a semi-decentralized planner for the vehic",
+      "url": "https://www.semanticscholar.org/paper/b7879138d3c0bdb355f765f5dd6e847caec44149",
+      "arxiv_id": "2410.15394",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "V2X-Assisted Distributed Computing and Control Framework for Connected and Automated CAVs Under Ramp Merging Scenario",
+      "authors": [
+        "Jiahou Chu",
+        "Qiong Wu",
+        "Pingyi Fan",
+        "Wen Chen",
+        "Kezhi Wang"
+      ],
+      "year": 2026,
+      "venue": "IEEE Transactions on Mobile Computing",
+      "citation_count": 1,
+      "abstract": "This paper presents a mobile computing-based framework for distributed computing and cooperative control of connected and automated vehicles (CAVs) in ramp merging scenarios under intelligent transportation systems (ITS). A centralized trajectory planning problem is first formulated to optimize merging efficiency and safety. To eliminate reliance on a central controller, a distributed solution is developed using Alternating Direction Method of Multipliers (ADMM) algorithm based on Vehicle-to-Eve",
+      "url": "https://www.semanticscholar.org/paper/083d2c913f9a49b12f52d247ea41b9f431af676a",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "P‐19.6: Research on Path Planning Algorithms in Autonomous Driving",
+      "authors": [
+        "Songzhen Sang",
+        "Wanlin Li"
+      ],
+      "year": 2024,
+      "venue": "SID Symposium Digest of Technical Papers",
+      "citation_count": 1,
+      "abstract": "Path planning is a critical aspect of autonomous driving, necessitating the calculation of the most efficient route considering real‐time traffic conditions, road status, and obstacles. The primary goal of path planning algorithms is to identify the optimal route from a starting point to a destination within a given environment. In autonomous driving, these algorithms are broadly categorizedinto global planning and local planning. Noteworthy global path planning algorithms include Dijkstra's alg",
+      "url": "https://www.semanticscholar.org/paper/bdef5d60bdebeca1dd15d219b41d936d23a9ec77",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Research on V2V-based Cooperative Collision Avoidance System for Autonomous Driving",
+      "authors": [
+        "Yongjie Zhang"
+      ],
+      "year": 2024,
+      "venue": "IoTML",
+      "citation_count": 1,
+      "abstract": "In this paper, we design an autonomous driving collision avoidance system based on V2V networked communication collaboration. The system uses Node-RED to deploy MQTT server at the edge, and uses publish/subscribe mode to cooperate with multi-vehicle positioning information, motion state information, and driving trajectory information to realize networked collaboration. This paper proposes a collision avoidance architecture and method with versatility and safety guarantee by studying the self-dri",
+      "url": "https://www.semanticscholar.org/paper/67ef76b84c32acf1251d13f674507e873084479b",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "A spatial-domain-based eco-driving trajectory planning method for connected and automated vehicles",
+      "authors": [
+        "Gangqiao Wang",
+        "Zexi Xu",
+        "Yiping Liu",
+        "Bo Jin"
+      ],
+      "year": 2025,
+      "venue": "Conference on Smart Transportation and City Engineering",
+      "citation_count": 0,
+      "abstract": "Recent advancements in Vehicle-to-Infrastructure (V2I) and Vehicle-to-Everything (V2X) communication technologies have facilitated eco-driving control for Connected and Automated Vehicles (CAVs). This strategy has proven effective in improving energy efficiency and reducing emissions by optimizing driving trajectories. Unlike conventional time domainbased eco-driving trajectory planning models, this study introduces a spatial domain-based eco-driving planning model and develops a corresponding d",
+      "url": "https://www.semanticscholar.org/paper/c6c56b86f7435fd7b019e98793e92155cd624587",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "CYBERSECURITY THREATS CHALLENGES AND VULNERABILITY ASSESSMENT IN CONNECTED AND AUTONOMOUS VEHICLES: A REVIEW",
+      "authors": [
+        "Prof. (Dr.) Abid Hussain"
+      ],
+      "year": 2025,
+      "venue": "International Journal of Advanced Research in Computer Science",
+      "citation_count": 0,
+      "abstract": "Connected and Autonomous Vehicles (CAVs) have become one of the most significant innovations in the current transportation industry, combining artificial intelligence, the latest sensor technologies, and real-time communication platforms to make roads safer, more efficient, and comfortable to drive. These cars are driven by perception, planning, and control systems with the help of Vehicle-to-Everything (V2X) communication that supports a smooth interaction with the rest of the vehicles, infrast",
+      "url": "https://www.semanticscholar.org/paper/516eb9f7d4bfcf5a40af0907fb23ec0c6da15c07",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "A Risk-Barrier Soft Actor-Critic Approach for Automotive Intelligent Cruise Control Towards V2X Communication",
+      "authors": [
+        "Sichen Yu",
+        "Shen Li",
+        "Yan Li",
+        "Yi Fan",
+        "Yang Zhou"
+      ],
+      "year": 2025,
+      "venue": "2025 9th CAA International Conference on Vehicular Control and Intelligence (CVCI)",
+      "citation_count": 0,
+      "abstract": "Safe reinforcement learning (SRL) demonstrates significant potential in end-to-end guaranteed control for intelligent connected vehicles (ICVs), overcoming soft constraint limitations while retaining policy learning advantages. Building on this basis, a holistic safety-critical cruise control framework is proposed for ICVs. By integrating driving risk obtained through vehicle-to-everything (V2X) communication into the state space, the SRL-based framework enables proactive safety planning. Under ",
+      "url": "https://www.semanticscholar.org/paper/9a42d41e34a8339fe126121632160c39626ec1e3",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "eRSS-RAMP: A Rule-Adherence Motion Planner Based on Extended Responsibility-Sensitive Safety for Autonomous Driving",
+      "authors": [
+        "Pengfei Lin",
+        "Ehsan Javanmardi",
+        "Yuze Jiang",
+        "Dou Hu",
+        "Shangkai Zhang"
+      ],
+      "year": 2024,
+      "venue": "arXiv.org",
+      "citation_count": 0,
+      "abstract": "Driving safety and responsibility determination are indispensable pieces of the puzzle for autonomous driving. They are also deeply related to the allocation of right-of-way and the determination of accident liability. Therefore, Intel/Mobileye designed the responsibility-sensitive safety (RSS) framework to further enhance the safety regulation of autonomous driving, which mathematically defines rules for autonomous vehicles (AVs) behaviors in various traffic scenarios. However, the RSS framewor",
+      "url": "https://www.semanticscholar.org/paper/1b386f995e9be8ea3c4634026126aecc7c13d2cf",
+      "arxiv_id": "2409.02503",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Energy-Efficient Federated Edge Learning For Small-Scale Datasets in Large IoT Networks",
+      "authors": [
+        "Haihui Xie",
+        "Wenkun Wen",
+        "Shuwu Chen",
+        "Zhaogang Shu",
+        "M. Xia"
+      ],
+      "year": 2026,
+      "venue": "",
+      "citation_count": 0,
+      "abstract": "Large-scale Internet of Things (IoT) networks enable intelligent services such as smart cities and autonomous driving, but often face resource constraints. Collecting heterogeneous sensory data, especially in small-scale datasets, is challenging, and independent edge nodes can lead to inefficient resource utilization and reduced learning performance. To address these issues, this paper proposes a collaborative optimization framework for energy-efficient federated edge learning with small-scale d",
+      "url": "https://www.semanticscholar.org/paper/d4bcb419e9a9c4f20b371ae537eeb48b9135ce33",
+      "arxiv_id": "2604.10662",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "DriveSafeCore: A High-Precision Model for Collision Avoidance in Autonomous Driving Scenarios",
+      "authors": [
+        "P. Chandrasekar",
+        "Research Scholar",
+        "Dr. B. Lavaraju"
+      ],
+      "year": 2025,
+      "venue": "International Conference on Industrial Mechatronics and Automation",
+      "citation_count": 0,
+      "abstract": "Planning and coordinating motion is difficult and therefore is very important to keep obstacles from happening or agents from colliding. In recent times, there has been a lot of interest in high level task planning for complex objectives. This is because of the autonomous car problem has evolved from standard motion planning to an explicit handling of detailed goals with time restrictions correspondingly. The technique which is used in this paper is known as Non-Continuous Vector Field based Mod",
+      "url": "https://www.semanticscholar.org/paper/5eb42459f313cae164aeb4b6bae2514d774818b3",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    },
+    {
+      "title": "Angle-Weighted Time-to-Collision Algorithm for Enhanced Obstacle\n Avoidance in Autonomous Driving",
+      "authors": [
+        "Shaopeng Zhu",
+        "Yuanning Tang",
+        "Bing Li",
+        "Xiaoliang Wang",
+        "Hui-yan Chen"
+      ],
+      "year": 2025,
+      "venue": "SAE technical paper series",
+      "citation_count": 0,
+      "abstract": "To tackle the challenge of accurately predicting collision times for autonomous\n vehicles navigating complex dynamic obstacles, this paper proposes an innovative\n Angle-Weighted Time-to-Collision (AW-TTC) algorithm. Traditional TTC algorithms\n are known for their computational simplicity and strong real-time performance,\n making them widely applicable across various driving scenarios. However, they\n often struggle with predictive accuracy when encountering obstacles moving at\n angles, which can ",
+      "url": "https://www.semanticscholar.org/paper/ddce3d2d2817286f51f48e22db68fbdffb5dea39",
+      "arxiv_id": "",
+      "category": "cooperative_safety"
+    }
+  ],
+  "risk_assessment_driving": [
+    {
+      "title": "Prediction Failure Risk-Aware Decision-Making for Autonomous Vehicles on Signalized Intersections",
+      "authors": [
+        "Kai Yang",
+        "Boqi Li",
+        "Wenbo Shao",
+        "Xiaolin Tang",
+        "Xiaochuan Liu"
+      ],
+      "year": 2023,
+      "venue": "IEEE transactions on intelligent transportation systems (Print)",
+      "citation_count": 33,
+      "abstract": "Motion prediction modules are crucial for autonomous vehicles to forecast the future behavior of surrounding road users. Failures in prediction modules can mislead a downstream planner to make unsafe decisions. Currently, deep learning technology has been widely used to design prediction models due to its impressive performance. However, such models may fail in long-tail driving scenarios where the training data are insufficient or unavailable, which represents the so-called epistemic uncertaint",
+      "url": "https://www.semanticscholar.org/paper/510f2127dad7ac8957fb6b8ad524824ede8058c4",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Aerial-Ground Collaborative Continuous Risk Mapping for Autonomous Driving of Unmanned Ground Vehicle in Off-Road Environments",
+      "authors": [
+        "Rongchuan Wang",
+        "Kai Wang",
+        "Wenjie Song",
+        "Mengyin Fu"
+      ],
+      "year": 2023,
+      "venue": "IEEE Transactions on Aerospace and Electronic Systems",
+      "citation_count": 23,
+      "abstract": "Terrain risk estimation has always been a crucial but challenging task for autonomous driving of unmanned ground vehicles (UGV) in off-road environments. The map with dense and accurate risk information can help UGV avoid special obstacles such as steep slopes, pits, and ditches while path planning. To solve this problem, this article proposes an aerial-ground collaboration system for continuous risk mapping in off-road environments, utilizing the flexibility and perspective advantages of unmann",
+      "url": "https://www.semanticscholar.org/paper/c334038e39271f8af5a6db9b234598275baf6761",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "HDM-RRT: A Fast HD-Map-Guided Motion Planning Algorithm for Autonomous Driving in the Campus Environment",
+      "authors": [
+        "Xiaomin Guo",
+        "Yongxing Cao",
+        "Jian Zhou",
+        "Yuanxian Huang",
+        "Bi-jun Li"
+      ],
+      "year": 2023,
+      "venue": "Remote Sensing",
+      "citation_count": 12,
+      "abstract": "On campus, the complexity of the environment and the lack of regulatory constraints make it difficult to model the environment, resulting in less efficient motion planning algorithms. To solve this problem, HD-Map-guided sampling-based motion planning is a feasible research direction. We proposed a motion planning algorithm for autonomous vehicles on campus, called HD-Map-guided rapidly-exploring random tree (HDM-RRT). In our algorithm, A collision risk map (CR-Map) that quantifies the collision",
+      "url": "https://www.semanticscholar.org/paper/c446185346001bcce2059eb191abfafb2ab19a94",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Development of Autonomous Driving Patrol Robot for Improving Underground Mine Safety",
+      "authors": [
+        "Heonmoo Kim",
+        "Yosoon Choi"
+      ],
+      "year": 2023,
+      "venue": "Applied Sciences",
+      "citation_count": 12,
+      "abstract": "To improve the working conditions in underground mines and eliminate the risk of human casualties, patrol robots that can operate autonomously are necessary. This study developed an autonomous patrol robot for underground mines and conducted field experiments at underground mine sites. The driving robot estimated its own location and autonomously operated via encoders, IMUs, and LiDAR sensors; it measured hazards using gas sensors, dust particle sensors, and thermal imaging cameras. The develope",
+      "url": "https://www.semanticscholar.org/paper/91a1dc6bcbd0adebfd00b4b3e545de5946daea20",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Efficient Collision Risk Prediction Model for Autonomous Vehicle Using Novel Optimized LSTM Based Deep Learning Framework",
+      "authors": [
+        "D. D. Hema",
+        "T. R. Jaison"
+      ],
+      "year": 2024,
+      "venue": "International Journal of Intelligent Transportation Systems Research",
+      "citation_count": 10,
+      "abstract": "",
+      "url": "https://www.semanticscholar.org/paper/03ae3b9f83b41ad665f085472d2dee6cff37cf45",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Studying the predictability of crash risk caused by manual takeover of autonomous vehicles in mixed traffic flow",
+      "authors": [
+        "Qingchao Liu",
+        "Ruohan Yu",
+        "Yingfeng Cai",
+        "Long Chen"
+      ],
+      "year": 2023,
+      "venue": "Transportation letters",
+      "citation_count": 7,
+      "abstract": "ABSTRACT This study explores how to reduce the cost of prediction as much as possible while ensuring the prediction accuracy of a real-time crash risk model. The extreme gradient enhancement (XGBoost) algorithm was used to predict the crash risk of autonomous vehicles in different sections of highway. The results show that the prediction performance of the model is the best when the threshold value is 0.05. Choosing two variables to predict can ensure high accuracy and simultaneously reduce the ",
+      "url": "https://www.semanticscholar.org/paper/136108ac84b9ac35fc864d0fb670167dbaaaa4bf",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Vehicle modeling and state estimation for autonomous driving in terrain",
+      "authors": [
+        "Tabish Badar",
+        "Juha Backman",
+        "A. Visala"
+      ],
+      "year": 2024,
+      "venue": "Control Engineering Practice",
+      "citation_count": 6,
+      "abstract": "The automobile industry usually ignores the height of the path and uses planar vehicle models to implement automatic vehicle control. In addition, existing literature mostly concerns level terrain or homogeneous road surfaces for estimating vehicle dynamics. However, ground vehicles utilized in forestry, such as forwarders, operate on uneven terrain. The vehicle models built on level terrain assumptions are inadequate to capture the rolling or pitching dynamics of such machines as rollover of su",
+      "url": "https://www.semanticscholar.org/paper/4f9f5333c258f94527a2881ea9cf6d8034bd8942",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "FSF-Net: Enhance 4D Occupancy Forecasting with Coarse BEV Scene Flow for Autonomous Driving",
+      "authors": [
+        "Erxin Guo",
+        "Pei An",
+        "You Yang",
+        "Qiong Liu",
+        "Anan Liu"
+      ],
+      "year": 2024,
+      "venue": "arXiv.org",
+      "citation_count": 4,
+      "abstract": "4D occupancy forecasting is one of the important techniques for autonomous driving, which can avoid potential risk in the complex traffic scenes. Scene flow is a crucial element to describe 4D occupancy map tendency. However, an accurate scene flow is difficult to predict in the real scene. In this paper, we find that BEV scene flow can approximately represent 3D scene flow in most traffic scenes. And coarse BEV scene flow is easy to generate. Under this thought, we propose 4D occupancy forecast",
+      "url": "https://www.semanticscholar.org/paper/1cfd365e0f413a391669a3573237aa7a92773bef",
+      "arxiv_id": "2409.15841",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Risk Map as Middleware: Toward Interpretable Cooperative End-to-End Autonomous Driving for Risk-Aware Planning",
+      "authors": [
+        "Mingyue Lei",
+        "Zewei Zhou",
+        "Hongchen Li",
+        "Jiaqi Ma",
+        "Jia Hu"
+      ],
+      "year": 2025,
+      "venue": "IEEE Robotics and Automation Letters",
+      "citation_count": 3,
+      "abstract": "End-to-end paradigm has emerged as a promising approach to autonomous driving. However, existing single-agent end-to-end pipelines are often constrained by occlusion and limited perception range, resulting in hazardous driving. Furthermore, their closed-box nature prevents the interpretability of the driving behavior, leading to an untrustworthiness system. To address these limitations, we introduce Risk Map as Middleware (RiskMM) and propose an interpretable cooperative end-to-end driving frame",
+      "url": "https://www.semanticscholar.org/paper/2669bea2e9f59964e734f8629ed4c747e66a1218",
+      "arxiv_id": "2508.07686",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "SOTIF-Oriented Risk Assessment: A Multi-Dimensional Model for Autonomous Driving",
+      "authors": [
+        "Botao Yao",
+        "Shuohan Huang",
+        "Peiyi Han",
+        "Jie Lin",
+        "Shaoming Duan"
+      ],
+      "year": 2025,
+      "venue": "IEEE Robotics and Automation Letters",
+      "citation_count": 3,
+      "abstract": "Risk assessment is crucial for quantifying driving environment risks and reducing the Safety of the Intended Functionality (SOTIF) uncertainty in Autonomous Vehicles (AVs). Traditional methods, however, often concentrate on single-scenario metrics and are insufficient in capturing the complexities of multi-participant and multi-directional interactions. This letter introduces a risk assessment model capable of evaluating risks across diverse traffic participants, multiple directions, and complex",
+      "url": "https://www.semanticscholar.org/paper/4b53e4fda99b20cef68cd3f354e2126279f5bf50",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Courteous MPC for Autonomous Driving with CBF-Inspired Risk Assessment",
+      "authors": [
+        "Yanze Zhang",
+        "Yiwei Lyu",
+        "Sude E. Demir",
+        "Xing-nan Zhou",
+        "Yupeng Yang"
+      ],
+      "year": 2024,
+      "venue": "2024 IEEE 27th International Conference on Intelligent Transportation Systems (ITSC)",
+      "citation_count": 2,
+      "abstract": "With more autonomous vehicles (AVs) sharing roadways with human-driven vehicles (HVs), ensuring safe and courteous maneuvers that respect HVs' behavior becomes increasingly important. To promote both safety and courtesy in AV's behavior, an extension of Control Barrier Functions (CBFs)-inspired risk evaluation framework is proposed in this paper by considering both noisy observed positions and velocities of surrounding vehicles. The perceived risk by the ego vehicle can be visualized as a risk m",
+      "url": "https://www.semanticscholar.org/paper/731c2a13f082c9648ee0566d357dc0f4f1b3693b",
+      "arxiv_id": "2408.12822",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "A Novel Panorama Depth Estimation Framework for Autonomous Driving Scenarios Based on a Vision Transformer",
+      "authors": [
+        "Yuqi Zhang",
+        "Liang Chu",
+        "Zixu Wang",
+        "He Tong",
+        "Jincheng Hu"
+      ],
+      "year": 2024,
+      "venue": "Italian National Conference on Sensors",
+      "citation_count": 2,
+      "abstract": "An accurate panorama depth estimation result is crucial to risk perception in autonomous driving practice. In this paper, an innovative framework is presented to address the challenges of imperfect observation and projection fusion in panorama depth estimation, enabling the accurate capture of distances from surrounding images in driving scenarios. First, the Patch Filling method is proposed to alleviate the imperfect observation of panoramic depth in autonomous driving scenarios, which construc",
+      "url": "https://www.semanticscholar.org/paper/289a422d744bd310c129024f6b367b32ca06c690",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "GACNet: Interactive Prediction of Surrounding Vehicles Behavior under High Collision Risk",
+      "authors": [
+        "Jingzheng Chai",
+        "Jianting Liu",
+        "Jingluo Huang",
+        "Chunyan Huang"
+      ],
+      "year": 2025,
+      "venue": "Advanced Intelligent Systems",
+      "citation_count": 2,
+      "abstract": "Trajectory prediction technology is essential for driving safety in autonomous vehicles and is advancing rapidly. Current research mainly aims to enhance prediction accuracy in typical traffic conditions. However, less attention has been paid to low‐probability, high‐risk safety‐critical events. It is undeniable that multiagent interaction behaviors in safety‐critical events are more complex and difficult to predict. To address this, an interaction mechanism based on generative adversarial netwo",
+      "url": "https://www.semanticscholar.org/paper/b0633651087b5a0befc8d17d20e3f8bb65aaf8ff",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Integrated Risk Grid Map for Collision Avoidance and Mitigation Maneuvers of Autonomous Vehicle",
+      "authors": [
+        "Junseok Shim",
+        "Jaeseung Yu",
+        "Kibeom Lee"
+      ],
+      "year": 2025,
+      "venue": "IEEE Access",
+      "citation_count": 1,
+      "abstract": "As autonomous driving algorithms evolve, algorithms for collision avoidance are being developed for situations that primary algorithms cannot resolve. Generally, the positions of all surrounding vehicles are predicted, and the risk is assessed to create a risk map, which is then used to generate a safe path. Most algorithms focus on collision avoidance without considering scenarios in which avoidance fails and a collision occurs. However, collision avoidance algorithms need to consider imminent ",
+      "url": "https://www.semanticscholar.org/paper/264b4d30f4520c62b8f292a3f4475a858f3c62b6",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Leveraging LLMs in Cloud–Edge Networks for Traffic Risk Prediction and Accident Severity Analysis",
+      "authors": [
+        "Yaqi Hu",
+        "Songmiao Zheng",
+        "Zirui Zhang",
+        "Siming Wang",
+        "Dongdong Ye"
+      ],
+      "year": 2026,
+      "venue": "IEEE Transactions on Network Science and Engineering",
+      "citation_count": 1,
+      "abstract": "Traffic accidents cause millions of casualties annually, making traffic safety a critical research area. Risk prediction and accident analysis are essential components of traffic safety. Traditional approaches to traffic risk prediction and accident analysis primarily rely on machine learning algorithms, which require large-scale labeled datasets and often struggle to generalize to unseen traffic conditions. Large language models (LLMs) possess strong contextual understanding and generalization ",
+      "url": "https://www.semanticscholar.org/paper/32b9d37f54cbe15e8c42caebdf4258852f6d299f",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Intention-based and Risk-Aware Trajectory Prediction for Autonomous Driving in Complex Traffic Scenarios",
+      "authors": [
+        "Wenya Wei",
+        "Jiankun Wang"
+      ],
+      "year": 2024,
+      "venue": "International Conference on Real-time Computing and Robotics",
+      "citation_count": 1,
+      "abstract": "Accurately predicting the trajectory of surrounding vehicles is a critical challenge for autonomous vehicles. In complex traffic scenarios, there are two significant issues with the current autonomous driving system: the cognitive uncertainty of prediction and the lack of risk awareness. To address this challenge, we introduce a novel trajectory prediction model. Based on joint prediction, our model consists of interaction, intention, and risk assessment modules. The dynamic variation of interac",
+      "url": "https://www.semanticscholar.org/paper/f183a20dbdf09120589288300922b553817b0c1a",
+      "arxiv_id": "2409.15821",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Structured Risk Identification for Sustainable Safety in Mixed Autonomous Traffic: A Layered Data-Driven Approach",
+      "authors": [
+        "Hyorim Han",
+        "Soongbong Lee",
+        "Jeongho Jeong",
+        "Jongwoo Lee"
+      ],
+      "year": 2025,
+      "venue": "Sustainability",
+      "citation_count": 1,
+      "abstract": "With the accelerated commercialization of autonomous vehicles, new accident types and complex risk factors have emerged beyond the scope of existing traffic safety management systems. This study aims to contribute to sustainable safety by establishing a quantitative basis for early recognition and response to high-risk situations in urban traffic environments where autonomous and conventional vehicles coexist. To this end, high-risk factors were identified through a combination of literature met",
+      "url": "https://www.semanticscholar.org/paper/1aa0a9778c9f40fabde35fffdbcb8e08a591eaa1",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Learning a Unified Risk Map for Autonomous Driving in Partially Observable Environments",
+      "authors": [
+        "Jie Jia",
+        "Yaofeng Su",
+        "Zeyu Bao",
+        "Yun Hong",
+        "Bingzhao Gao"
+      ],
+      "year": 2026,
+      "venue": "IEEE Robotics and Automation Letters",
+      "citation_count": 0,
+      "abstract": "Occlusion-aware prediction remains a critical challenge in autonomous driving due to the inherent uncertainty of unobserved regions. Existing approaches either overestimate risk based on reachable states or struggle to predict accurate trajectories under high occlusion uncertainty. To address these limitations, we propose a unified risk map modeling and learning framework for partially observable environments. Our method integrates traffic flow risk and collision risk through spatiotemporal mode",
+      "url": "https://www.semanticscholar.org/paper/cef4d741ed86b3c3ecb66b707b38917efe9f1645",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "A Bi-level Risk-constrained Optimization (BRO) Model for Autonomous Driving Trajectory Planning at On-ramp Areas*",
+      "authors": [
+        "Chen Chai",
+        "Rui Feng",
+        "Xianming Zeng",
+        "Haoyan Ren"
+      ],
+      "year": 2024,
+      "venue": "2024 IEEE Intelligent Vehicles Symposium (IV)",
+      "citation_count": 0,
+      "abstract": "The on-ramp area is a very common bottleneck for trajectory planning of autonomous driving. Existing studies are mostly based on rule computation or behavior cloning of human drivers. This study proposes an optimization-based trajectory planning model to improve merging efficiency and safety. To combine safety and efficiency criteria, this research developed a risk-constrained model based on computation of risk map combining road and traffic characteristics based on dynamic interaction responses",
+      "url": "https://www.semanticscholar.org/paper/391168dbf815cc7974b37045dffd4cfd8fa44c32",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Trajectory Prediction for Human-driven Vehicles Based on a Combined Method of Deep Neural Network and Driving Risk Map",
+      "authors": [
+        "Xulei Liu",
+        "Yafei Wang",
+        "Boyu Duan",
+        "Guofeng Zhou",
+        "Chengliang Yin"
+      ],
+      "year": 2022,
+      "venue": "2022 6th CAA International Conference on Vehicular Control and Intelligence (CVCI)",
+      "citation_count": 0,
+      "abstract": "Accurately predicting the trajectories of human-driven vehicles is critical for the safe and efficient driving of autonomous vehicles in mixed traffic environment. However, such prediction is challenging due to the vehicle motion uncertainty caused by the driver's intention and diverse driving styles. Moreover, the future movement of the vehicle is affected by other surrounding vehicles, and is constrained by the traffic lanes and road edges. To address the above problems, we propose a combined ",
+      "url": "https://www.semanticscholar.org/paper/d73ba76f10c63c0d57c02d78febdff6d3a23af46",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Driver-Centric Predictive Risk Map Modeling via Deep Reinforcement Learning",
+      "authors": [
+        "Danni Chen",
+        "Chao Lu",
+        "Jianwei Gong"
+      ],
+      "year": 2024,
+      "venue": "ACM Cloud and Autonomic Computing Conference",
+      "citation_count": 0,
+      "abstract": "In the field of autonomous vehicles, extensive research on risk assessment has been carried out to improve road safety. Nevertheless, in scenarios of assisted driving, particularly scenarios of human-machine co-driving, the establishment of driver-centric risk assessment models remains a challenge. The absence of consideration for human drivers may lead to a reduction in trust within the human-AI team and give rise to conflicts between humans and machines. This study presents a Driver-centric Pr",
+      "url": "https://www.semanticscholar.org/paper/4cc0867a9732b4f15e4c4fe7688317b9b4f7ec6f",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "SRIF: Cross-Modal Image Fusion for Smoke Removal in Autonomous Driving Perception",
+      "authors": [
+        "Renping Xie",
+        "Hengye Xu",
+        "Lin Liu",
+        "Cong He",
+        "Ming Tao"
+      ],
+      "year": 2025,
+      "venue": "IEEE transactions on consumer electronics",
+      "citation_count": 0,
+      "abstract": "In consumer electronics scenarios, visual environment perception algorithms that integrate infrared image can assist intelligent driving systems in detecting critical road objects, such as pedestrians and obstacles in smoke scenes, thereby reducing the risk of traffic accidents. However, existing smoke removal methods based on infrared–visible image fusion fail to fully eliminate smoke while maintaining texture details. To address these limitations, we propose an infrared-visible image fusion ne",
+      "url": "https://www.semanticscholar.org/paper/03702536e9cbb7c3d46d3ca09ca6991510731686",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "An active Safety Framework for Intelligent Vehicles Considering Lane-change Intention Recognition and Risk Prediction in Oncoming Traffic",
+      "authors": [
+        "Hao Liu",
+        "Hui Wang",
+        "M. Chi",
+        "Tao Wang",
+        "Xinqiang Liu"
+      ],
+      "year": 2025,
+      "venue": "International Journal of Intelligent Transportation Systems Research",
+      "citation_count": 0,
+      "abstract": "",
+      "url": "https://www.semanticscholar.org/paper/d552382770d78af8e5493e8c69259b958201b03e",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Trajectory Planning for Autonomous Vehicles Based on Interactive Risk Perception and Prediction",
+      "authors": [
+        "Bowen Chen",
+        "Zheng Chen",
+        "Jia Zheng",
+        "Zhangnan Jiang"
+      ],
+      "year": 2024,
+      "venue": "2024 8th CAA International Conference on Vehicular Control and Intelligence (CVCI)",
+      "citation_count": 0,
+      "abstract": "This study introduces a trajectory planning framework for autonomous vehicles utilizing the Frenet coordinate, highlighting on maneuverability and safety in urban environments. The framework incorporates an improved A * algorithm for velocity curve planning and a lateral trajectory sampling method. An interactive risk perception model abstracts the vehicle's trajectory into adjustable frames and dynamically defines the risk area to facilitate real-time collision avoidance. This method allows for",
+      "url": "https://www.semanticscholar.org/paper/68f145fb8c6b19c59d4c2dbfc2478396dd2be138",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "High-risk test road selection method in open road test scenarios for autonomous vehicles",
+      "authors": [
+        "Liangyi Yang",
+        "Boyu Song",
+        "Geng Zhang"
+      ],
+      "year": 2025,
+      "venue": "International Conference on Electromechanical Control Technology and Transportation",
+      "citation_count": 0,
+      "abstract": "Open road testing is one of the important research directions for autonomous driving safety verification. In order to improve the testing efficiency on open roads and accelerate the testing process. We proposed a high-risk test road selection method that considers multiple factors such as traffic accident risk, traffic flow conditions and external conditions, and use GCN and LSTM methods to perform temporal and spatial prediction analysis on urban traffic flow data. We further quantified the tes",
+      "url": "https://www.semanticscholar.org/paper/e07ea6328f894ba15446f3309621960c6dfc5c56",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "TREMP: Field-Based Traffic Risk Evaluation Considering Interactive Motion Prediction",
+      "authors": [
+        "Yining Xing",
+        "Mengchi Cai",
+        "Yiqian Tu",
+        "Yuning Wang",
+        "Junkai Jiang"
+      ],
+      "year": 2024,
+      "venue": "2024 IEEE 27th International Conference on Intelligent Transportation Systems (ITSC)",
+      "citation_count": 0,
+      "abstract": "Traffic risk evaluation is a critical technology in traffic management and autonomous driving. The key challenge is to identify the potential intentions of agents that may generate risks. Traditional risk evaluation methods often rely on the current state of vehicles to infer their future intentions, which lacks accuracy. This paper proposes a traffic risk evaluation method considering interactive motion prediction (TREMP). The trajectory prediction results are used to represent the potential in",
+      "url": "https://www.semanticscholar.org/paper/617cd26acc3ea140e0250ff8c2fc0d27e5cf1c29",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Advanced Cognitive System for Reliable Lane Switch Prediction in Autonomous Vehicles",
+      "authors": [
+        "Gunasekaran Raja",
+        "S. Suresh",
+        "Jeyadev Needhidevan",
+        "Shajina Anand"
+      ],
+      "year": 2024,
+      "venue": "2024 IEEE Future Networks World Forum (FNWF)",
+      "citation_count": 0,
+      "abstract": "The rapid advancements in Autonomous Vehicles (AVs) have significantly heightened the focus on enhancing road safety. While human drivers can predict the behaviour of surrounding vehicles, AVs are yet to fully replicate this cognitive capability, leading to a substantial risk of collisions, particularly during lane-changing maneuvers. This paper introduces the Cognitive Lane Switching Model (CLSM), an advanced system for lane switch prediction. The CLSM comprises the Sequential Modeling Componen",
+      "url": "https://www.semanticscholar.org/paper/6250692ae301edf533dffde36d579db0a812b6d2",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Research on active collision avoidance strategy of autonomous vehicles based on risk assessment",
+      "authors": [
+        "Zhenlin Yue",
+        "Zhuping Zhou"
+      ],
+      "year": 2024,
+      "venue": "Other Conferences",
+      "citation_count": 0,
+      "abstract": "With the continuous increase of car ownership in our country, road traffic safety has become a social issue that cannot be ignored today. Pedestrians and cyclists, as vulnerable road users, are often more prone to accidents when traffic accidents occur. Therefore, smart car active collision avoidance technology for vulnerable road users has become a current research hotspot. Therefore, this article mainly studies autonomous vehicle collision avoidance strategies for pedestrians. First, a vehicle",
+      "url": "https://www.semanticscholar.org/paper/6beab9c1a66ac00c255308c640cf2a91db2543b5",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "SAIL: Scene-aware Adaptive Iterative Learning for Long-Tail Trajectory Prediction in Autonomous Vehicles",
+      "authors": [
+        "Bin Rao",
+        "H. Liao",
+        "Chengyue Wang",
+        "Keqiang Li",
+        "Zhenning Li"
+      ],
+      "year": 2026,
+      "venue": "",
+      "citation_count": 0,
+      "abstract": "Autonomous vehicles (AVs) rely on accurate trajectory prediction for safe navigation in diverse traffic environments, yet existing models struggle with long-tail scenarios-rare but safety-critical events characterized by abrupt maneuvers, high collision risks, and complex interactions. These challenges stem from data imbalance, inadequate definitions of long-tail trajectories, and suboptimal learning strategies that prioritize common behaviors over infrequent ones. To address this, we propose SA",
+      "url": "https://www.semanticscholar.org/paper/db605e81d8cac811ba220e7c895a72413c8bb562",
+      "arxiv_id": "2604.04573",
+      "category": "risk_assessment_driving"
+    },
+    {
+      "title": "Research on the prediction of vehicle-non-motor conflict risk areas at heterogeneous traffic intersections",
+      "authors": [
+        "Yuwei Fan",
+        "Jianjun Wang",
+        "Jingtao Li",
+        "Mengjie Li"
+      ],
+      "year": 2025,
+      "venue": "Conference on Smart Transportation and City Engineering",
+      "citation_count": 0,
+      "abstract": "Accurate prediction of Vehicle-non-motor conflict risk areas by autonomous vehicles can help alleviate traffic conflicts. In this paper, we establish Hidden Markov Model in the grid background to describe the motion of non-motor vehicles and vehicle kinematic models to describe the movement of motor vehicles. Applying Prescan and Matlab for simulation experiments, respectively obtaining predictive trajectory data from both using the Viterbi algorithm and the Model Predictive Control algorithm. C",
+      "url": "https://www.semanticscholar.org/paper/7e390507b2d6ca182755df0209fa8c2029a80e35",
+      "arxiv_id": "",
+      "category": "risk_assessment_driving"
+    }
+  ],
+  "minimum_harm_unavoidable_collision": [
+    {
+      "title": "Safe-State Enhancement Method for Autonomous Driving via Direct Hierarchical Reinforcement Learning",
+      "authors": [
+        "Ziqing Gu",
+        "Lingping Gao",
+        "Haitong Ma",
+        "S. Li",
+        "Sifa Zheng"
+      ],
+      "year": 2023,
+      "venue": "IEEE transactions on intelligent transportation systems (Print)",
+      "citation_count": 49,
+      "abstract": "Reinforcement learning (RL) has shown excellent performance in the sequential decision-making problem, where safety in the form of state constraints is of great significance in the design and application of RL. Simple constrained end-to-end RL methods might lead to significant failure in a complex system like autonomous vehicles. In contrast, some hierarchical RL (HRL) methods generate driving goals directly, which could be closely combined with motion planning. With safety requirements, some sa",
+      "url": "https://www.semanticscholar.org/paper/e2e63c7efb4127d6a510d469e36dd7b0428d3883",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Safe Motion Planning for Autonomous Vehicles by Quantifying Uncertainties of Deep Learning-Enabled Environment Perception",
+      "authors": [
+        "Dachuan Li",
+        "Bowen Liu",
+        "Zijiang Huang",
+        "Qi Hao",
+        "Dezong Zhao"
+      ],
+      "year": 2024,
+      "venue": "IEEE Transactions on Intelligent Vehicles",
+      "citation_count": 27,
+      "abstract": "Conventional perception-planning pipelines of autonomous vehicles (AV) utilize deep learning (DL) techniques that typically generate deterministic outputs without explicitly evaluating their uncertainties and trustworthiness. Therefore, the downstream decision-making components may generate unsafe outputs leading to system failure or accidents, if the preceding perception component provides highly uncertain information. To mitigate this issue, this article proposes a coherent safe perception-pla",
+      "url": "https://www.semanticscholar.org/paper/8b0c120d3c8f6e24bcbf2e766a3116887e723f67",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Constrained Safe Cooperative Maneuvering of Autonomous Surface Vehicles: A Control Barrier Function Approach",
+      "authors": [
+        "Wentao Wu",
+        "Yibo Zhang",
+        "Zhenhua Li",
+        "Junguo Lu",
+        "Weidong Zhang"
+      ],
+      "year": 2025,
+      "venue": "IEEE Transactions on Systems, Man, and Cybernetics: Systems",
+      "citation_count": 27,
+      "abstract": "This article investigates a constrained safe cooperative maneuvering method for a group of autonomous surface vehicles (ASVs) with performance-quantized indices in an obstacle-loaded environment. Specifically, an avoidance-tolerant prescribed performance (ATPP) with one-sided tunnel bounds is designed to predetermine the cooperative maneuvering performance of multiple ASVs. Next, an auxiliary system is constructed to modify performance bounds of ATPP for tolerating possible collision avoidance a",
+      "url": "https://www.semanticscholar.org/paper/f9b7cfc3d51ea24020766010352d509c2ad09e1b",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Composite neural learning-based adaptive actuator failure compensation control for full-state constrained autonomous surface vehicle",
+      "authors": [
+        "Shuai Song",
+        "Yu Jiang",
+        "Xiaona Song",
+        "Vladimir Stojanovic"
+      ],
+      "year": 2025,
+      "venue": "Neural computing & applications (Print)",
+      "citation_count": 24,
+      "abstract": "",
+      "url": "https://www.semanticscholar.org/paper/384868c52c5fba241ac328f5f1ca6540659a1b1a",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Failure Detection for Motion Prediction of Autonomous Driving: An Uncertainty Perspective",
+      "authors": [
+        "Wenbo Shao",
+        "Yanchao Xu",
+        "Liang Peng",
+        "Jun Li",
+        "Hong Wang"
+      ],
+      "year": 2023,
+      "venue": "IEEE International Conference on Robotics and Automation",
+      "citation_count": 18,
+      "abstract": "Motion prediction is essential for safe and efficient autonomous driving. However, the inexplicability and uncertainty of complex artificial intelligence models may lead to unpredictable failures of the motion prediction module, which may mislead the system to make unsafe decisions. Therefore, it is necessary to develop methods to guarantee reliable autonomous driving, where failure detection is a potential direction. Uncertainty estimates can be used to quantify the degree of confidence a model",
+      "url": "https://www.semanticscholar.org/paper/53b39322ea09af4d0b5d79698d5c9acaf050be91",
+      "arxiv_id": "2301.04421",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Safe LLM-Controlled Robots with Formal Guarantees via Reachability Analysis",
+      "authors": [
+        "Ahmad Hafez",
+        "Alireza Naderi Akhormeh",
+        "Amr Hegazy",
+        "Amr Alanwar"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "citation_count": 12,
+      "abstract": "The deployment of Large Language Models (LLMs) in robotic systems presents unique safety challenges, particularly in unpredictable environments. Although LLMs, leveraging zero-shot learning, enhance human-robot interaction and decision-making capabilities, their inherent probabilistic nature and lack of formal guarantees raise significant concerns for safety-critical applications. Traditional model-based verification approaches often rely on precise system models, which are difficult to obtain f",
+      "url": "https://www.semanticscholar.org/paper/019bd741a8ce9654ff7fb80b512d19ba1d586745",
+      "arxiv_id": "2503.03911",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "From Collision to Verdict: Responsibility Attribution for Autonomous Driving Systems Testing",
+      "authors": [
+        "Jixiang Zhou",
+        "Shuncheng Tang",
+        "Yan Guo",
+        "Yan-Fu Li",
+        "Yinxing Xue"
+      ],
+      "year": 2023,
+      "venue": "IEEE International Symposium on Software Reliability Engineering",
+      "citation_count": 9,
+      "abstract": "Autonomous driving systems (ADS) are safety-critical systems that require thorough testing to ensure their safety. Current testing methods for ADS primarily focus on finding crash scenarios involving ADS. However, most of these scenarios are unavoidable by ADS, such as collisions caused by the reckless behavior of other vehicles. To address this limitation, we propose CollVer, a framework designed to generate and identify scenarios in which ADS violate driving rules. Specifically, CollVer utiliz",
+      "url": "https://www.semanticscholar.org/paper/b4f7b3c47b548224cca5b72cbdd3a4b5c1527f7c",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "STRATUS: A Multi-agent System for Autonomous Reliability Engineering of Modern Clouds",
+      "authors": [
+        "Yinfang Chen",
+        "Jiaqi Pan",
+        "Jackson Clark",
+        "Yiming Su",
+        "Noah Zheutlin"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "citation_count": 9,
+      "abstract": "In cloud-scale systems, failures are the norm. A distributed computing cluster exhibits hundreds of machine failures and thousands of disk failures; software bugs and misconfigurations are reported to be more frequent. The demand for autonomous, AI-driven reliability engineering continues to grow, as existing humanin-the-loop practices can hardly keep up with the scale of modern clouds. This paper presents STRATUS, an LLM-based multi-agent system for realizing autonomous Site Reliability Enginee",
+      "url": "https://www.semanticscholar.org/paper/846e6f950669fa1386bc0abae6d83429a3d48c6e",
+      "arxiv_id": "2506.02009",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Safe Autonomous Environmental Contact for Soft Robots Using Control Barrier Functions",
+      "authors": [
+        "Akua K. Dickson",
+        "Juan C. Pacheco Garcia",
+        "Meredith L. Anderson",
+        "Ran Jing",
+        "Sarah Alizadeh-Shabdiz"
+      ],
+      "year": 2025,
+      "venue": "IEEE Robotics and Automation Letters",
+      "citation_count": 9,
+      "abstract": "Robots built from soft materials will inherently apply lower environmental forces than their rigid counterparts, and therefore may be more suitable in sensitive settings with unintended contact. However, these robots' applied forces result from both their design and their control system in closed-loop, and therefore, ensuring bounds on these forces requires controller synthesis for safety as well. This letter introduces the first feedback controller for a soft manipulator that formally meets a s",
+      "url": "https://www.semanticscholar.org/paper/519b3696edea8190740ab7e563913af7f3aa2b0d",
+      "arxiv_id": "2504.14755",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Digital Twin of Autonomous Surface Vessels for Safe Maritime Navigation Enabled Through Predictive Modeling and Reinforcement Learning",
+      "authors": [
+        "Daniel Menges",
+        "Andreas Von Brandis",
+        "Adil Rasheed"
+      ],
+      "year": 2024,
+      "venue": "Ocean Engineering",
+      "citation_count": 8,
+      "abstract": "\n Autonomous surface vessels (ASVs) play an increasingly important role in the safety and sustainability of open sea operations. Since most maritime accidents are related to human failure, intelligent algorithms for autonomous collision avoidance and path following can drastically reduce the risk in the maritime sector. A DT is a virtual representative of a real physical system and can enhance the situational awareness (SITAW) of such an ASV to generate optimal decisions. This work builds on an ",
+      "url": "https://www.semanticscholar.org/paper/40673eb3362b1688823f0c335e19eef12d701020",
+      "arxiv_id": "2401.04032",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Seeking to Collide: Online Safety-Critical Scenario Generation for Autonomous Driving with Retrieval Augmented Large Language Models",
+      "authors": [
+        "Yuewen Mei",
+        "Tong Nie",
+        "Jian Sun",
+        "Ye Tian"
+      ],
+      "year": 2025,
+      "venue": "2025 IEEE 28th International Conference on Intelligent Transportation Systems (ITSC)",
+      "citation_count": 7,
+      "abstract": "Simulation-based testing is crucial for validating autonomous vehicles (AVs), yet existing scenario generation methods either overfit to common driving patterns or operate in an offline, non-interactive manner that fails to expose rare, safety-critical corner cases. In this paper, we introduce an online, retrieval-augmented Large Language Models (LLMs) framework for generating safety-critical driving scenarios. Our method first employs an LLM-based behavior analyzer to infer the most dangerous i",
+      "url": "https://www.semanticscholar.org/paper/5e4e9a9f8564e3e60e6520f602d9373cf7884b4a",
+      "arxiv_id": "2505.00972",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Large Language Models in Code Co-generation for Safe Autonomous Vehicles",
+      "authors": [
+        "Ali Nouri",
+        "Beatriz Cabrero-Daniel",
+        "Zhennan Fei",
+        "Krishna Ronanki",
+        "Håkan Sivencrona"
+      ],
+      "year": 2025,
+      "venue": "International Conference on Computer Safety, Reliability, and Security",
+      "citation_count": 4,
+      "abstract": "Software engineers in various industrial domains are already using Large Language Models (LLMs) to accelerate the process of implementing parts of software systems. When considering its potential use for ADAS or AD systems in the automotive context, there is a need to systematically assess this new setup: LLMs entail a well-documented set of risks for safety-related systems' development due to their stochastic nature. To reduce the effort for code reviewers to evaluate LLM-generated code, we pro",
+      "url": "https://www.semanticscholar.org/paper/053ffa3a139c11af21043ff1730601a9a9c25776",
+      "arxiv_id": "2505.19658",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "A 3D World Interpreter System for Safe Autonomous Crane Operation",
+      "authors": [
+        "F. T. Haar",
+        "Frank Ruis",
+        "B. V. Manen"
+      ],
+      "year": 2024,
+      "venue": "Robotics",
+      "citation_count": 4,
+      "abstract": "In an effort to improve short-sea shipping in Europe, we present a 3D world interpreter (3DWI) system as part of a robotic container-handling system. The 3DWI is an advanced sensor suite combined with AI-based software and the communication infrastructure to connect to both the crane control and the shore control center. On input of LiDAR data and stereo captures, the 3DWI builds a world model of the operating environment and detects containers. The 3DWI and crane control are the core of an auto",
+      "url": "https://www.semanticscholar.org/paper/e6f50a3592d164ec35e2b0517418b1f919b1f5a7",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Interaction-Aware Model Predictive Decision-Making for Socially-Compliant Autonomous Driving in Mixed Urban Traffic Scenarios",
+      "authors": [
+        "Balint Varga",
+        "Thomas Brand",
+        "Marcus Schmitz",
+        "Ehsan Hashemi"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "citation_count": 3,
+      "abstract": "Autonomous vehicles must negotiate with pedestrians in ways that are both safe and socially compliant. We present an interaction-aware model predictive decision-making (IAMPDM) framework that integrates a gap-acceptance-inspired intention model with MPC to jointly reason about human intent and vehicle control in real time. The pedestrian module produces a continuous crossing-propensity signal - driven by time-to-collision (TTC) with an intention discounting mechanism - that modulates MPC safety ",
+      "url": "https://www.semanticscholar.org/paper/8ed61128f5daf747d5d92c609dd04e036a8f0bde",
+      "arxiv_id": "2503.01852",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Safe Motion Planning for Multi-Vehicle Autonomous Driving in Uncertain Environment",
+      "authors": [
+        "Zhezhi Lei",
+        "Wenxin Wang",
+        "Zicheng Zhu",
+        "Jun Ma",
+        "S. Ge"
+      ],
+      "year": 2025,
+      "venue": "IEEE Robotics and Automation Letters",
+      "citation_count": 2,
+      "abstract": "In the field of motion planning for autonomous driving systems, ensuring the safety of multi-vehicle navigation is one of the crucial topics. An unavoidable problem in practice is that the noise-induced uncertainties in real-world applications highly degrade the safety of multi-vehicle navigation. It is also challenging to guarantee the required computation efficiency of motion planning algorithms in such uncertain environments. In this work, we present a novel motion planning framework to enhan",
+      "url": "https://www.semanticscholar.org/paper/842f43d0a3b45eb2c32e4f35630a2a90c6fc8af4",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Counterfactual regret minimization for the safety verification of autonomous driving",
+      "authors": [
+        "Yong Wang",
+        "Pengchao Sun",
+        "Daifeng Zhang",
+        "Yanqiang Li"
+      ],
+      "year": 2025,
+      "venue": "Applied intelligence (Boston)",
+      "citation_count": 2,
+      "abstract": "",
+      "url": "https://www.semanticscholar.org/paper/1a84bf784e883e4becbc5e181d9c905cadd7ebf7",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Radar Perception of Multi-Object Collision Risk Neural Domains during Autonomous Driving",
+      "authors": [
+        "Józef Lisowski"
+      ],
+      "year": 2024,
+      "venue": "Electronics",
+      "citation_count": 1,
+      "abstract": "The analysis of the state of the literature in the field of methods of perception and control of the movement of autonomous vehicles shows the possibilities of improving them by using an artificial neural network to generate domains of prohibited maneuvers of passing objects, contributing to increasing the safety of autonomous driving in various real conditions of the surrounding environment. This article concerns radar perception, which involves receiving information about the movement of many ",
+      "url": "https://www.semanticscholar.org/paper/5e91a07746b15b12ff5e162a31581e1b9eac3725",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Moral Testing of Autonomous Driving Systems",
+      "authors": [
+        "Wen Tang",
+        "Ming Cheng",
+        "Yuan Zhou",
+        "Yang Liu"
+      ],
+      "year": 2025,
+      "venue": "2025 IEEE/ACM 1st International Workshop on Software Engineering for Autonomous Driving Systems (SE4ADS)",
+      "citation_count": 1,
+      "abstract": "Autonomous Driving System (ADS) testing plays a crucial role in their development, with the current focus primarily on functional and safety testing. However, evaluating the non-functional morality of ADSs, particularly their decision-making capabilities in unavoidable collision scenarios, is equally important to ensure the systems’ trustworthiness and public acceptance. Unfortunately, testing ADS morality is nearly impossible due to the absence of universal moral principles. To address this cha",
+      "url": "https://www.semanticscholar.org/paper/d44a4e2566d3b8975d2ba7c4e483daf5cede3ca5",
+      "arxiv_id": "2505.03683",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "RADAR-Based Safe Pull-Over of Autonomous Racing Cars in Localization Failure Scenarios",
+      "authors": [
+        "Francesco Prignoli",
+        "P. Falcone",
+        "Ayoub Raji",
+        "Marko Bertogna"
+      ],
+      "year": 2024,
+      "venue": "European Control Conference",
+      "citation_count": 1,
+      "abstract": "This paper presents a RADAR-Based, vehicle lateral dynamics control algorithm that ensures a safe pull-over of autonomous racing vehicles to the roadside barriers in the event of localization failures. The position and curvature of the roadside barriers are estimated from RADAR measurements through a Total Least Squares algorithm and fed to a Linear-Quadratic-Regulator (LQR), which outputs the steering commands to the vehicle. As the estimates accuracy varies with the distance to the barriers, t",
+      "url": "https://www.semanticscholar.org/paper/a4edaf9a88eb37d5cef485c6f2202e613e8926fe",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Research on emergency collision avoidance planning for autonomous vehicles",
+      "authors": [
+        "Zhi-Hua zhong",
+        "A. Yang",
+        "Bing Zhou",
+        "He Wang",
+        "Xiaojian Wu"
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the Institution of mechanical engineers. Part D, journal of automobile engineering",
+      "citation_count": 0,
+      "abstract": "A safe and reliable collision avoidance strategy is deemed crucial for autonomous driving. Pedestrians crossing the road illegally present a high-risk collision scenario, which can easily lead to emergency collision avoidance situations for autonomous vehicles, potentially resulting in unavoidable collisions. Therefore, developing an emergency collision avoidance strategy that combines efficient computation and minimal collision cost is of paramount importance. In this paper, a collision avoidan",
+      "url": "https://www.semanticscholar.org/paper/20225b6bfc687bfc9cf31660f57b585b2b453881",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Continuous Decision-Making for Risk-Based Collision Avoidance in Autonomous Driving Using Twin-Delayed DDPG",
+      "authors": [
+        "Shaohui Fan",
+        "Xinjian Fan",
+        "Yong Wang"
+      ],
+      "year": 2024,
+      "venue": "International Conference on Industrial Informatics",
+      "citation_count": 0,
+      "abstract": "The issue of collision avoidance (CA) represents a core challenge for the safe operation of autonomous driving vehicles. In this paper, we propose a novel CA method that integrates a risk evaluation strategy into deep reinforcement learning (DRL). The method formulates the CA problem in autonomous driving as a minimum risk optimization problem (MROP). To solve this formulated MROP, a risk evaluation model was first constructed to estimate the specific risk probabilities of a given driving state.",
+      "url": "https://www.semanticscholar.org/paper/cd225f69f1cc630138d002aead3b77cdca8ad782",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Minimum decision of collision injury based on drivable area in unavoidable scene",
+      "authors": [
+        "Quankai Liu",
+        "Bing Zhou",
+        "Xiaojian Wu",
+        "He Wang",
+        "Qingjia Cui"
+      ],
+      "year": 2024,
+      "venue": "Proceedings of the Institution of mechanical engineers. Part D, journal of automobile engineering",
+      "citation_count": 0,
+      "abstract": "The existing technology for assisted driving collision avoidance has improved the active safety of vehicles, but it is primarily designed for scenarios where collisions can be avoided. It is not suitable for situations where pedestrians suddenly intrude. Therefore, there is a need to develop a control strategy that can minimize collision injuries in unavoidable situations. This study focuses on typical collision scenarios where pedestrians suddenly intrude. It proposes a real-time online double-",
+      "url": "https://www.semanticscholar.org/paper/f6f7f83c1e7b14c9d9569994b082fe532519d8e6",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "A Necessary Criterion for Evaluating Scene-Level Criticality Metrics in Safety Verification of Autonomous Driving",
+      "authors": [
+        "Hao Cheng",
+        "Qiang Ge",
+        "Yanbo Jiang",
+        "Haoran Li",
+        "Keyu Chen"
+      ],
+      "year": 2025,
+      "venue": "2025 IEEE Intelligent Vehicles Symposium (IV)",
+      "citation_count": 0,
+      "abstract": "Effective, reliable, and efficient measurement of autonomous driving safety performance is essential for demonstrating its trustworthiness. Criticality metrics offer an objective assessment of autonomous driving safety. However, the wide variety of criticality metrics, each with distinct characteristics, lacks a unified standard for evaluation and selection. We contend that a criticality metric should accurately reflect the true danger level of vehicle pairs at risk. This paper focuses on scene-",
+      "url": "https://www.semanticscholar.org/paper/e0eec1bf8d9ac93cd9520699981a5740cea7646f",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "AuthSim: Toward Authentic and Effective Safety-Critical Scenario Generation for Autonomous Driving Tests",
+      "authors": [
+        "Yukuan Yang",
+        "Xucheng Lu",
+        "Zhili Zhang",
+        "Zepeng Wu",
+        "Guoqi Li"
+      ],
+      "year": 2025,
+      "venue": "IEEE transactions on intelligent transportation systems (Print)",
+      "citation_count": 0,
+      "abstract": "The generation of adversarial safety-critical scenarios is essential for rigorously evaluating autonomous driving systems, enabling the identification of vulnerabilities and enhancement of system robustness. However, existing methodologies predominantly focus on extreme, unconstrained collision scenarios in which non-player character (NPC) vehicles exhibit unrealistic adversarial behaviors toward the ego vehicle. While such scenarios serve as stress tests, their practical utility is limited due ",
+      "url": "https://www.semanticscholar.org/paper/43ceb737ce1ba676c17068c5f24116b71cdc8503",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Diffusion-Based Corner Scenario Generation Method for Autonomous Driving with a Dynamics-Based Decoder",
+      "authors": [
+        "Ruixuan Zhang",
+        "Shichun Yang",
+        "Bingtao Ren",
+        "Zehua Wu",
+        "Zhen Xu"
+      ],
+      "year": 2025,
+      "venue": "2025 9th CAA International Conference on Vehicular Control and Intelligence (CVCI)",
+      "citation_count": 0,
+      "abstract": "Ensuring the safety of autonomous driving systems requires the generation of high-risk traffic scenarios. However, existing methods often lack physical plausibility, diversity, and controllability. This paper proposes a logical corner scenario generation framework integrating rule extraction, a risk-aware conditional diffusion model, and a dynamics-based decoder. Cut-in scenarios with annotated risk levels are extracted from naturalistic data using rules based on minimum time to collision (TTC) ",
+      "url": "https://www.semanticscholar.org/paper/b0363932b0742691f0512988b1adde6d493e77fd",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "QLSL: A Symbolic Logic Enhanced Q-Learning Approach for Safe Autonomous Driving",
+      "authors": [
+        "Xiaoting Yao",
+        "Zhiyuan Xi",
+        "Peijun Ye",
+        "Zhiling Wang",
+        "Xiao Wang"
+      ],
+      "year": 2025,
+      "venue": "2025 International Conference on Cyber-Physical Social Intelligence (CPSI)",
+      "citation_count": 0,
+      "abstract": "Safe autonomous driving faces a fundamental challenge: reinforcement learning requires exploration that may compromise safety, while purely symbolic methods lack environmental adaptability. This paper presents Q-Learning with Symbolic Logic (QLSL), a neuro-symbolic framework that integrates first-order logic constraints with Q-Learning to achieve hard safety guarantees. QLSL employs a two-stage decision architecture where symbolic logic filtering first generates permissible actions based on safe",
+      "url": "https://www.semanticscholar.org/paper/8614c0ac540fd7068db19a049c11e22018200ef3",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "The Safety Verification of Autonomous Driving on Nested Game Algorithm",
+      "authors": [
+        "Hengpei Wang",
+        "Yuxiang Hou",
+        "Zhixin Zhao",
+        "Yong Wang",
+        "Wenxiao Li"
+      ],
+      "year": 2025,
+      "venue": "2025 2nd International Conference on Machine Learning, Pattern Recognition and Automation Engineering (MLPRAE)",
+      "citation_count": 0,
+      "abstract": "In the testing and evaluation of autonomous vehicles, the low incidence of safety accidents remains a key challenge. To address this issue, this paper proposes a nested game model that utilises the Counterfactual Regret Minimisation (CFR) algorithm to validate the safety performance of autonomous vehicles in an acceleration test environment. In the experimental design, a driving risk field model is introduced as a metric for scene generation, with time to collision (TTC) and minimum safe distanc",
+      "url": "https://www.semanticscholar.org/paper/a7e98ec59f0c26cd4799c6c3320ce8fb34870cec",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Learning Neural Control Barrier Functions from Expert Demonstrations using Inverse Constraint Learning",
+      "authors": [
+        "Yuxuan Yang",
+        "Hussein Sibai"
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "citation_count": 0,
+      "abstract": "Safety is a fundamental requirement for autonomous systems operating in critical domains. Control barrier functions (CBFs) have been used to design safety filters that minimally alter nominal controls for such systems to maintain their safety. Learning neural CBFs has been proposed as a data-driven alternative for their computationally expensive optimization-based synthesis. However, it is often the case that the failure set of states that should be avoided is non-obvious or hard to specify form",
+      "url": "https://www.semanticscholar.org/paper/badcf2c1828e507364d4b9eb356aafb95e591a09",
+      "arxiv_id": "2510.21560",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Blockchain for secure Data Sharing: Enhancing Security and Trust in Inter-organizational Exchange",
+      "authors": [
+        "Yandapalli Nagendra",
+        "Dr. Suryakanth V Gangashetty"
+      ],
+      "year": 2025,
+      "venue": "Journal of Information Systems Engineering & Management",
+      "citation_count": 0,
+      "abstract": "Blockchain technology has changed the way people share secure data by providing an autonomous, unchangeable, and cryptographically secure structure. Instead of traditional controlled systems that have trust problems and single points of failure, blockchain allows for a distributed ledger system where everyone shares confirmed, unchangeable records without the need for middlemen. Its immutability protects the purity of the data, and its openness encourages cooperation without trust, which lowers ",
+      "url": "https://www.semanticscholar.org/paper/3d4baf1f6b139db30a2542cb5e45e11913dc7bd0",
+      "arxiv_id": "",
+      "category": "minimum_harm_unavoidable_collision"
+    },
+    {
+      "title": "Safe and Non-Conservative Contingency Planning for Autonomous Vehicles via Online Learning-Based Reachable Set Barriers",
+      "authors": [
+        "Rui Yang",
+        "Lei Zheng",
+        "S. Ge",
+        "Jun Ma"
+      ],
+      "year": 2025,
+      "venue": "IEEE Transactions on Control Systems Technology",
+      "citation_count": 0,
+      "abstract": "Autonomous vehicles must navigate dynamically uncertain environments while balancing safety and efficiency. This challenge is exacerbated by unpredictable human-driven vehicle (HV) behaviors and perception inaccuracies, necessitating planners that adapt to evolving uncertainties while maintaining safe trajectories. Overly conservative planning degrades driving efficiency, while deterministic methods risk failure in unexpected scenarios. To address these issues, we propose a real-time contingency",
+      "url": "https://www.semanticscholar.org/paper/ff20886a759b2325799be040a4b5ad34358ac07b",
+      "arxiv_id": "2509.07464",
+      "category": "minimum_harm_unavoidable_collision"
+    }
+  ],
+  "datasets": []
+}
