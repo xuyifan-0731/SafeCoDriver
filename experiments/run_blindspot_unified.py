@@ -479,8 +479,14 @@ def run_scenario(net_file, rou_file, method, ego_uses_coop=True,
                                      or stats.get('n_modifications', 0) > 0)
                             if fired:
                                 ego_warned = True
-                                d = math.sqrt(mw[0, 0]**2 + mw[0, 1]**2)
-                                target_speed = min(max(d / 0.5, 0), ep.ego.velocity)
+                                # P0 (260511): use explicit target_speed_factor if provided
+                                tsf = stats.get('target_speed_factor', None)
+                                if tsf is not None:
+                                    target_speed = ep.ego.velocity * tsf
+                                else:
+                                    # Fallback: derive from modified waypoint distance
+                                    d = math.sqrt(mw[0, 0]**2 + mw[0, 1]**2)
+                                    target_speed = min(max(d / 0.5, 0), ep.ego.velocity)
                                 # Lateral
                                 if len(mw) > 1 and abs(mw[1, 1]) > 1.5:
                                     try:

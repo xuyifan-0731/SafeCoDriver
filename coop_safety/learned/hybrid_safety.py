@@ -205,6 +205,28 @@ class HybridSafetyConstraint:
             logger.warning(f"V2 inference failed: {e}")
         return wp_risks
 
+    def _compute_min_ttc(self, perception):
+        """P1 (260511): compute minimum TTC across all agents.
+
+        TTC = distance / closing_speed. Returns large value if no agent closing.
+        Coordinates are in ego frame.
+        """
+        min_ttc = 999.0
+        for a in perception.agents:
+            s = a.state
+            dist = math.sqrt(s.x**2 + s.y**2)
+            if dist < 0.5:
+                return 0.0  # already overlapping
+            # Approach rate: how fast distance is shrinking
+            # rel_velocity is (s.vx, s.vy) in ego frame
+            if dist > 0.1:
+                approach = -(s.x * s.vx + s.y * s.vy) / dist
+                if approach > 0.1:
+                    ttc = dist / approach
+                    if ttc < min_ttc:
+                        min_ttc = ttc
+        return min_ttc
+
     def constrain_waypoints(self, waypoints: np.ndarray,
                             perception: PerceptionResult) -> tuple:
         """Main method: modify waypoints + detect collisions.
@@ -257,16 +279,49 @@ class HybridSafetyConstraint:
         v1_prob = self._detect_with_v1(perception)
         is_dangerous = v1_prob > self.detection_threshold
 
+        # P1 (260511): TTC-based brake intensity, finer than P0's threat-count.
+        # Brake decision uses three signals: TTC, V1 prob, geometric threats.
+        # Lower factor = stronger brake.
+        min_ttc = self._compute_min_ttc(perception)
+
+        # Decision tree (P1):
+        #   Emergency (×0.1): TTC<2s OR (n_threats≥2 AND v1_prob>0.5)
+        #   Hard brake (×0.3): TTC<3s OR n_threats≥2 OR v1_prob>0.7
+        #   Conservative (×0.5): TTC<5s AND (n_threats≥1 OR v1_prob>thr)
+        #   Cautious (×0.7): n_threats≥1 OR v1_prob>thr
+        #   Normal (×1.0): otherwise
+        if min_ttc < 2.0 or (n_geometric_threats >= 2 and v1_prob > 0.5):
+            target_speed_factor = 0.1
+            mode_str = 'EMERGENCY'
+        elif min_ttc < 3.0 or n_geometric_threats >= 2 or v1_prob > 0.7:
+            target_speed_factor = 0.3
+            mode_str = 'HARD_BRAKE'
+        elif min_ttc < 5.0 and (n_geometric_threats >= 1 or v1_prob > self.detection_threshold):
+            target_speed_factor = 0.5
+            mode_str = 'CONSERVATIVE'
+        elif n_geometric_threats >= 1 or v1_prob > self.detection_threshold:
+            target_speed_factor = 0.7
+            mode_str = 'CAUTIOUS'
+        else:
+            target_speed_factor = 1.0
+            mode_str = 'NORMAL'
+
         # Stats — use consistent semantics (bug fix 260508):
         # n_collisions_detected: 0 or 1, V1-driven detection flag
         # n_geometric_threats: count of waypoints with geometric threats
         # modification_rate: fraction of waypoints actually modified by geometry
+        # target_speed_factor: P0 explicit brake hint for closed-loop control
+        # min_ttc: P1 minimum TTC over all agents
+        # mode: human-readable mode label (EMERGENCY/HARD_BRAKE/...)
         stats = {
             "method": self.name,
             "n_collisions_detected": 1 if is_dangerous else 0,
             "modification_rate": n_geometric_threats / max(len(waypoints), 1),
             "collision_prob": v1_prob,
             "n_geometric_threats": n_geometric_threats,
+            "target_speed_factor": target_speed_factor,
+            "min_ttc": min_ttc,
+            "mode": mode_str,
         }
         return modified, stats
 
