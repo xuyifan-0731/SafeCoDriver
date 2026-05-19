@@ -8,6 +8,8 @@ so 'CollRate' is from the dataset labels (52 accident, 52 normal).
 '2ndColl' and 'Sev' are not measurable here.
 """
 from __future__ import annotations
+import argparse
+import csv
 import sys, os, math, time, logging
 import numpy as np
 from pathlib import Path
@@ -27,6 +29,9 @@ from experiments.methods import RSSOnly
 from experiments.methods_modern import RiskPotentialField
 from experiments.methods_new_baselines import UniE2EV2XSafety, MAPSafety, RiskMMSafety
 from experiments.run_forced_conflict_and_fa import HybridWithGeometricAND
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def eval_method(method, val_idx, loader, ego_uses_coop=True):
@@ -127,14 +132,75 @@ def eval_method(method, val_idx, loader, ego_uses_coop=True):
     }
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--out-dir",
+        type=Path,
+        default=ROOT / "results" / "deepaccident_unified_metrics",
+        help="Directory for summary.csv and ranking.csv.",
+    )
+    return parser.parse_args()
+
+
+def write_outputs(out_dir: Path, summary: list[dict], ranking: list[dict], ckpt_auc: float,
+                  val_idx: list[int]) -> None:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    summary_rows = []
+    for s in summary:
+        summary_rows.append({
+            "method": s["name"],
+            "CollRate": s["CollRate"],
+            "2ndC": s["sec"],
+            "Sev": s["Sev"],
+            "Det(s)": s["Det(s)"],
+            "Det(f)": s["Det(f)"],
+            "Early": s["Early"],
+            "FA(s)": s["FA(s)"],
+            "FA(f)": s["FA(f)"],
+            "WPC%": s["WPColl"],
+            "Mod%": s["Mod"],
+            "ckpt_auc": ckpt_auc,
+            "val_scenarios": len(val_idx),
+        })
+
+    fieldnames = list(summary_rows[0].keys())
+    with (out_dir / "summary.csv").open("w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(summary_rows)
+
+    ranking_rows = []
+    for rank, s in enumerate(ranking, 1):
+        ranking_rows.append({
+            "rank": rank,
+            "method": s["name"],
+            "score": s["score"],
+            "WPC%": s["WPColl"],
+            "FA(f)": s["FA(f)"],
+            "Det(s)": s["Det(s)"],
+            "FA(s)": s["FA(s)"],
+            "Early": s["Early"],
+        })
+    with (out_dir / "ranking.csv").open("w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=list(ranking_rows[0].keys()), lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(ranking_rows)
+
+    print(f"\n  Wrote: {out_dir / 'summary.csv'}")
+    print(f"  Wrote: {out_dir / 'ranking.csv'}")
+
+
 def main():
+    args = parse_args()
     print("=" * 70)
     print("  DeepAccident All-Metrics Eval (260511)")
     print("=" * 70)
 
     ckpt = torch.load("/raid/xuyifan/jiqiuyu/models/collision_net_best.pt",
                       map_location='cpu', weights_only=False)
-    print(f"  V1: AUC={ckpt.get('auc',0):.4f}")
+    ckpt_auc = float(ckpt.get('auc', 0))
+    print(f"  V1: AUC={ckpt_auc:.4f}")
     v1 = CollisionPredictionNetwork()
     v1.load_state_dict(ckpt['model'])
     v1.eval()
@@ -208,13 +274,15 @@ def main():
                       rank_det[s['name']] * weights[2] +
                       rank_fas[s['name']] * weights[3] +
                       rank_early[s['name']] * weights[4])
-    summary.sort(key=lambda x: x['score'])
+    ranking = sorted(summary, key=lambda x: x['score'])
     print(f"  {'Rank':>4s}  {'Method':25s} {'Score':>5s} {'WPC%':>6s} "
           f"{'FA(f)':>6s} {'Det(s)':>7s} {'Early':>6s}")
     print('  ' + '-' * 65)
-    for i, s in enumerate(summary):
+    for i, s in enumerate(ranking):
         print(f"  {i+1:>4d}  {s['name']:25s} {s['score']:4d} "
               f"{s['WPColl']:5.1%} {s['FA(f)']:5.1%} {s['Det(s)']:6.0%} {s['Early']:5.1f}")
+
+    write_outputs(args.out_dir, summary, ranking, ckpt_auc, val_idx)
 
 
 if __name__ == "__main__":

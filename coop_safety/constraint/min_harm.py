@@ -171,8 +171,8 @@ class MinimumHarmPlanner:
             cost = event.severity * event.probability * proximity * type_penalty
             total_cost += cost
 
-        # Add cost for high final speed (prefer lower speed at impact)
-        final_speed = np.sqrt(trajectory[-1, 2] ** 2 if trajectory.shape[1] > 2 else 0)
+        # State is [x, y, heading, velocity]; penalize impact speed, not heading.
+        final_speed = abs(float(trajectory[-1, 3])) if trajectory.shape[1] > 3 else ego.velocity
         total_cost += final_speed * 0.01
 
         return total_cost
