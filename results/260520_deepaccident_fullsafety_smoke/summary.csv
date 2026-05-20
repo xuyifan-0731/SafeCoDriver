@@ -1,0 +1,2 @@
+method,CollRate,2ndC,Sev,Det(s),Det(f),Early,FA(s),FA(f),WPC%,Mod%,ckpt_auc,ckpt_sha256,val_scenarios
+FullSafety-coop,1.0,0,0.0,1.0,1.0,46.5,0.0,1.0,0.08817204301075268,1.0,0.814229377928008,003b32d0b53efb678f972356605aa5ada020a44228893ef805c0a759844a6b35,2

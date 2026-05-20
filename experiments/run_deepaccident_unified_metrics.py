@@ -10,6 +10,8 @@ so 'CollRate' is from the dataset labels (52 accident, 52 normal).
 from __future__ import annotations
 import argparse
 import csv
+import hashlib
+import json
 import sys, os, math, time, logging
 import numpy as np
 from pathlib import Path
@@ -25,10 +27,7 @@ from coop_safety.interface import ConstraintMode, PerceptionResult
 from experiments.deepaccident_loader import DeepAccidentLoader
 from experiments.run_deepaccident_unified import (
     simulate_codriving_waypoints, check_waypoint_collision)
-from experiments.methods import RSSOnly
-from experiments.methods_modern import RiskPotentialField
-from experiments.methods_new_baselines import UniE2EV2XSafety, MAPSafety, RiskMMSafety
-from experiments.run_forced_conflict_and_fa import HybridWithGeometricAND
+from experiments.final_method_configs import final_method_configs
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -140,11 +139,35 @@ def parse_args():
         default=ROOT / "results" / "deepaccident_unified_metrics",
         help="Directory for summary.csv and ranking.csv.",
     )
+    parser.add_argument(
+        "--include-full-safety",
+        action="store_true",
+        help="Include the full SafetyConstraintModule in the method list. This is slower than waypoint methods.",
+    )
+    parser.add_argument(
+        "--max-val-scenarios",
+        type=int,
+        default=0,
+        help="Limit validation scenarios for smoke tests. 0 means all checkpoint validation scenarios.",
+    )
+    parser.add_argument(
+        "--only-methods",
+        default="",
+        help="Comma-separated method-name allowlist for targeted runs.",
+    )
     return parser.parse_args()
 
 
-def write_outputs(out_dir: Path, summary: list[dict], ranking: list[dict], ckpt_auc: float,
-                  val_idx: list[int]) -> None:
+def file_sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def write_outputs(out_dir: Path, summary: list[dict], ranking: list[dict], ckpt_meta: dict,
+                  val_idx: list[int], extra_meta: dict | None = None) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     summary_rows = []
     for s in summary:
@@ -160,7 +183,8 @@ def write_outputs(out_dir: Path, summary: list[dict], ranking: list[dict], ckpt_
             "FA(f)": s["FA(f)"],
             "WPC%": s["WPColl"],
             "Mod%": s["Mod"],
-            "ckpt_auc": ckpt_auc,
+            "ckpt_auc": ckpt_meta["auc"],
+            "ckpt_sha256": ckpt_meta["sha256"],
             "val_scenarios": len(val_idx),
         })
 
@@ -187,8 +211,20 @@ def write_outputs(out_dir: Path, summary: list[dict], ranking: list[dict], ckpt_
         writer.writeheader()
         writer.writerows(ranking_rows)
 
+    metadata = {
+        "platform": "DeepAccident",
+        "checkpoint": ckpt_meta,
+        "val_scenario_idx": list(map(int, val_idx)),
+        "method_names": [s["name"] for s in summary],
+        "ranking_metric": "WPColl rank*10 + FA(f) rank*5 + Det(s) rank*4 + FA(s) rank*2 + Early rank",
+    }
+    if extra_meta:
+        metadata.update(extra_meta)
+    (out_dir / "metadata.json").write_text(json.dumps(metadata, indent=2, ensure_ascii=False))
+
     print(f"\n  Wrote: {out_dir / 'summary.csv'}")
     print(f"  Wrote: {out_dir / 'ranking.csv'}")
+    print(f"  Wrote: {out_dir / 'metadata.json'}")
 
 
 def main():
@@ -197,38 +233,32 @@ def main():
     print("  DeepAccident All-Metrics Eval (260511)")
     print("=" * 70)
 
-    ckpt = torch.load("/raid/xuyifan/jiqiuyu/models/collision_net_best.pt",
-                      map_location='cpu', weights_only=False)
+    ckpt_path = ROOT / "models" / "collision_net_best.pt"
+    ckpt = torch.load(ckpt_path, map_location='cpu', weights_only=False)
     ckpt_auc = float(ckpt.get('auc', 0))
+    ckpt_meta = {
+        "path": str(ckpt_path),
+        "sha256": file_sha256(ckpt_path),
+        "auc": ckpt_auc,
+        "epoch": int(ckpt.get("epoch", -1)),
+        "train_scenarios": len(ckpt.get("train_scenario_idx", [])),
+        "val_scenarios": len(ckpt.get("val_scenario_idx", [])),
+    }
     print(f"  V1: AUC={ckpt_auc:.4f}")
     v1 = CollisionPredictionNetwork()
     v1.load_state_dict(ckpt['model'])
     v1.eval()
     val_idx = ckpt.get('val_scenario_idx', [])
+    if args.max_val_scenarios > 0:
+        val_idx = val_idx[:args.max_val_scenarios]
 
     loader = DeepAccidentLoader(split='all')
-    base_kwargs = dict(detector_model=v1, base_margin_visible=2.5,
-                       base_margin_invisible=4.0)
-
-    method_configs = [
-        ("NoCon-egoonly",  lambda: None,  False),
-        ("NoCon-coop",     lambda: None,  True),
-        ("RSS-coop",       lambda: RSSOnly(),  True),
-        ("APF-coop",       lambda: RiskPotentialField(),  True),
-        ("UniE2EV2X-coop", lambda: UniE2EV2XSafety(safety_threshold=3.0), True),
-        ("MAP-coop",       lambda: MAPSafety(min_clearance=0.5), True),
-        ("RiskMM-coop",    lambda: RiskMMSafety(v_max=20.0), True),
-    ]
-    for thr in [0.20, 0.25, 0.30, 0.35, 0.40, 0.50]:
-        method_configs.append(
-            (f"Hybrid-thr{thr:.2f}",
-             lambda thr=thr: HybridSafetyConstraint(detection_threshold=thr, **base_kwargs),
-             True))
-    for thr in [0.25, 0.30, 0.35, 0.40]:
-        def make_and(thr=thr):
-            base = HybridSafetyConstraint(detection_threshold=thr, **base_kwargs)
-            return HybridWithGeometricAND(base)
-        method_configs.append((f"Hybrid+AND-thr{thr:.2f}", make_and, True))
+    method_configs = final_method_configs(v1, include_full_safety=args.include_full_safety)
+    if args.only_methods:
+        allowed = {name.strip() for name in args.only_methods.split(",") if name.strip()}
+        method_configs = [m for m in method_configs if m[0] in allowed]
+    if not method_configs:
+        raise ValueError("No methods selected; check --only-methods.")
 
     print(f"\n  Val scenarios: {len(val_idx)}")
     print(f"  {'Method':25s} {'Det(s)':>7s} {'Det(f)':>7s} {'Early':>6s} "
@@ -282,7 +312,18 @@ def main():
         print(f"  {i+1:>4d}  {s['name']:25s} {s['score']:4d} "
               f"{s['WPColl']:5.1%} {s['FA(f)']:5.1%} {s['Det(s)']:6.0%} {s['Early']:5.1f}")
 
-    write_outputs(args.out_dir, summary, ranking, ckpt_auc, val_idx)
+    write_outputs(
+        args.out_dir,
+        summary,
+        ranking,
+        ckpt_meta,
+        val_idx,
+        extra_meta={
+            "include_full_safety": bool(args.include_full_safety),
+            "max_val_scenarios": int(args.max_val_scenarios),
+            "only_methods": args.only_methods,
+        },
+    )
 
 
 if __name__ == "__main__":

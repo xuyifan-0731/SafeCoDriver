@@ -14,6 +14,8 @@ from __future__ import annotations
 
 import csv
 import argparse
+import hashlib
+import json
 import math
 import os
 import sys
@@ -36,6 +38,7 @@ from coop_safety.interface import Agent, AgentType, ConstraintMode, PerceptionRe
 from coop_safety.learned.collision_network import CollisionPredictionNetwork
 from coop_safety.learned.hybrid_safety import HybridSafetyConstraint
 from experiments import gen_scenario_gifs as scene_gen
+from experiments.final_method_configs import final_method_configs
 from experiments.methods import RSSOnly
 from experiments.methods_new_baselines import MAPSafety, RiskMMSafety, UniE2EV2XSafety
 from experiments.run_forced_conflict_and_fa import HybridWithGeometricAND
@@ -390,7 +393,7 @@ def apply_scene_controls(scenario_name: str, step: int, vids: list[str]) -> None
                 traci.vehicle.setSpeedMode(vid, 0)
             except Exception:
                 pass
-        if vid == "attacker_rear":
+        if vid == "attacker_rear" and "_rand" not in scenario_name:
             try:
                 traci.vehicle.setSpeed(vid, 13.5)
             except Exception:
@@ -777,52 +780,70 @@ def stress_scenario_defs():
     return scenarios
 
 
-def method_configs(v1):
-    base_kwargs = dict(detector_model=v1, base_margin_visible=2.5, base_margin_invisible=4.0)
-    configs = [
-        ("NoCon-egoonly", lambda: None, False),
-        ("NoCon-coop", lambda: None, True),
-        ("RSS-coop", lambda: RSSOnly(), True),
-        ("UniE2EV2X-coop", lambda: UniE2EV2XSafety(safety_threshold=3.0), True),
-        ("MAP-coop", lambda: MAPSafety(min_clearance=0.5), True),
-        ("RiskMM-coop", lambda: RiskMMSafety(v_max=20.0), True),
-    ]
-    for thr in (0.25, 0.30, 0.40):
-        configs.append((f"Hybrid-thr{thr:.2f}",
-                        lambda thr=thr: HybridSafetyConstraint(detection_threshold=thr, **base_kwargs),
-                        True))
-    for thr in (0.25, 0.30, 0.40):
-        configs.append((f"Hybrid+AND-thr{thr:.2f}",
-                        lambda thr=thr: HybridWithGeometricAND(
-                            HybridSafetyConstraint(detection_threshold=thr, **base_kwargs)),
-                        True))
-    for thr in (0.25, 0.30, 0.40):
-        configs.append((f"Hybrid+AND+TTC-thr{thr:.2f}",
-                        lambda thr=thr: HybridWithGeometricANDTTC(
-                            HybridSafetyConstraint(detection_threshold=thr, **base_kwargs),
-                            ttc_override=3.0),
-                        True))
-    for thr in (0.25, 0.30, 0.40):
-        configs.append((f"Hybrid+AND+TTC+RearAware-thr{thr:.2f}",
-                        lambda thr=thr: HybridWithGeometricANDTTCAware(
-                            HybridSafetyConstraint(detection_threshold=thr, **base_kwargs),
-                            ttc_override=3.0),
-                        True))
-    for thr in (0.25, 0.30, 0.40):
-        configs.append((f"Hybrid+AND+TTC+MinHarm-thr{thr:.2f}",
-                        lambda thr=thr: HybridWithGeometricANDTTCMinHarm(
-                            HybridSafetyConstraint(detection_threshold=thr, **base_kwargs),
-                            ttc_override=3.0,
-                            rear_gap_guard=18.0),
-                        True))
-    for thr in (0.25, 0.30, 0.40):
-        configs.append((f"Hybrid+AND+TTC+RearEscape-thr{thr:.2f}",
-                        lambda thr=thr: HybridWithGeometricANDTTCRearEscape(
-                            HybridSafetyConstraint(detection_threshold=thr, **base_kwargs),
-                            ttc_override=3.0,
-                            rear_gap_guard=18.0),
-                        True))
-    return configs
+def inject_random_stress(rou_file: Path, scenario_name: str, seed: int) -> Path:
+    """Add a rear attacker plus deterministic random background vehicles."""
+    rng = np.random.RandomState(seed + sum(ord(c) for c in scenario_name))
+    out = rou_file.with_name(f"{rou_file.stem}_rand{seed}.rou.xml")
+    text = rou_file.read_text()
+
+    if scenario_name.startswith("BS1"):
+        rear_route, rear_lane = "A1B1 B1C1", int(rng.choice([0, 1]))
+        bg_routes = ["A1B1 B1C1", "C1B1 B1A1", "B0B1 B1B2", "B2B1 B1B0"]
+    elif scenario_name.startswith("BS2"):
+        rear_route, rear_lane = "B0C0 C0D0", int(rng.choice([0, 1]))
+        bg_routes = ["B0C0 C0D0", "C0B0 B0A0"]
+    elif scenario_name.startswith("BS3"):
+        rear_route, rear_lane = "B3A1 A1B1", int(rng.choice([0, 1]))
+        bg_routes = ["B3A1 A1B1", "B4A1 A1B2", "B1A1 A1B3"]
+    elif scenario_name.startswith("BS4"):
+        rear_route, rear_lane = "B3A1 A1B1", int(rng.choice([0, 1]))
+        bg_routes = ["B3A1 A1B1", "B4A1 A1B1", "B1A1 A1B3"]
+    else:
+        rear_route, rear_lane = "A0B0 B0C0 C0D0 D0E0", int(rng.choice([0, 1]))
+        bg_routes = ["A0B0 B0C0 C0D0 D0E0", "E0D0 D0C0 C0B0 B0A0"]
+
+    vehicles = []
+    rear_depart = rng.uniform(0.5, 1.3)
+    # Keep random inserts below per-type and departure-edge limits. Aggression is
+    # introduced by short rear gaps and extra traffic, not invalid depart speeds.
+    rear_speed = rng.uniform(8.5, 10.5)
+    vehicles.append(
+        f'    <vehicle id="attacker_rear" type="attacker" depart="{rear_depart:.2f}" '
+        f'departSpeed="{rear_speed:.2f}" departLane="{rear_lane}">\n'
+        f'        <route edges="{rear_route}"/>\n'
+        f'    </vehicle>\n'
+    )
+
+    for i in range(int(rng.randint(3, 6))):
+        route = str(rng.choice(bg_routes))
+        lane = int(rng.choice([0, 1]))
+        depart = rng.uniform(3.0, 8.0)
+        speed = rng.uniform(5.0, 9.5)
+        vehicles.append(
+            f'    <vehicle id="bg_{seed}_{i}" type="other" depart="{depart:.2f}" '
+            f'departSpeed="{speed:.2f}" departLane="{lane}">\n'
+            f'        <route edges="{route}"/>\n'
+            f'    </vehicle>\n'
+        )
+
+    text = text.replace("</routes>", "".join(vehicles) + "</routes>")
+    out.write_text(text)
+    return out
+
+
+def random_stress_scenario_defs(seeds: tuple[int, ...] = (42,)):
+    scenarios = []
+    for seed in seeds:
+        for name, net_file, rou_file in scenario_defs():
+            if name.startswith("BS5"):
+                continue
+            rand_rou = inject_random_stress(rou_file, name, seed)
+            scenarios.append((f"{name}_rand{seed}", net_file, rand_rou))
+    return scenarios
+
+
+def method_configs(v1, include_full_safety: bool = False):
+    return final_method_configs(v1, include_full_safety=include_full_safety)
 
 
 def add_to_agg(agg: Agg, run: RunMetrics, truth_collision: bool, truth_collision_step: int) -> None:
@@ -874,18 +895,39 @@ def summarize(agg: Agg) -> dict[str, float]:
 
 def parse_args():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--scenario-set", choices=["base", "stress", "all"], default="base")
+    parser.add_argument("--scenario-set", choices=["base", "stress", "random-stress", "all"], default="base")
     parser.add_argument("--out-dir", type=Path, default=OUT_DIR)
     parser.add_argument("--key-methods", action="store_true",
-                        help="Run a smaller method set for quick stress validation.")
+                        help="Kept for backward compatibility; final configs are already compact.")
+    parser.add_argument("--include-full-safety", action="store_true",
+                        help="Include the full SafetyConstraintModule in the method list.")
+    parser.add_argument("--random-seeds", default="42",
+                        help="Comma-separated seeds for --scenario-set random-stress.")
     return parser.parse_args()
+
+
+def file_sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 def main() -> None:
     args = parse_args()
     out_dir = args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
-    ckpt = torch.load(ROOT / "models" / "collision_net_best.pt", map_location="cpu", weights_only=False)
+    ckpt_path = ROOT / "models" / "collision_net_best.pt"
+    ckpt = torch.load(ckpt_path, map_location="cpu", weights_only=False)
+    ckpt_meta = {
+        "path": str(ckpt_path),
+        "sha256": file_sha256(ckpt_path),
+        "auc": float(ckpt.get("auc", 0.0)),
+        "epoch": int(ckpt.get("epoch", -1)),
+        "train_scenarios": len(ckpt.get("train_scenario_idx", [])),
+        "val_scenarios": len(ckpt.get("val_scenario_idx", [])),
+    }
     v1 = CollisionPredictionNetwork()
     v1.load_state_dict(ckpt["model"])
     v1.eval()
@@ -894,18 +936,13 @@ def main() -> None:
         scenarios = scenario_defs()
     elif args.scenario_set == "stress":
         scenarios = stress_scenario_defs()
+    elif args.scenario_set == "random-stress":
+        seeds = tuple(int(s.strip()) for s in args.random_seeds.split(",") if s.strip())
+        scenarios = random_stress_scenario_defs(seeds)
     else:
         scenarios = scenario_defs() + stress_scenario_defs()
 
-    methods = method_configs(v1)
-    if args.key_methods:
-        keep = {
-            "NoCon-egoonly", "NoCon-coop", "RSS-coop", "UniE2EV2X-coop", "MAP-coop",
-            "RiskMM-coop", "Hybrid-thr0.30", "Hybrid+AND-thr0.30",
-            "Hybrid+AND+TTC-thr0.30", "Hybrid+AND+TTC+RearAware-thr0.30",
-            "Hybrid+AND+TTC+MinHarm-thr0.30", "Hybrid+AND+TTC+RearEscape-thr0.30",
-        }
-        methods = [m for m in methods if m[0] in keep]
+    methods = method_configs(v1, include_full_safety=args.include_full_safety)
 
     print("=" * 72)
     print("  Revised SUMO 10-Scenario Comparison")
@@ -968,18 +1005,31 @@ def main() -> None:
 
     summary_csv = out_dir / "summary.csv"
     with summary_csv.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
     per_run_csv = out_dir / "per_run.csv"
     with per_run_csv.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(per_run_rows[0].keys()))
+        writer = csv.DictWriter(f, fieldnames=list(per_run_rows[0].keys()), lineterminator="\n")
         writer.writeheader()
         writer.writerows(per_run_rows)
 
+    metadata = {
+        "platform": "SUMO",
+        "scenario_set": args.scenario_set,
+        "random_seeds": args.random_seeds,
+        "include_full_safety": bool(args.include_full_safety),
+        "checkpoint": ckpt_meta,
+        "method_names": [m[0] for m in methods],
+        "scenario_names": [s[0] for s in scenarios],
+    }
+    metadata_json = out_dir / "metadata.json"
+    metadata_json.write_text(json.dumps(metadata, indent=2, ensure_ascii=False))
+
     print(f"\n  Wrote: {summary_csv}")
     print(f"  Wrote: {per_run_csv}")
+    print(f"  Wrote: {metadata_json}")
     print(f"  Total time: {time.time() - t0:.1f}s")
 
 

@@ -14,6 +14,9 @@ results/*
 !results/modified_sumo_v7_stress_key/*.csv
 !results/deepaccident_unified_metrics/
 !results/deepaccident_unified_metrics/*.csv
+!results/260520_*/
+!results/260520_*/*.csv
+!results/260520_*/*.json
 paper/figures/deepaccident_collision/
 paper/figures/scenario*.png
 paper/figures/scenarios_overview*.png
