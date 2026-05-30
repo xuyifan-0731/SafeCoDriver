@@ -25,6 +25,7 @@ from experiments.run_deepaccident_unified import check_waypoint_collision, simul
 from prototype.real_coop import filter_sender_visible, load_aligned_source_message, merge_ego_visible_with_real_other
 from prototype.run_deepaccident_mixed_pilot import eval_method, load_hybrid, object_impact_guard_perception
 from prototype.run_deepaccident_multipeer_pilot import (
+    MissingCandidateTemporalTracker,
     MultiPeerEvidenceSupport,
     apply_box_margin_guard,
     apply_missing_object_recovery,
@@ -131,6 +132,16 @@ def make_missing_args(args):
         missing_recover_high_impact_only=False,
         missing_impact_geom_thr=1.0,
         missing_impact_mod_thr=0.1,
+        enable_missing_path_risk_single_support=args.enable_missing_path_risk_single_support,
+        missing_path_risk_min_peer_support=args.missing_path_risk_min_peer_support,
+        missing_path_risk_min_trust_support=args.missing_path_risk_min_trust_support,
+        missing_path_risk_box_margin_thr=args.missing_path_risk_box_margin_thr,
+        enable_missing_temporal_evidence=args.enable_missing_temporal_evidence,
+        missing_temporal_min_age=args.missing_temporal_min_age,
+        missing_temporal_min_peer_support=args.missing_temporal_min_peer_support,
+        missing_temporal_min_trust_support=args.missing_temporal_min_trust_support,
+        missing_temporal_box_margin_thr=args.missing_temporal_box_margin_thr,
+        missing_temporal_tracker=None,
         path_box_ego_radius=args.path_box_ego_radius,
         enable_box_margin_guard=args.enable_box_margin_guard,
         box_margin_guard_thr=args.box_margin_guard_thr,
@@ -158,6 +169,10 @@ def run(args):
     frame_records = []
 
     for si in val_idx:
+        missing_temporal_tracker = MissingCandidateTemporalTracker(max_dist=args.missing_temporal_match_dist)
+        missing_args.missing_temporal_tracker = (
+            missing_temporal_tracker if args.enable_missing_temporal_evidence else None
+        )
         scenario = loader.scenarios[si]
         n_frames = len(scenario["frames"])
         if args.max_frames_per_scenario > 0:
@@ -367,6 +382,16 @@ def parse_args():
     parser.add_argument("--missing-match-dist", type=float, default=2.5)
     parser.add_argument("--missing-cluster-dist", type=float, default=2.5)
     parser.add_argument("--missing-max-size-diff", type=float, default=3.0)
+    parser.add_argument("--enable-missing-path-risk-single-support", action="store_true")
+    parser.add_argument("--missing-path-risk-min-peer-support", type=int, default=1)
+    parser.add_argument("--missing-path-risk-min-trust-support", type=float, default=1.0)
+    parser.add_argument("--missing-path-risk-box-margin-thr", type=float, default=0.0)
+    parser.add_argument("--enable-missing-temporal-evidence", action="store_true")
+    parser.add_argument("--missing-temporal-min-age", type=int, default=3)
+    parser.add_argument("--missing-temporal-min-peer-support", type=int, default=1)
+    parser.add_argument("--missing-temporal-min-trust-support", type=float, default=1.0)
+    parser.add_argument("--missing-temporal-box-margin-thr", type=float, default=0.0)
+    parser.add_argument("--missing-temporal-match-dist", type=float, default=4.0)
     parser.add_argument("--disable-v1", action="store_true")
     parser.add_argument("--write-diagnostics", action="store_true")
     parser.add_argument(

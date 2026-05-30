@@ -1,0 +1,9 @@
+setting,EgoOnly WPC,RealPrimaryTrustCalib WPC,RealMultiEvidenceGuard WPC,avg missing recovered,missing precision,missing recall
+min2-baseline-20x20,1.850%,1.725%,1.625%,1.20,98.75%,9.12%
+min1-unconstrained-20x20,1.850%,1.725%,1.550%,4.08,80.50%,25.25%
+pathrisk-thr0-20x20,1.850%,1.725%,1.550%,1.21,98.76%,9.17%
+pathrisk-thr5-20x20,1.850%,1.725%,1.550%,1.22,98.77%,9.27%
+pathrisk+temporal-20x20,1.850%,1.725%,1.550%,1.22,98.77%,9.23%
+pathrisk-thr0-v1-20x20,1.850%,1.725%,1.550%,1.21,98.76%,9.17%
+min2-baseline-full,1.888%,1.580%,1.574%,1.10,92.06%,9.50%
+pathrisk-thr0-full,1.888%,1.580%,1.563%,1.10,92.08%,9.52%

@@ -50,6 +50,7 @@ paper_ready/tables/seed_robustness.md
 paper_ready/tables/support_quality_results.md
 paper_ready/tables/realcoop_results.md
 paper_ready/tables/realmultisource_results.md
+paper_ready/tables/realmultisource_pathrisk_results.md
 paper_ready/tables/statistical_intervals.md
 paper_ready/tables/paired_bootstrap_real_multisource.md
 paper_ready/tables/runtime_results.md
@@ -144,6 +145,21 @@ python docs/research_point_2_2_trusted_coop_perception/prototype/run_deepacciden
   --write-diagnostics
 ```
 
+Real multi-source path-risk admission:
+
+```bash
+python docs/research_point_2_2_trusted_coop_perception/prototype/run_deepaccident_realmultisource_pilot.py \
+  --max-scenarios 20 \
+  --max-frames-per-scenario 20 \
+  --disable-v1 \
+  --min-peer-support 2 \
+  --missing-min-peer-support 2 \
+  --enable-box-margin-guard \
+  --enable-missing-path-risk-single-support \
+  --missing-path-risk-box-margin-thr 0.0 \
+  --write-diagnostics
+```
+
 ## Claim Discipline
 
 Safe main claim:
@@ -160,7 +176,9 @@ Safe real-data claim:
 Real DeepAccident cooperative labels can be aligned into the ego frame with
 near-zero median residual. After filtering target-ego duplicates, real
 multi-source evidence is directionally beneficial but still recall-limited and
-far from CleanCoop oracle.
+far from CleanCoop oracle. Path-risk-aware one-source admission improves the
+real 20x20 multi-source WPC from 1.625% to 1.550% while preserving high
+missing-recovery precision.
 ```
 
 Avoid claiming full real multi-vehicle validation or production-ready V2X perception.

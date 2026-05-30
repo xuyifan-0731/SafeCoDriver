@@ -274,7 +274,7 @@ results/realmultisource_20x20_fast_min2_self_filtered_diag/cluster_records.csv
 Important findings:
 
 ```text
-20x20 min2, source roles =
+20x20 min2 baseline, source roles =
   other_vehicle, infrastructure, ego_vehicle_behind, other_vehicle_behind
 
 EgoOnly WPC                  = 1.850%
@@ -291,7 +291,25 @@ RealMultiEvidenceGuard:
   better than EgoOnly         = 12/400 frames
 ```
 
-Interpretation: real multi-source evidence is now beneficial but still far from the oracle. The remaining bottleneck is recall, not precision. This result supports the proposed evidence-gated usability framework but also shows that deployable real-coop recovery needs temporal tracking and path-risk-aware object admission.
+Path-risk-aware admission update:
+
+```text
+20x20 pathrisk-thr0:
+  RealMultiEvidenceGuard WPC   = 1.550%
+  missing precision            = 98.76%
+  missing recall               = 9.17%
+  path-risk single-source TP/FP = 3/0
+
+20x20 V1 pathrisk-thr0:
+  RealMultiEvidenceGuard WPC   = 1.550%
+
+full-fast pathrisk-thr0:
+  EgoOnly WPC                  = 1.888%
+  RealPrimaryTrustCalib WPC    = 1.580%
+  RealMultiEvidenceGuard WPC   = 1.563%
+```
+
+Interpretation: real multi-source evidence is now beneficial but still far from the oracle. The remaining bottleneck is recall, not precision. Path-risk-aware admission gives a useful refinement: it matches unconstrained single-source WPC improvement while avoiding the precision collapse caused by admitting all one-source candidates. The optional temporal path-risk variant recovered additional true objects but did not further reduce WPC on this subset, so it remains a diagnostic mechanism rather than the recommended policy.
 
 ### 8. Statistical Intervals And Runtime
 
@@ -301,6 +319,7 @@ Paper-ready tables:
 /raid/xuyifan/trusted_coop_perception/paper_ready/tables/statistical_intervals.md
 /raid/xuyifan/trusted_coop_perception/paper_ready/tables/paired_bootstrap_real_multisource.md
 /raid/xuyifan/trusted_coop_perception/paper_ready/tables/runtime_results.md
+/raid/xuyifan/trusted_coop_perception/paper_ready/tables/realmultisource_pathrisk_results.md
 ```
 
 Key statistical check:
@@ -311,10 +330,11 @@ synthetic full-val final:
   WPC = 51/17530 = 0.291%, Wilson 95% CI [0.221%, 0.382%]
 
 real multi-source 20x20:
-  RealPrimaryTrustCalib WPC    = 69/4000 = 1.725%
-  RealMultiEvidenceGuard WPC   = 65/4000 = 1.625%
-  scenario bootstrap diff vs EgoOnly = -0.225 pp,
-  95% CI [-1.075 pp, 0.450 pp]
+  RealPrimaryTrustCalib WPC       = 69/4000 = 1.725%
+  min2 RealMultiEvidenceGuard WPC = 65/4000 = 1.625%
+  pathrisk RealMultiEvidenceGuard = 62/4000 = 1.550%
+  pathrisk scenario bootstrap diff vs EgoOnly = -0.300 pp,
+  95% CI [-1.175 pp, 0.400 pp]
 ```
 
 Runtime probes:
@@ -343,9 +363,9 @@ Safe real-data claim:
 Real DeepAccident other_vehicle labels can be calibrated into the ego label
 frame with near-zero median residual. After filtering target-ego duplicates,
 real single-sender labels modestly improve raw WPC but remain far from the
-CleanCoop oracle. Real multi-source evidence with evidence-gated recovery
-improves WPC further, but its recall remains low, establishing the need for
-temporal and path-risk-aware evidence admission.
+CleanCoop oracle. Real multi-source evidence with evidence-gated and
+path-risk-aware recovery improves WPC further, but its recall remains low,
+establishing the need for stronger temporal evidence and real object admission.
 ```
 
 Avoid claiming:
@@ -361,11 +381,10 @@ end-to-end production-ready V2X perception
 
 These are the next execution items, in priority order:
 
-1. **Temporal evidence for real sources**: add track persistence so real objects can accumulate evidence across frames without immediately trusting one-frame high-impact objects.
-2. **Path-risk-aware real object admission**: use the diagnostic path-box margin fields to separate helpful recovered objects from objects that create new waypoint collisions.
-3. **Collusion stress with trust dynamics**: rerun fake-front collusion under the final consensus policy and report when trust-weighted evidence succeeds/fails.
-4. **Full scenario-level paired bootstrap**: extend the real multi-source bootstrap to all final synthetic baselines and ablations when frame-level logs are available.
-5. **Paper figures**: generate an architecture diagram and one qualitative case visualization for fake-front filtering and noise+drop recovery.
+1. **Stronger temporal evidence for real sources**: the first temporal path-risk variant is implemented, but it did not improve WPC beyond path-risk admission. Next step is source-level track management with motion consistency and persistence scores.
+2. **Collusion stress with trust dynamics**: rerun fake-front collusion under the final consensus policy and report when trust-weighted evidence succeeds/fails.
+3. **Full scenario-level paired bootstrap**: extend the real multi-source bootstrap to all final synthetic baselines and ablations when frame-level logs are available.
+4. **Paper figures**: generate an architecture diagram and one qualitative case visualization for fake-front filtering, missing-object recovery, and real path-risk admission.
 
 ## Current Paper-Ready Artifact Index
 
@@ -376,6 +395,7 @@ paper_ready/tables/seed_robustness.md
 paper_ready/tables/support_quality_results.md
 paper_ready/tables/realcoop_results.md
 paper_ready/tables/realmultisource_results.md
+paper_ready/tables/realmultisource_pathrisk_results.md
 paper_ready/tables/statistical_intervals.md
 paper_ready/tables/paired_bootstrap_real_multisource.md
 paper_ready/tables/runtime_results.md

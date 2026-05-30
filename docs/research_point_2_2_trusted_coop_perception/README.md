@@ -35,6 +35,9 @@ paper_ready/A_CLASS_EXPERIMENT_FLOW_AND_STATUS_2026-05-30.md
 真实 DeepAccident 多源标签经坐标对齐和目标自车副本过滤后，real multi-source
 evidence guard 从 EgoOnly 1.850% 改善到 1.625%，但仍明显低于 CleanCoop
 oracle 0.425%，因此真实多源结论必须作为边界和诊断结果表述。
+
+进一步的 path-risk-aware one-source admission 将 real multi-source 20x20
+WPC 从 1.625% 改善到 1.550%，同时保持 missing-recovery precision 约 98.76%。
 ```
 
 ## 总体思路

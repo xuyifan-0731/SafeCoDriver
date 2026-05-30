@@ -680,3 +680,66 @@ real multi-source scenario bootstrap:
   95% CI [-1.075 pp, 0.450 pp]
   directionally positive but not a strong real-data superiority claim
 ```
+
+## 2026-05-30 Path-Risk Real Multi-Source Update
+
+Implemented conservative path-risk-aware one-source missing-object admission:
+
+```text
+prototype/run_deepaccident_multipeer_pilot.py
+prototype/run_deepaccident_realmultisource_pilot.py
+
+--enable-missing-path-risk-single-support
+--missing-path-risk-box-margin-thr 0.0
+```
+
+Policy:
+
+```text
+strict default: recover missing object if supported by >=2 real sources
+path-risk exception: recover a one-source candidate only if its oriented-box
+path collision margin is <= 0.0
+```
+
+Key outputs:
+
+```text
+results/realmultisource_20x20_pathrisk_min2_thr0/
+results/realmultisource_20x20_pathrisk_min2_thr5/
+results/realmultisource_20x20_pathrisk_temporal_min2/
+results/realmultisource_v1_20x20_pathrisk_min2_thr0/
+results/realmultisource_full_fast_pathrisk_min2_thr0/
+results/realmultisource_full_fast_min2_baseline/
+paper_ready/tables/realmultisource_pathrisk_results.md
+```
+
+Main finding:
+
+```text
+20x20 baseline min2:
+  RealMultiEvidenceGuard WPC = 1.625%
+  precision = 98.75%, recall = 9.12%
+
+20x20 unconstrained min1:
+  RealMultiEvidenceGuard WPC = 1.550%
+  precision = 80.50%, recall = 25.25%
+
+20x20 pathrisk-thr0:
+  RealMultiEvidenceGuard WPC = 1.550%
+  precision = 98.76%, recall = 9.17%
+  path-risk single-source TP/FP = 3/0
+
+full-fast pathrisk-thr0:
+  RealPrimaryTrustCalib WPC = 1.580%
+  RealMultiEvidenceGuard WPC = 1.563%
+```
+
+Interpretation:
+
+```text
+Path-risk-aware admission keeps the safety-relevant benefit of single-source
+recovery without admitting the many far-away single-source false positives.
+The temporal variant recovered extra true objects but did not further reduce
+WPC, so temporal evidence needs stronger motion consistency before becoming the
+recommended real-source policy.
+```

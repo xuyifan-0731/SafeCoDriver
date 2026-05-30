@@ -229,6 +229,70 @@ class UnsupportedTemporalTracker:
         return best_i
 
 
+class MissingCandidateTemporalTracker:
+    """Track peer-supported missing-object candidates across frames."""
+
+    def __init__(self, max_dist: float = 4.0):
+        self.max_dist = max_dist
+        self._tracks = []
+
+    def update_and_label(self, candidates) -> dict:
+        labels = {}
+        next_tracks = []
+        used_prev = set()
+        for candidate in candidates:
+            agent = candidate["agent"]
+            key = self._candidate_key(candidate)
+            prev_idx = self._match_previous(agent, used_prev)
+            if prev_idx is None:
+                age = 1
+                status = "new_missing_candidate"
+            else:
+                age = self._tracks[prev_idx]["age"] + 1
+                status = "persistent_missing_candidate"
+                used_prev.add(prev_idx)
+
+            labels[key] = {"temporal_status": status, "temporal_age": age}
+            next_tracks.append(
+                {
+                    "id": str(agent.state.id),
+                    "agent_type": agent.agent_type,
+                    "x": float(agent.state.x),
+                    "y": float(agent.state.y),
+                    "age": age,
+                }
+            )
+        self._tracks = next_tracks
+        return labels
+
+    def _candidate_key(self, candidate):
+        agent = candidate["agent"]
+        return (
+            str(agent.state.id),
+            round(float(agent.state.x), 2),
+            round(float(agent.state.y), 2),
+            int(candidate.get("support_count", 0)),
+        )
+
+    def _match_previous(self, agent, used_prev):
+        agent_id = str(agent.state.id)
+        for i, track in enumerate(self._tracks):
+            if i in used_prev:
+                continue
+            if track["id"] == agent_id:
+                return i
+        best_i = None
+        best_dist = float("inf")
+        for i, track in enumerate(self._tracks):
+            if i in used_prev or track["agent_type"] != agent.agent_type:
+                continue
+            dist = float(np.hypot(track["x"] - agent.state.x, track["y"] - agent.state.y))
+            if dist <= self.max_dist and dist < best_dist:
+                best_i = i
+                best_dist = dist
+        return best_i
+
+
 class SenderTrustState:
     """Simple sender trust dynamics driven by object-level evidence."""
 
@@ -406,12 +470,24 @@ def build_missing_recovery_candidates(primary_perception, support_perceptions, s
                 cluster["center"] = _represent_missing_cluster(cluster, sender_trusts)
 
     candidates = []
+    effective_min_peer_support = args.missing_min_peer_support
+    if getattr(args, "enable_missing_path_risk_single_support", False):
+        effective_min_peer_support = min(effective_min_peer_support, args.missing_path_risk_min_peer_support)
+    if getattr(args, "enable_missing_temporal_evidence", False):
+        effective_min_peer_support = min(effective_min_peer_support, args.missing_temporal_min_peer_support)
+
+    effective_min_trust_support = args.missing_min_trust_support
+    if getattr(args, "enable_missing_path_risk_single_support", False):
+        effective_min_trust_support = min(effective_min_trust_support, args.missing_path_risk_min_trust_support)
+    if getattr(args, "enable_missing_temporal_evidence", False):
+        effective_min_trust_support = min(effective_min_trust_support, args.missing_temporal_min_trust_support)
+
     for cluster_id, cluster in enumerate(clusters):
         support_count = len(cluster["peer_indices"])
         trust_weighted_support = float(sum(sender_trusts[i] for i in cluster["peer_indices"]))
-        if support_count < args.missing_min_peer_support:
+        if support_count < effective_min_peer_support:
             continue
-        if trust_weighted_support < args.missing_min_trust_support:
+        if trust_weighted_support < effective_min_trust_support:
             continue
 
         representative = _represent_missing_cluster(cluster, sender_trusts)
@@ -482,6 +558,10 @@ def apply_missing_object_recovery(
         sender_trusts,
         args,
     )
+    temporal_labels = {}
+    temporal_tracker = getattr(args, "missing_temporal_tracker", None)
+    if temporal_tracker is not None:
+        temporal_labels = temporal_tracker.update_and_label(candidates)
     recovered = copy.deepcopy(guarded_perception)
     existing_agents = list(recovered.agents)
     records = []
@@ -501,14 +581,42 @@ def apply_missing_object_recovery(
             agent,
             ego_radius=args.path_box_ego_radius,
         )
+        strict_eligible = (
+            candidate["support_count"] >= args.missing_min_peer_support
+            and candidate["trust_weighted_support"] >= args.missing_min_trust_support
+        )
+        path_risk_eligible = (
+            getattr(args, "enable_missing_path_risk_single_support", False)
+            and candidate["support_count"] >= args.missing_path_risk_min_peer_support
+            and candidate["trust_weighted_support"] >= args.missing_path_risk_min_trust_support
+            and path_box_collision_margin <= args.missing_path_risk_box_margin_thr
+        )
+        temporal_key = (
+            str(agent.state.id),
+            round(float(agent.state.x), 2),
+            round(float(agent.state.y), 2),
+            int(candidate.get("support_count", 0)),
+        )
+        temporal = temporal_labels.get(
+            temporal_key,
+            {"temporal_status": "not_tracked", "temporal_age": 0},
+        )
+        temporal_eligible = (
+            getattr(args, "enable_missing_temporal_evidence", False)
+            and candidate["support_count"] >= args.missing_temporal_min_peer_support
+            and candidate["trust_weighted_support"] >= args.missing_temporal_min_trust_support
+            and temporal["temporal_age"] >= args.missing_temporal_min_age
+            and path_box_collision_margin <= args.missing_temporal_box_margin_thr
+        )
         high_impact = (
             geom_delta >= args.missing_impact_geom_thr
             or mod_delta >= args.missing_impact_mod_thr
         )
-        final_action = "missing_skip_low_impact"
+        final_action = "missing_skip_insufficient_evidence"
         recovery_eval = "not_recovered"
         matched_reference_id = ""
-        if high_impact or not args.missing_recover_high_impact_only:
+        eligible = strict_eligible or path_risk_eligible or temporal_eligible
+        if eligible and (high_impact or not args.missing_recover_high_impact_only):
             recovered_agent = copy.deepcopy(agent)
             recovered_agent.source = "coop"
             recovered_agent.is_visible = False
@@ -516,6 +624,10 @@ def apply_missing_object_recovery(
             existing_agents.append(recovered_agent)
             n_recovered += 1
             final_action = "missing_recover_high_impact" if high_impact else "missing_recover"
+            if path_risk_eligible and not strict_eligible:
+                final_action = "missing_recover_path_risk_single_source"
+            if temporal_eligible and not strict_eligible and not path_risk_eligible:
+                final_action = "missing_recover_temporal"
             match_idx = None
             match = _geometry_match(agent, missing_gt, args.missing_match_dist, args.missing_max_size_diff)
             if match is not None:
@@ -550,10 +662,15 @@ def apply_missing_object_recovery(
                 "y": float(agent.state.y),
                 "evidence_supported": 1,
                 "temporal_status": "peer_missing_candidate",
-                "unsupported_age": 0,
+                "unsupported_age": temporal["temporal_age"],
+                "missing_temporal_status": temporal["temporal_status"],
+                "missing_temporal_age": temporal["temporal_age"],
                 "support_count": candidate["support_count"],
                 "supporting_sender_ids": ";".join(candidate["supporting_sender_ids"]),
                 "trust_weighted_support": candidate["trust_weighted_support"],
+                "strict_evidence_eligible": int(strict_eligible),
+                "path_risk_eligible": int(path_risk_eligible),
+                "temporal_eligible": int(temporal_eligible),
                 "position_cov_trace": candidate["position_cov_trace"],
                 "offset_spread": candidate["offset_spread"],
                 "distance": distance,
