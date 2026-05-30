@@ -1,0 +1,21 @@
+{
+  "frames": 1753,
+  "frames_with_real_other": 1753,
+  "real_other_coverage": 1.0,
+  "actual_scenarios": 22,
+  "available_val_scenarios": 22,
+  "requested_max_scenarios": 22,
+  "max_frames_per_scenario": 0,
+  "id_pairs": 42442,
+  "id_residual_mean": 0.8441975305716201,
+  "id_residual_median": 1.5289786985334358e-05,
+  "id_residual_p90": 4.3480218217586786e-05,
+  "visible_id_pairs": 24055,
+  "visible_id_residual_median": 1.3953963625215555e-05,
+  "invisible_id_pairs": 18387,
+  "invisible_id_residual_median": 1.7171313160137804e-05,
+  "greedy_pairs": 42414,
+  "greedy_residual_median": 1.5074182041263149e-05,
+  "greedy_residual_p90": 4.0428487128610974e-05,
+  "avg_real_other_ego_invisible": 12.208214489446663
+}

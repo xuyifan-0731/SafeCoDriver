@@ -1,0 +1,16 @@
+variant,mode,WPC,Warn,fake_removal,avg_missing_recovered,avg_smoothed
+final,drop,0.425%,46.50%,NA,11.66,0.00
+final,fake_front,0.425%,46.50%,100.00%,0.00,0.00
+final,noise+fake_front,0.425%,46.50%,99.37%,4.30,13.04
+w/o smoothing,drop,0.425%,46.50%,NA,11.66,0.00
+w/o smoothing,fake_front,0.425%,46.50%,100.00%,0.00,0.00
+w/o smoothing,noise+fake_front,0.450%,47.00%,99.37%,6.69,0.00
+w/o noisy recovery,drop,0.425%,46.50%,NA,11.66,0.00
+w/o noisy recovery,fake_front,0.425%,46.50%,100.00%,0.00,0.00
+w/o noisy recovery,noise+fake_front,0.700%,45.00%,99.37%,0.05,13.04
+w/o BoxGuard,drop,0.425%,46.50%,NA,11.66,0.00
+w/o BoxGuard,fake_front,0.400%,46.50%,94.75%,0.00,0.00
+w/o BoxGuard,noise+fake_front,2.425%,89.25%,0.00%,4.29,13.07
+w/o MissingRecovery,drop,1.300%,42.25%,NA,0.00,0.00
+w/o MissingRecovery,fake_front,0.425%,46.50%,100.00%,0.00,0.00
+w/o MissingRecovery,noise+fake_front,0.700%,45.00%,99.37%,0.00,13.04

@@ -1,0 +1,10 @@
+| support_modes | mode | WPC | Warn | avg_missing_recovered | avg_smoothed | fake_removal |
+| --- | --- | --- | --- | --- | --- | --- |
+| clean+shift | drop | 0.425% | 46.50% | 11.66 | 0.00 | NA |
+| clean+shift | noise+fake_front | 0.425% | 46.50% | 4.30 | 13.04 | 99.37% |
+| clean+noise | drop | 0.875% | 44.75% | 6.88 | 3.89 | NA |
+| clean+noise | noise+fake_front | 0.450% | 47.00% | 3.12 | 8.09 | 95.53% |
+| clean+drop | drop | 1.150% | 44.00% | 3.45 | 0.18 | NA |
+| clean+drop | noise+fake_front | 0.775% | 46.25% | 1.37 | 4.29 | 98.78% |
+| drop+drop | drop | 1.425% | 42.00% | 1.04 | 0.17 | NA |
+| drop+drop | noise+fake_front | 1.325% | 43.50% | 0.47 | 1.30 | 98.74% |

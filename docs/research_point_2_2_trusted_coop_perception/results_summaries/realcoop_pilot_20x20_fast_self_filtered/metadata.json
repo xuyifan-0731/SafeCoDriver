@@ -1,0 +1,33 @@
+{
+  "max_scenarios": 20,
+  "max_frames_per_scenario": 20,
+  "clean_residual_thr": 0.5,
+  "real_guard_geom_delta_thr": 1.0,
+  "real_guard_mod_delta_thr": 0.1,
+  "disable_v1": true,
+  "out_dir": "results/realcoop_pilot_20x20_fast_self_filtered",
+  "available_val_scenarios": 22,
+  "val_scenarios_used": 20,
+  "val_scenario_idx_used": [
+    7,
+    12,
+    14,
+    21,
+    24,
+    34,
+    39,
+    41,
+    48,
+    51,
+    55,
+    59,
+    61,
+    67,
+    73,
+    78,
+    80,
+    84,
+    86,
+    92
+  ]
+}

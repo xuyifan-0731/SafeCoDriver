@@ -1,0 +1,6 @@
+method,frames,frames_with_real,real_coverage,wp_coll,wp_total,WPC,warn_rate,avg_mod,avg_geom,avg_p_coll,reports,accept_rate,correct_rate,downweight_rate,quarantine_rate,object_quarantine_rate,avg_residual_after,avg_match_count,avg_obj_removed,avg_clean_blind,avg_real_blind,blind_recall,extra_real_per_frame,actual_scenarios,available_val_scenarios,requested_max_scenarios,max_frames_per_scenario,disable_v1
+EgoOnly,400,400,1.0,74,4000,0.0185,0.4025,0.11725000000000019,1.1725,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,17.65,5.45,0.26671388101983,0.745,20,22,20,20,True
+CleanCoop,400,400,1.0,17,4000,0.00425,0.465,0.18299999999999997,1.83,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,17.65,5.45,0.26671388101983,0.745,20,22,20,20,True
+RealOtherRaw,400,400,1.0,69,4000,0.01725,0.41,0.1395000000000002,1.395,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,17.65,5.45,0.26671388101983,0.745,20,22,20,20,True
+RealOtherTrustCalib,400,400,1.0,69,4000,0.01725,0.41,0.1395000000000002,1.395,0.0,400,0.895,0.085,0.0,0.02,0.0,4.016695183296394e-06,7.6675,0.0,17.65,5.45,0.26671388101983,0.745,20,22,20,20,True
+RealOtherObjectGuard,400,400,1.0,74,4000,0.0185,0.4025,0.11725000000000019,1.1725,0.0,400,0.8425,0.085,0.0,0.02,0.0525,4.016695183296394e-06,7.6675,0.0525,17.65,5.45,0.26671388101983,0.745,20,22,20,20,True

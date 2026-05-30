@@ -1,0 +1,4 @@
+| mode | n | WPC mean | WPC std | Warn mean | Warn std | fake removal mean |
+| --- | --- | --- | --- | --- | --- | --- |
+| drop | 5 | 0.425% | 0.000% | 46.50% | 0.00% | NA |
+| noise+fake_front | 5 | 0.425% | 0.000% | 46.95% | 0.24% | 98.79% |
