@@ -40,6 +40,14 @@ Important implementation details:
 - Real cooperative input now filters target-ego duplicate objects within 2.5 m of ego origin.
 - `run_deepaccident_realmultisource_pilot.py` can emit frame-level and object-level diagnostics via `--write-diagnostics`.
 
+### Utility Scripts
+
+```text
+scripts/render_case_figures.py
+```
+
+This script regenerates the qualitative paper figures from existing pilot metadata and DeepAccident frames. It does not write or require large result caches.
+
 ### Paper-Ready Tables And Status
 
 ```text
@@ -61,6 +69,12 @@ paper_ready/tables/collusion_bootstrap_20x20_v1.md
 paper_ready/PAPER_NARRATIVE_AND_OUTLINE.md
 paper_ready/figures/architecture.mmd
 paper_ready/figures/evidence_decision_flow.mmd
+paper_ready/figures/qualitative_case_manifest.md
+paper_ready/figures/case_fake_front_filter.png
+paper_ready/figures/case_noise_fake_recovery.png
+paper_ready/figures/case_drop_missing_recovery.png
+paper_ready/figures/case_collusion_trust_weighting.png
+paper_ready/figures/case_real_pathrisk_admission.png
 paper_ready/realcoop_alignment_summary_self_filtered.json
 ```
 
@@ -165,6 +179,12 @@ python docs/research_point_2_2_trusted_coop_perception/prototype/run_deepacciden
   --enable-missing-path-risk-single-support \
   --missing-path-risk-box-margin-thr 0.0 \
   --write-diagnostics
+```
+
+Regenerate qualitative case figures:
+
+```bash
+python docs/research_point_2_2_trusted_coop_perception/scripts/render_case_figures.py
 ```
 
 ## Claim Discipline

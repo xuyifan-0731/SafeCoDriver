@@ -409,7 +409,7 @@ trust-weighted:
 
 Interpretation: calibration-only and raw-fusion baselines fail under dropout/fake/noise-compound anomalies. The final method's largest statistically stable gains come from fake-object filtering and BoxGuard under noise+fake. Collusion stress establishes a clear boundary: count-only single-support evidence is vulnerable, while a stricter support threshold or low trust weight for the colluding sender restores safe behavior.
 
-### 10. Paper Narrative And Figure Scaffolds
+### 10. Paper Narrative And Qualitative Figures
 
 Added:
 
@@ -417,6 +417,13 @@ Added:
 /raid/xuyifan/trusted_coop_perception/paper_ready/PAPER_NARRATIVE_AND_OUTLINE.md
 /raid/xuyifan/trusted_coop_perception/paper_ready/figures/architecture.mmd
 /raid/xuyifan/trusted_coop_perception/paper_ready/figures/evidence_decision_flow.mmd
+/raid/xuyifan/trusted_coop_perception/paper_ready/figures/case_fake_front_filter.png
+/raid/xuyifan/trusted_coop_perception/paper_ready/figures/case_noise_fake_recovery.png
+/raid/xuyifan/trusted_coop_perception/paper_ready/figures/case_drop_missing_recovery.png
+/raid/xuyifan/trusted_coop_perception/paper_ready/figures/case_collusion_trust_weighting.png
+/raid/xuyifan/trusted_coop_perception/paper_ready/figures/case_real_pathrisk_admission.png
+/raid/xuyifan/trusted_coop_perception/paper_ready/figures/qualitative_case_manifest.md
+/raid/xuyifan/trusted_coop_perception/scripts/render_case_figures.py
 ```
 
 Narrative consolidation:
@@ -426,6 +433,16 @@ Safety-aware information usability is the central concept.
 The method should be presented as a unified message/object/path-risk decision
 framework rather than a list of independent modules.
 ```
+
+Qualitative cases now cover:
+
+| Figure | What It Shows |
+|---|---|
+| `case_fake_front_filter.png` | TrustCalib accepts a clean-looking fake-front message, while object evidence plus BoxGuard removes the high-impact fake object and reduces WPC from 4/10 to 0/10. |
+| `case_noise_fake_recovery.png` | A compound noise+fake case where unsupported artifacts are suppressed and the final output restores clean-level waypoint safety. |
+| `case_drop_missing_recovery.png` | Dropout of blind-spot objects is compensated by peer-supported MissingRecovery, reducing WPC from 3/10 to 0/10 in the selected frame. |
+| `case_collusion_trust_weighting.png` | Low-trust colluding support is insufficient to validate a fake-front object under trust-weighted evidence. |
+| `case_real_pathrisk_admission.png` | Real multi-source path-risk admission recovers one collision-critical missing object with TP/FP = 1/0 in the selected frame. |
 
 ## Claim Boundary For Paper
 
@@ -463,8 +480,8 @@ These are the next execution items, in priority order:
 
 1. **Stronger temporal evidence for real sources**: the first temporal path-risk variant is implemented, but it did not improve WPC beyond path-risk admission. Next step is source-level track management with motion consistency and persistence scores.
 2. **Full scenario-level paired bootstrap**: extend the current synthetic baseline/bootstrap table to full-frame runs when frame-level logs are available.
-3. **Qualitative case figures**: generate concrete case visualizations for fake-front filtering, missing-object recovery, collusion failure/recovery, and real path-risk admission.
-4. **Method math cleanup**: write the final usability/action-selection equations so the method is reviewable as a compact framework.
+3. **Method math cleanup**: write the final usability/action-selection equations so the method is reviewable as a compact framework.
+4. **Paper drafting**: convert the current narrative, tables, and figures into a conference-style manuscript skeleton.
 
 ## Current Paper-Ready Artifact Index
 
@@ -486,6 +503,13 @@ paper_ready/tables/collusion_bootstrap_20x20_v1.md
 paper_ready/PAPER_NARRATIVE_AND_OUTLINE.md
 paper_ready/figures/architecture.mmd
 paper_ready/figures/evidence_decision_flow.mmd
+paper_ready/figures/qualitative_case_manifest.md
+paper_ready/figures/case_fake_front_filter.png
+paper_ready/figures/case_noise_fake_recovery.png
+paper_ready/figures/case_drop_missing_recovery.png
+paper_ready/figures/case_collusion_trust_weighting.png
+paper_ready/figures/case_real_pathrisk_admission.png
 paper_ready/realcoop_alignment_summary_self_filtered.json
+scripts/render_case_figures.py
 results/CONSENSUS_SMOOTHING_FINAL_UPDATE_2026-05-28.md
 ```

@@ -100,15 +100,17 @@ paper_ready/tables/paired_bootstrap_real_multisource.md
 
 1. **Architecture diagram**: raw messages -> usability estimation -> evidence support -> safety-aware correction/recovery -> SafeCoDriver.
 2. **Evidence-chain diagram**: message-level trust, object-level support, path-risk features, final action.
-3. **Synthetic qualitative case**: fake-front object removed and waypoint collision avoided.
-4. **Missing recovery case**: dropout blind-spot object recovered from peers.
-5. **Real path-risk case**: one-source object admitted only because it intersects the planned waypoint corridor.
-6. **Boundary figure**: support-quality / collusion results showing where the method succeeds and fails.
+3. **Synthetic qualitative case**: fake-front object removed and waypoint collision avoided (`figures/case_fake_front_filter.png`).
+4. **Compound qualitative case**: noisy fake-front message corrected by peer evidence and recovery (`figures/case_noise_fake_recovery.png`).
+5. **Missing recovery case**: dropout blind-spot object recovered from peers (`figures/case_drop_missing_recovery.png`).
+6. **Collusion boundary case**: trust weighting prevents one low-trust colluding support from validating a fake object (`figures/case_collusion_trust_weighting.png`).
+7. **Real path-risk case**: one-source object admitted only because it intersects the planned waypoint corridor (`figures/case_real_pathrisk_admission.png`).
+8. **Boundary figure**: support-quality / collusion results showing where the method succeeds and fails.
 
 ## Current Weak Points To Address Before Submission
 
 1. Real-data superiority is directional but not statistically strong.
 2. Temporal evidence is implemented only as a candidate persistence diagnostic; motion-consistent source-level tracking is still missing.
 3. Full-frame scenario-level bootstrap is not yet available for every synthetic ablation.
-4. Qualitative figures are not generated yet.
-5. Need a concise mathematical formulation of usability score and final action selection for the method section.
+4. Need a concise mathematical formulation of usability score and final action selection for the method section.
+5. The generated qualitative figures should be converted into final paper layout panels with consistent labels/captions during manuscript drafting.

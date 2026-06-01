@@ -11,6 +11,7 @@
 | `03_experiment_plan.md` | 实验方案：异常注入、指标、消融、DeepAccident/SUMO 接入路径 |
 | `api_blueprint.py` | 后续实现时可参考的数据结构和接口蓝图，不参与当前运行 |
 | `prototype/` | 当前研究点 2.2 的可复现实验原型代码 |
+| `scripts/` | 论文定性案例图等轻量复现实用脚本 |
 | `paper_ready/` | 面向 A 类论文整理的实验流程、主表、消融表、统计区间、runtime 表 |
 | `results_summaries/` | 关键实验的轻量结果摘要，不包含大型中间记录 |
 | `research_notes/` | 自动 research、文献梳理、方法约束、实验日志与论文定位笔记 |
@@ -43,6 +44,18 @@ WPC 从 1.625% 改善到 1.550%，同时保持 missing-recovery precision 约 98
 和 TrustCalib-only 在 drop/fake/noise+fake 下明显退化；count-only
 single-support evidence 会被单个合谋 fake support 欺骗，而 min2 或
 trust-weighted evidence 可以恢复到 clean-level 附近。
+```
+
+本轮已补充 5 张定性案例图，覆盖 fake-front 过滤、noise+fake 复合异常、
+drop 缺失恢复、trust-weighted collusion guard 和真实多源 path-risk admission：
+
+```text
+paper_ready/figures/qualitative_case_manifest.md
+paper_ready/figures/case_fake_front_filter.png
+paper_ready/figures/case_noise_fake_recovery.png
+paper_ready/figures/case_drop_missing_recovery.png
+paper_ready/figures/case_collusion_trust_weighting.png
+paper_ready/figures/case_real_pathrisk_admission.png
 ```
 
 ## 总体思路
