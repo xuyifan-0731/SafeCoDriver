@@ -347,6 +347,86 @@ real multi-source 20x20:        11.19 s for 400 frames
 
 Interpretation: the statistical interval table supports the strong synthetic claim. The real multi-source improvement is directionally positive but should be framed as a diagnostic result because the confidence intervals overlap and scenario bootstrap does not yet show a strong real-data superiority claim.
 
+### 9. Unified Baselines, Scenario Bootstrap, And Collusion Stress
+
+Paper-ready tables:
+
+```text
+/raid/xuyifan/trusted_coop_perception/paper_ready/tables/baseline_comparison_20x20_v1.md
+/raid/xuyifan/trusted_coop_perception/paper_ready/tables/scenario_bootstrap_synthetic_20x20_v1.md
+/raid/xuyifan/trusted_coop_perception/paper_ready/tables/collusion_stress_20x20_v1.md
+/raid/xuyifan/trusted_coop_perception/paper_ready/tables/collusion_bootstrap_20x20_v1.md
+```
+
+Baseline comparison on 20x20 V1:
+
+```text
+drop:
+  Raw fusion / TrustCalib only / w/o MissingRecovery = 1.300% WPC
+  Final                                           = 0.425% WPC
+
+fake_front:
+  Raw fusion / TrustCalib only = 2.175% WPC
+  Final                       = 0.425% WPC
+
+noise+fake_front:
+  Raw fusion                  = 1.925% WPC
+  TrustCalib only             = 2.925% WPC
+  w/o BoxGuard                = 2.425% WPC
+  w/o MissingRecovery         = 0.700% WPC
+  w/o smoothing               = 0.450% WPC
+  Final                       = 0.425% WPC
+```
+
+Scenario bootstrap highlights:
+
+```text
+noise+fake_front:
+  Final - TrustCalib only = -2.500 pp, 95% CI [-4.025, -1.250]
+  Final - w/o BoxGuard    = -2.000 pp, 95% CI [-3.175, -1.075]
+
+fake_front:
+  Final - TrustCalib only = -1.750 pp, 95% CI [-3.551, -0.400]
+```
+
+Collusion stress:
+
+```text
+support_modes = clean,fake_front
+
+count-min1:
+  fake_front WPC       = 1.800%
+  noise+fake_front WPC = 2.500%
+
+count-min2:
+  fake_front WPC       = 0.425%
+  noise+fake_front WPC = 0.450%
+
+trust-weighted:
+  fake_front WPC       = 0.425%
+  noise+fake_front WPC = 0.425%
+```
+
+Interpretation: calibration-only and raw-fusion baselines fail under dropout/fake/noise-compound anomalies. The final method's largest statistically stable gains come from fake-object filtering and BoxGuard under noise+fake. Collusion stress establishes a clear boundary: count-only single-support evidence is vulnerable, while a stricter support threshold or low trust weight for the colluding sender restores safe behavior.
+
+### 10. Paper Narrative And Figure Scaffolds
+
+Added:
+
+```text
+/raid/xuyifan/trusted_coop_perception/paper_ready/PAPER_NARRATIVE_AND_OUTLINE.md
+/raid/xuyifan/trusted_coop_perception/paper_ready/figures/architecture.mmd
+/raid/xuyifan/trusted_coop_perception/paper_ready/figures/evidence_decision_flow.mmd
+```
+
+Narrative consolidation:
+
+```text
+Safety-aware information usability is the central concept.
+The method should be presented as a unified message/object/path-risk decision
+framework rather than a list of independent modules.
+```
+
 ## Claim Boundary For Paper
 
 Safe main claim:
@@ -382,9 +462,9 @@ end-to-end production-ready V2X perception
 These are the next execution items, in priority order:
 
 1. **Stronger temporal evidence for real sources**: the first temporal path-risk variant is implemented, but it did not improve WPC beyond path-risk admission. Next step is source-level track management with motion consistency and persistence scores.
-2. **Collusion stress with trust dynamics**: rerun fake-front collusion under the final consensus policy and report when trust-weighted evidence succeeds/fails.
-3. **Full scenario-level paired bootstrap**: extend the real multi-source bootstrap to all final synthetic baselines and ablations when frame-level logs are available.
-4. **Paper figures**: generate an architecture diagram and one qualitative case visualization for fake-front filtering, missing-object recovery, and real path-risk admission.
+2. **Full scenario-level paired bootstrap**: extend the current synthetic baseline/bootstrap table to full-frame runs when frame-level logs are available.
+3. **Qualitative case figures**: generate concrete case visualizations for fake-front filtering, missing-object recovery, collusion failure/recovery, and real path-risk admission.
+4. **Method math cleanup**: write the final usability/action-selection equations so the method is reviewable as a compact framework.
 
 ## Current Paper-Ready Artifact Index
 
@@ -399,6 +479,13 @@ paper_ready/tables/realmultisource_pathrisk_results.md
 paper_ready/tables/statistical_intervals.md
 paper_ready/tables/paired_bootstrap_real_multisource.md
 paper_ready/tables/runtime_results.md
+paper_ready/tables/baseline_comparison_20x20_v1.md
+paper_ready/tables/scenario_bootstrap_synthetic_20x20_v1.md
+paper_ready/tables/collusion_stress_20x20_v1.md
+paper_ready/tables/collusion_bootstrap_20x20_v1.md
+paper_ready/PAPER_NARRATIVE_AND_OUTLINE.md
+paper_ready/figures/architecture.mmd
+paper_ready/figures/evidence_decision_flow.mmd
 paper_ready/realcoop_alignment_summary_self_filtered.json
 results/CONSENSUS_SMOOTHING_FINAL_UPDATE_2026-05-28.md
 ```

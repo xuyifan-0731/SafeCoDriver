@@ -1,0 +1,28 @@
+flowchart TD
+    M[Incoming message from source j] --> Q{Message calibration action}
+    Q -->|accept / correct / time_correct| O[Candidate cooperative objects]
+    Q -->|downweight| O
+    Q -->|quarantine| X[Suppress message unless peer recovery is allowed]
+
+    O --> S{Object supported by peers?}
+    S -->|support >= threshold| K[Keep or smooth object]
+    S -->|support below threshold| R{Safety impact?}
+
+    R -->|negative path-box margin or high waypoint impact| P{Recovery / admission rule}
+    R -->|low impact| L[Ignore or keep low-risk object according to policy]
+
+    P -->|fake object unsupported| QO[Object quarantine]
+    P -->|missing object with peer evidence| MR[Missing recovery]
+    P -->|one-source but path-risk critical| PR[Path-risk admission]
+    P -->|persistent but not motion-consistent| TD[Temporal diagnostic only]
+
+    K --> OUT[Calibrated perception output]
+    L --> OUT
+    QO --> OUT
+    MR --> OUT
+    PR --> OUT
+    TD --> OUT
+
+    OUT --> W[Waypoint collision evaluation]
+    W --> T[Vehicle/message trust update]
+    T --> M

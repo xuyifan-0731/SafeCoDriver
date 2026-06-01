@@ -1,0 +1,37 @@
+mode,variant,WPC,Warn,wp_coll,wp_total,fake_removal,missing,smooth
+clean,EgoOnly,0.0185,0.5375,74,4000,0.0,0.0,0.0
+clean,CleanCoop oracle,0.00425,0.565,17,4000,0.0,0.0,0.0
+clean,Raw fusion,0.00425,0.565,17,4000,0.0,0.0,0.0
+clean,TrustCalib only,0.00425,0.565,17,4000,0.0,0.0,0.0
+clean,w/o MissingRecovery,0.00425,0.565,17,4000,0.0,0.0,0.0
+clean,w/o BoxGuard,0.00425,0.565,17,4000,0.0,0.0,0.0
+clean,w/o smoothing,0.00425,0.565,17,4000,0.0,0.0,0.0
+clean,w/o noisy recovery,0.00425,0.565,17,4000,0.0,0.0,0.0
+clean,Final,0.00425,0.565,17,4000,0.0,0.0,0.0
+drop,EgoOnly,0.0185,0.5375,74,4000,0.0,0.0,0.0
+drop,CleanCoop oracle,0.00425,0.565,17,4000,0.0,0.0,0.0
+drop,Raw fusion,0.013,0.5325,52,4000,0.0,0.0,0.0
+drop,TrustCalib only,0.013,0.5325,52,4000,0.0,0.0,0.0
+drop,w/o MissingRecovery,0.013,0.5325,52,4000,0.0,0.0,0.0
+drop,w/o BoxGuard,0.00425,0.57,17,4000,0.0,11.6625,0.0
+drop,w/o smoothing,0.00425,0.57,17,4000,0.0,11.6625,0.0
+drop,w/o noisy recovery,0.00425,0.57,17,4000,0.0,11.6625,0.0
+drop,Final,0.00425,0.57,17,4000,0.0,11.6625,0.0
+fake_front,EgoOnly,0.0185,0.5375,74,4000,0.0,0.0,0.0
+fake_front,CleanCoop oracle,0.00425,0.565,17,4000,0.0,0.0,0.0
+fake_front,Raw fusion,0.02175,1.0,87,4000,0.0,0.0,0.0
+fake_front,TrustCalib only,0.02175,1.0,87,4000,0.0,0.0,0.0
+fake_front,w/o MissingRecovery,0.00425,0.565,17,4000,1.0,0.0,0.0
+fake_front,w/o BoxGuard,0.004,0.565,16,4000,0.9475,0.0,0.0
+fake_front,w/o smoothing,0.00425,0.565,17,4000,1.0,0.0,0.0
+fake_front,w/o noisy recovery,0.00425,0.565,17,4000,1.0,0.0,0.0
+fake_front,Final,0.00425,0.565,17,4000,1.0,0.0,0.0
+noise+fake_front,EgoOnly,0.0185,0.5375,74,4000,0.0,0.0,0.0
+noise+fake_front,CleanCoop oracle,0.00425,0.565,17,4000,0.0,0.0,0.0
+noise+fake_front,Raw fusion,0.01925,1.0,77,4000,0.0,0.0,0.0
+noise+fake_front,TrustCalib only,0.02925,0.915,117,4000,0.0,0.0,0.0
+noise+fake_front,w/o MissingRecovery,0.007,0.57,28,4000,0.9937106918238994,0.0,13.0375
+noise+fake_front,w/o BoxGuard,0.02425,0.9075,97,4000,0.0,4.2925,13.0725
+noise+fake_front,w/o smoothing,0.0045,0.5725,18,4000,0.9937106918238994,6.69,0.0
+noise+fake_front,w/o noisy recovery,0.007,0.57,28,4000,0.9937106918238994,0.0525,13.0375
+noise+fake_front,Final,0.00425,0.57,17,4000,0.9937106918238994,4.3025,13.0375

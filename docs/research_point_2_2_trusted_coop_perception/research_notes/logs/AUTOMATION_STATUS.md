@@ -743,3 +743,96 @@ The temporal variant recovered extra true objects but did not further reduce
 WPC, so temporal evidence needs stronger motion consistency before becoming the
 recommended real-source policy.
 ```
+
+## 2026-06-01 Baseline, Bootstrap, And Collusion Update
+
+Added frame-level diagnostics to the synthetic multi-peer script:
+
+```text
+prototype/run_deepaccident_multipeer_pilot.py
+--write-frame-diagnostics
+```
+
+Reran 20x20 V1 baseline/ablation diagnostics:
+
+```text
+results/baseline_final_v1_20x20_diag/
+results/baseline_no_box_v1_20x20_diag/
+results/baseline_no_missing_v1_20x20_diag/
+results/baseline_no_smoothing_v1_20x20_diag/
+results/baseline_no_noisy_recovery_v1_20x20_diag/
+```
+
+Paper tables:
+
+```text
+paper_ready/tables/baseline_comparison_20x20_v1.md
+paper_ready/tables/scenario_bootstrap_synthetic_20x20_v1.md
+```
+
+Key baseline results:
+
+```text
+drop:
+  Raw fusion / TrustCalib / w/o MissingRecovery = 1.300%
+  Final = 0.425%
+
+fake_front:
+  Raw fusion / TrustCalib = 2.175%
+  Final = 0.425%
+
+noise+fake_front:
+  Raw fusion = 1.925%
+  TrustCalib = 2.925%
+  w/o BoxGuard = 2.425%
+  w/o MissingRecovery = 0.700%
+  w/o smoothing = 0.450%
+  Final = 0.425%
+```
+
+Scenario-bootstrap highlights:
+
+```text
+noise+fake_front:
+  Final - TrustCalib = -2.500 pp, 95% CI [-4.025, -1.250]
+  Final - w/o BoxGuard = -2.000 pp, 95% CI [-3.175, -1.075]
+
+fake_front:
+  Final - TrustCalib = -1.750 pp, 95% CI [-3.551, -0.400]
+```
+
+Collusion stress under final policy:
+
+```text
+results/collusion_final_count_min1_v1_20x20_diag/
+results/collusion_final_count_min2_v1_20x20_diag/
+results/collusion_final_trustweighted_v1_20x20_diag/
+paper_ready/tables/collusion_stress_20x20_v1.md
+paper_ready/tables/collusion_bootstrap_20x20_v1.md
+```
+
+Key collusion results:
+
+```text
+support_modes = clean,fake_front
+
+count-min1:
+  fake_front = 1.800%
+  noise+fake_front = 2.500%
+
+count-min2:
+  fake_front = 0.425%
+  noise+fake_front = 0.450%
+
+trust-weighted:
+  fake_front = 0.425%
+  noise+fake_front = 0.425%
+```
+
+Interpretation:
+
+```text
+The method is not robust to arbitrary one-source collusion. It becomes robust
+when either the evidence-count threshold is raised or the colluding sender has
+low trust weight. This is an important A-class claim boundary.
+```

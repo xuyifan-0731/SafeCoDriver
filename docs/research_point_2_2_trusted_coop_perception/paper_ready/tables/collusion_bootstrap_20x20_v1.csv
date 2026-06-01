@@ -1,0 +1,5 @@
+mode,comparison,diff_pp,ci_low,ci_high,p_diff_lt_0,scenarios
+fake_front,count-min2 - count-min1,-1.3749999999999998,-2.5250000000000004,-0.375,0.9974,20
+fake_front,trust-weighted - count-min1,-1.3749999999999998,-2.5250000000000004,-0.375,0.9974,20
+noise+fake_front,count-min2 - count-min1,-2.0500000000000003,-3.25,-1.0999999999999999,1.0,20
+noise+fake_front,trust-weighted - count-min1,-2.075,-3.275625,-1.0999999999999999,1.0,20

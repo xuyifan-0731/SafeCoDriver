@@ -54,6 +54,13 @@ paper_ready/tables/realmultisource_pathrisk_results.md
 paper_ready/tables/statistical_intervals.md
 paper_ready/tables/paired_bootstrap_real_multisource.md
 paper_ready/tables/runtime_results.md
+paper_ready/tables/baseline_comparison_20x20_v1.md
+paper_ready/tables/scenario_bootstrap_synthetic_20x20_v1.md
+paper_ready/tables/collusion_stress_20x20_v1.md
+paper_ready/tables/collusion_bootstrap_20x20_v1.md
+paper_ready/PAPER_NARRATIVE_AND_OUTLINE.md
+paper_ready/figures/architecture.mmd
+paper_ready/figures/evidence_decision_flow.mmd
 paper_ready/realcoop_alignment_summary_self_filtered.json
 ```
 

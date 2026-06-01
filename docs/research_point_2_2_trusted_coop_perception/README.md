@@ -38,6 +38,11 @@ oracle 0.425%，因此真实多源结论必须作为边界和诊断结果表述�
 
 进一步的 path-risk-aware one-source admission 将 real multi-source 20x20
 WPC 从 1.625% 改善到 1.550%，同时保持 missing-recovery precision 约 98.76%。
+
+最新补充的 baseline、scenario bootstrap 与 collusion stress 表明：Raw fusion
+和 TrustCalib-only 在 drop/fake/noise+fake 下明显退化；count-only
+single-support evidence 会被单个合谋 fake support 欺骗，而 min2 或
+trust-weighted evidence 可以恢复到 clean-level 附近。
 ```
 
 ## 总体思路

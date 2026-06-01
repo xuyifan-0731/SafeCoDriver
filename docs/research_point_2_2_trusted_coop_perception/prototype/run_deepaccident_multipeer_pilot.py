@@ -1245,6 +1245,7 @@ def run_mode(args, mode, support_modes, loader, val_idx, hybrid):
     methods = ["EgoOnly", "CleanCoop", "PrimaryRaw", "PrimaryTrustCalib", "MultiPeerObjectGuard"]
     metrics = init_metrics(methods)
     cluster_records = []
+    frame_diagnostics = []
 
     for si in val_idx:
         temporal_tracker = UnsupportedTemporalTracker(max_dist=args.temporal_match_dist)
@@ -1509,6 +1510,34 @@ def run_mode(args, mode, support_modes, loader, val_idx, hybrid):
                     smooth_agent_count = 0
                     smooth_residual_value = 0.0
                 modified, stats, warned = eval_method(hybrid, waypoints, perception)
+                wp_coll = check_waypoint_collision(modified, frame)
+                if args.write_frame_diagnostics:
+                    frame_diagnostics.append(
+                        {
+                            "mode": mode,
+                            "support_modes": "+".join(support_modes),
+                            "scenario_index": si,
+                            "frame_index": fi,
+                            "method": name,
+                            "wp_coll": wp_coll,
+                            "wp_total": len(modified),
+                            "warned": int(warned),
+                            "avg_mod": stats.get("modification_rate", 0.0),
+                            "geom": stats.get("n_geometric_threats", 0),
+                            "p_coll": stats.get("collision_prob", 0.0),
+                            "report_action": report.action if report is not None else "",
+                            "obj_removed": removed,
+                            "fake_seen": fake_n,
+                            "fake_removed": fake_removed_n,
+                            "real_removed": real_removed_n,
+                            "missing_candidates": missing_candidate_count,
+                            "missing_recovered": missing_recovered_count,
+                            "missing_gt": missing_gt_count,
+                            "missing_recovery_tp": missing_recovery_tp_count,
+                            "missing_recovery_fp": missing_recovery_fp_count,
+                            "smooth_agents": smooth_agent_count,
+                        }
+                    )
                 update(
                     metrics,
                     name,
@@ -1540,7 +1569,7 @@ def run_mode(args, mode, support_modes, loader, val_idx, hybrid):
                     smooth_residual=smooth_residual_value,
                 )
 
-    return rows_from_metrics(mode, support_modes, metrics), cluster_records
+    return rows_from_metrics(mode, support_modes, metrics), cluster_records, frame_diagnostics
 
 
 def parse_args():
@@ -1564,6 +1593,7 @@ def parse_args():
     parser.add_argument("--temporal-match-dist", type=float, default=5.0)
     parser.add_argument("--support-trusts", default=None)
     parser.add_argument("--write-cluster-records", action="store_true")
+    parser.add_argument("--write-frame-diagnostics", action="store_true")
     parser.add_argument("--primary-trust", type=float, default=1.0)
     parser.add_argument("--enable-high-trust-probation", action="store_true")
     parser.add_argument("--probation-primary-trust-thr", type=float, default=0.8)
@@ -1645,9 +1675,10 @@ def main():
 
     all_rows = []
     all_cluster_records = []
+    all_frame_diagnostics = []
     for mode in modes:
         print(f"Running mode={mode}, support_modes={support_modes}")
-        rows, cluster_records = run_mode(args, mode, support_modes, loader, val_idx, hybrid)
+        rows, cluster_records, frame_diagnostics = run_mode(args, mode, support_modes, loader, val_idx, hybrid)
         for row in rows:
             row["actual_scenarios"] = len(val_idx)
             row["available_val_scenarios"] = available_val_scenarios
@@ -1660,6 +1691,7 @@ def main():
             row["disable_v1"] = bool(args.disable_v1)
         all_rows.extend(rows)
         all_cluster_records.extend(cluster_records)
+        all_frame_diagnostics.extend(frame_diagnostics)
 
     csv_path = args.out_dir / "summary.csv"
     with csv_path.open("w", newline="") as f:
@@ -1691,6 +1723,20 @@ def main():
     else:
         record_path = None
 
+    if all_frame_diagnostics:
+        diag_path = args.out_dir / "frame_diagnostics.csv"
+        diag_fieldnames = []
+        for record in all_frame_diagnostics:
+            for key in record.keys():
+                if key not in diag_fieldnames:
+                    diag_fieldnames.append(key)
+        with diag_path.open("w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=diag_fieldnames)
+            writer.writeheader()
+            writer.writerows(all_frame_diagnostics)
+    else:
+        diag_path = None
+
     print(f"\n{'mode':13s} {'method':22s} {'WPC%':>7s} {'warn%':>7s} {'p':>6s} {'corr':>6s} {'objQ':>6s} {'prob':>6s} {'smooth':>8s} {'miss':>8s} {'rm/fr':>8s} {'fake':>8s} {'real/fr':>8s} {'sup R/F':>9s} {'wt R/F':>9s} {'cov R/F':>11s}")
     for row in all_rows:
         if row["method"] not in ("CleanCoop", "PrimaryRaw", "PrimaryTrustCalib", "MultiPeerObjectGuard"):
@@ -1710,6 +1756,8 @@ def main():
     print(f"\nWrote {csv_path}")
     if record_path is not None:
         print(f"Wrote {record_path}")
+    if diag_path is not None:
+        print(f"Wrote {diag_path}")
 
 
 if __name__ == "__main__":
