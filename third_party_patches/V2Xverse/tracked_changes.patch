@@ -1,0 +1,141 @@
+diff --git a/codriving/data_utils/datasets/pnp_dataset.py b/codriving/data_utils/datasets/pnp_dataset.py
+index 9033a06..4f01e07 100644
+--- a/codriving/data_utils/datasets/pnp_dataset.py
++++ b/codriving/data_utils/datasets/pnp_dataset.py
+@@ -131,6 +131,11 @@ class CarlaMVDatasetEnd2End(BaseIODataset):
+             for j, file in enumerate(ego_files):
+                 ego_path = os.path.join(route_path, file)
+ 
++                # Skip ego vehicles with no data (incomplete extraction)
++                bv_dir = os.path.join(ego_path, 'birdview')
++                if not os.path.isdir(bv_dir) or len(os.listdir(bv_dir)) == 0:
++                    continue
++
+                 others_list = ego_files[:j]+ego_files[j+1:]
+                 others_path_list = []
+                 for others in others_list:
+diff --git a/codriving/tools/inference_e2e.py b/codriving/tools/inference_e2e.py
+index 2a1f469..7f90100 100644
+--- a/codriving/tools/inference_e2e.py
++++ b/codriving/tools/inference_e2e.py
+@@ -49,6 +49,8 @@ def test_parser():
+     parser.add_argument('--save_npy', action='store_true',
+                         help='whether to save prediction and gt result'
+                              'in npy file')
++    parser.add_argument('--safety_eval', action='store_true',
++                        help='run safety constraint comparison')
+     parser.add_argument('--range', type=str, default="140.8,40",
+                         help="detection range is [-140.8,+140.8m, -40m, +40m]")
+     parser.add_argument('--modal', type=int, default=0,
+@@ -188,7 +190,8 @@ def main():
+     planning_model.eval()
+ 
+     ADEs = list()
+-    FDEs = list()    
++    FDEs = list()
++    safety_results = {}  # method_name -> {ADEs, FDEs, coll}
+ 
+     logging.info('Testing...')
+ 
+@@ -250,6 +253,7 @@ def main():
+                         infer_result['pred_score'][0] = None
+                 ##############################################
+ 
++                last_infer_result = infer_result  # Track for safety eval
+                 occ_map_list.append(box2occ(infer_result))
+ 
+                 perception_results = output_dict['ego']
+@@ -288,6 +292,25 @@ def main():
+             ADEs.append(ADE)
+             FDEs.append(FDE)
+ 
++            # === Safety constraint post-processing ===
++            # Apply safety constraint to waypoints and measure collision avoidance
++            if hasattr(opt, 'safety_eval') and opt.safety_eval:
++                try:
++                    from coop_safety_v2x_patch import apply_safety_and_measure
++                    safety_results_batch = apply_safety_and_measure(
++                        model_output, pred_batch_data, last_infer_result)
++                    if safety_results_batch:
++                        for k, v in safety_results_batch.items():
++                            if k not in safety_results:
++                                safety_results[k] = {'ADEs': [], 'FDEs': [], 'coll': []}
++                            ADE_s, FDE_s = metric_func(pred_batch_data, v['output'])
++                            safety_results[k]['ADEs'].append(ADE_s)
++                            safety_results[k]['FDEs'].append(FDE_s)
++                            safety_results[k]['coll'].append(v.get('coll_rate', 0))
++                except Exception as e:
++                    if i == 0:
++                        print(f"Safety eval error: {e}")
++
+             torch.cuda.empty_cache()
+ 
+     ADE_tensor = torch.cat(ADEs, dim=0)
+@@ -295,5 +318,15 @@ def main():
+ 
+     logging.info(f'average ADE: {torch.mean(ADE_tensor, dim=0)}, average FDE: {torch.mean(FDE_tensor, dim=0)}')
+ 
++    # Safety constraint comparison results
++    if safety_results:
++        logging.info("=== Safety Constraint Comparison ===")
++        for name, data in safety_results.items():
++            if data['ADEs']:
++                ade = torch.mean(torch.cat(data['ADEs'])).item()
++                fde = torch.mean(torch.cat(data['FDEs'])).item()
++                coll = sum(data['coll']) / len(data['coll']) if data['coll'] else 0
++                logging.info(f"{name}: ADE={ade:.4f}, FDE={fde:.4f}, CollRate={coll:.4f}")
++
+ if __name__ == '__main__':
+     main()
+diff --git a/opencood/data_utils/datasets/basedataset/v2xverse_basedataset.py b/opencood/data_utils/datasets/basedataset/v2xverse_basedataset.py
+index b0c47db..fb58565 100644
+--- a/opencood/data_utils/datasets/basedataset/v2xverse_basedataset.py
++++ b/opencood/data_utils/datasets/basedataset/v2xverse_basedataset.py
+@@ -215,9 +215,12 @@ class V2XVERSEBaseDataset(Dataset):
+             json_value = json.load(open(os.path.join(self.root_dir,path)))
+         except Exception as e:
+             _logger.info(path)
+-            n = path[-9:-5]
+-            new_path = path[:-9] + "%04d.json" % (int(n) - 1)
+-            json_value = json.load(open(os.path.join(self.root_dir,new_path)))
++            try:
++                n = path[-9:-5]
++                new_path = path[:-9] + "%04d.json" % max(int(n) - 1, 0)
++                json_value = json.load(open(os.path.join(self.root_dir,new_path)))
++            except Exception:
++                json_value = {}  # Fallback: empty dict for missing/invalid frames
+         return json_value
+ 
+     def _load_npy(self, path):
+@@ -225,9 +228,12 @@ class V2XVERSEBaseDataset(Dataset):
+             array = np.load(os.path.join(self.root_dir,path), allow_pickle=True)
+         except Exception as e:
+             _logger.info(path)
+-            n = path[-8:-4]
+-            new_path = path[:-8] + "%04d.npy" % (int(n) - 1)
+-            array = np.load(os.path.join(self.root_dir,new_path), allow_pickle=True)
++            try:
++                n = path[-8:-4]
++                new_path = path[:-8] + "%04d.npy" % max(int(n) - 1, 0)
++                array = np.load(os.path.join(self.root_dir,new_path), allow_pickle=True)
++            except Exception:
++                array = np.array([])  # Fallback
+         return array
+ 
+     def get_one_record(self, route_dir, frame_id, agent='ego', visible_actors=None, tpe='all', extra_source=None):
+diff --git a/opencood/utils/pcd_utils.py b/opencood/utils/pcd_utils.py
+index 20acff0..7f3c4a0 100644
+--- a/opencood/utils/pcd_utils.py
++++ b/opencood/utils/pcd_utils.py
+@@ -9,7 +9,10 @@ Utility functions related to point cloud
+ 
+ import open3d as o3d
+ import numpy as np
+-from pypcd import pypcd
++try:
++    from pypcd import pypcd
++except Exception:
++    from pypcd3 import pypcd
+ 
+ def pcd_to_np(pcd_file):
+     """
