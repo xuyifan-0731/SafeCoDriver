@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1120" viewBox="0 0 1800 1120">
+
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0%" stop-color="#f8fafc"/>
+    <stop offset="55%" stop-color="#eef6ff"/>
+    <stop offset="100%" stop-color="#fff7ed"/>
+  </linearGradient>
+  <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.12"/>
+  </filter>
+  <filter id="thinShadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.10"/>
+  </filter>
+  <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+  </marker>
+  <style>
+    .small { font-family: WenQuanYi Zen Hei; font-size: 18px; fill: #475569; }
+    .tiny { font-family: WenQuanYi Zen Hei; font-size: 15px; fill: #64748b; }
+    .code { font-family: "JetBrains Mono", "Consolas", monospace; font-size: 17px; fill: #334155; }
+    .cardTitle { font-family: WenQuanYi Zen Hei; font-size: 26px; font-weight: 800; fill: #0f172a; }
+  </style>
+</defs>
+
+<rect width="1800" height="1120" fill="url(#bg)"/>
+<text x="72" y="72" font-family='WenQuanYi Zen Hei' font-size="38" font-weight="800" fill="#0f172a" text-anchor="start">
+<tspan x="72" dy="0">方案 A：创新层级式算法框架图</tspan>
+</text>
+<text x="74" y="108" font-family='WenQuanYi Zen Hei' font-size="19" font-weight="500" fill="#475569" text-anchor="start">
+<tspan x="74" dy="0">以三项创新为主轴，适合论文 Method Overview 第一张图。</tspan>
+</text>
+<rect x="70" y="145" width="1660" height="865" rx="34" fill="#ffffff" stroke="#dbeafe" stroke-width="2" filter="url(#softShadow)"/>
+<rect x="112" y="185" width="178" height="44" rx="22.0" fill="#2563eb"/><text x="201.0" y="213.3" font-family='WenQuanYi Zen Hei' font-size="18" font-weight="700" fill="#fff" text-anchor="middle">
+<tspan x="201.0" dy="0">输入层</tspan>
+</text>
+<rect x="478" y="185" width="240" height="44" rx="22.0" fill="#ea580c"/><text x="598.0" y="213.3" font-family='WenQuanYi Zen Hei' font-size="18" font-weight="700" fill="#fff" text-anchor="middle">
+<tspan x="598.0" dy="0">创新点一：路点安全集</tspan>
+</text>
+<rect x="852" y="185" width="250" height="44" rx="22.0" fill="#7c3aed"/><text x="977.0" y="213.3" font-family='WenQuanYi Zen Hei' font-size="18" font-weight="700" fill="#fff" text-anchor="middle">
+<tspan x="977.0" dy="0">创新点二：低误报触发</tspan>
+</text>
+<rect x="1228" y="185" width="285" height="44" rx="22.0" fill="#0f766e"/><text x="1370.5" y="213.3" font-family='WenQuanYi Zen Hei' font-size="18" font-weight="700" fill="#fff" text-anchor="middle">
+<tspan x="1370.5" dy="0">创新点三：方向性处置</tspan>
+</text>
+<rect x="1525" y="185" width="145" height="44" rx="22.0" fill="#dc2626"/><text x="1597.5" y="213.3" font-family='WenQuanYi Zen Hei' font-size="18" font-weight="700" fill="#fff" text-anchor="middle">
+<tspan x="1597.5" dy="0">结果</tspan>
+</text>
+<rect x="110" y="270" width="270" height="535" rx="28" fill="#eff6ff" stroke="#2563eb" stroke-width="2.2" filter="url(#thinShadow)"/>
+<text x="138" y="328" font-family='WenQuanYi Zen Hei' font-size="26" font-weight="800" fill="#0f172a" text-anchor="start">
+<tspan x="138" dy="0">协同感知 + 路点</tspan>
+</text>
+
+<g transform="translate(188 535) scale(0.95)" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round">
+  <circle cx="42" cy="58" r="7" fill="#ffffff"/>
+  <path d="M24 42 Q42 27 60 42"/>
+  <path d="M14 29 Q42 5 70 29"/>
+  <path d="M32 55 L16 78"/>
+  <path d="M52 55 L68 78"/>
+</g>
+<circle cx="152" cy="408" r="5.5" fill="#2563eb"/>
+<text x="170" y="415" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="170" dy="0">PerceptionResult</tspan>
+</text>
+<circle cx="152" cy="450" r="5.5" fill="#2563eb"/>
+<text x="170" y="457" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="170" dy="0">自车/目标状态</tspan>
+</text>
+<circle cx="152" cy="492" r="5.5" fill="#2563eb"/>
+<text x="170" y="499" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="170" dy="0">可见性与 V2X-only</tspan>
+</text>
+<circle cx="152" cy="534" r="5.5" fill="#2563eb"/>
+<text x="170" y="541" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="170" dy="0">10 个未来路点</tspan>
+</text>
+<rect x="455" y="270" width="300" height="535" rx="28" fill="#fff7ed" stroke="#ea580c" stroke-width="2.2" filter="url(#thinShadow)"/>
+<text x="483" y="328" font-family='WenQuanYi Zen Hei' font-size="26" font-weight="800" fill="#0f172a" text-anchor="start">
+<tspan x="483" dy="0">时序几何安全集</tspan>
+</text>
+
+<g transform="translate(560 535) scale(1.05)" fill="none" stroke="#ea580c" stroke-width="2.5">
+  <rect x="10" y="10" width="72" height="72" rx="12" fill="#ffffff"/>
+  <path d="M34 10 V82 M58 10 V82 M10 34 H82 M10 58 H82"/>
+  <circle cx="58" cy="34" r="8" fill="#fed7aa"/>
+</g>
+<circle cx="497" cy="408" r="5.5" fill="#ea580c"/>
+<text x="515" y="415" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="515" dy="0">可见目标：2.5m</tspan>
+</text>
+<circle cx="497" cy="450" r="5.5" fill="#ea580c"/>
+<text x="515" y="457" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="515" dy="0">不可见目标：4.0m</tspan>
+</text>
+<circle cx="497" cy="492" r="5.5" fill="#ea580c"/>
+<text x="515" y="499" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="515" dy="0">接近速度放大</tspan>
+</text>
+<circle cx="497" cy="534" r="5.5" fill="#ea580c"/>
+<text x="515" y="541" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="515" dy="0">多目标排斥合力</tspan>
+</text>
+<rect x="825" y="270" width="300" height="535" rx="28" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2.2" filter="url(#thinShadow)"/>
+<text x="853" y="328" font-family='WenQuanYi Zen Hei' font-size="26" font-weight="800" fill="#0f172a" text-anchor="start">
+<tspan x="853" dy="0">检测-修正解耦</tspan>
+</text>
+
+<g transform="translate(932 535) scale(1.02)" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linecap="round">
+  <circle cx="42" cy="42" r="34" fill="#ffffff"/>
+  <path d="M42 22 V43 L58 53"/>
+</g>
+<circle cx="867" cy="408" r="5.5" fill="#7c3aed"/>
+<text x="885" y="415" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="885" dy="0">路点修正始终执行</tspan>
+</text>
+<circle cx="867" cy="450" r="5.5" fill="#7c3aed"/>
+<text x="885" y="457" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="885" dy="0">V1 只负责风险触发</tspan>
+</text>
+<circle cx="867" cy="492" r="5.5" fill="#7c3aed"/>
+<text x="885" y="499" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="885" dy="0">AND：p&gt;0.30 且 geom</tspan>
+</text>
+<circle cx="867" cy="534" r="5.5" fill="#7c3aed"/>
+<text x="885" y="541" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="885" dy="0">front_ttc&lt;3s 覆盖</tspan>
+</text>
+<rect x="1195" y="270" width="330" height="535" rx="28" fill="#ecfdf5" stroke="#0f766e" stroke-width="2.2" filter="url(#thinShadow)"/>
+<text x="1223" y="328" font-family='WenQuanYi Zen Hei' font-size="26" font-weight="800" fill="#0f172a" text-anchor="start">
+<tspan x="1223" dy="0">方向性风险 + RearEscape</tspan>
+</text>
+
+<g transform="translate(1322 535) scale(1.03)" fill="none" stroke="#0f766e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M18 84 C24 58 28 36 30 10"/>
+  <path d="M70 84 C64 58 60 36 58 10"/>
+  <path d="M44 80 V54"/>
+  <path d="M44 44 V24"/>
+  <path d="M32 37 L44 24 L56 37"/>
+</g>
+<circle cx="1237" cy="408" r="5.5" fill="#0f766e"/>
+<text x="1255" y="415" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="1255" dy="0">front/side TTC</tspan>
+</text>
+<circle cx="1237" cy="450" r="5.5" fill="#0f766e"/>
+<text x="1255" y="457" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="1255" dy="0">rear TTC 与 rear gap</tspan>
+</text>
+<circle cx="1237" cy="492" r="5.5" fill="#0f766e"/>
+<text x="1255" y="499" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="1255" dy="0">后车近且前方非立即碰撞</tspan>
+</text>
+<circle cx="1237" cy="534" r="5.5" fill="#0f766e"/>
+<text x="1255" y="541" font-family='WenQuanYi Zen Hei' font-size="20" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="1255" dy="0">保持速度 + 横向逃逸</tspan>
+</text>
+<rect x="1570" y="270" width="120" height="535" rx="28" fill="#fef2f2" stroke="#dc2626" stroke-width="2.2" filter="url(#thinShadow)"/>
+<text x="1598" y="328" font-family='WenQuanYi Zen Hei' font-size="26" font-weight="800" fill="#0f172a" text-anchor="start">
+<tspan x="1598" dy="0">效果</tspan>
+</text>
+
+<g transform="translate(1585 610) scale(0.78)" fill="none" stroke="#dc2626" stroke-width="3" stroke-linejoin="round">
+  <path d="M42 8 L74 20 V43 C74 65 60 80 42 88 C24 80 10 65 10 43 V20 Z" fill="#ffffff"/>
+  <path d="M27 46 L38 57 L59 34"/>
+</g>
+<circle cx="1612" cy="408" r="5.5" fill="#dc2626"/>
+<text x="1630" y="415" font-family='WenQuanYi Zen Hei' font-size="17" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="1630" dy="0">WPC</tspan>
+</text>
+<circle cx="1612" cy="450" r="5.5" fill="#dc2626"/>
+<text x="1630" y="457" font-family='WenQuanYi Zen Hei' font-size="17" font-weight="600" fill="#334155" text-anchor="start">
+<tspan x="1630" dy="0">0.29%</tspan>
+</text>
+<circle cx="1612" cy="492" r="5.5" fill="#dc2626"/>
+<text x="1630" y="499" font-family='WenQuanYi Zen Hei' font-size="17" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="1630" dy="0">base</tspan>
+</text>
+<circle cx="1612" cy="534" r="5.5" fill="#dc2626"/>
+<text x="1630" y="541" font-family='WenQuanYi Zen Hei' font-size="17" font-weight="600" fill="#334155" text-anchor="start">
+<tspan x="1630" dy="0">0% Coll.</tspan>
+</text>
+<circle cx="1612" cy="576" r="5.5" fill="#dc2626"/>
+<text x="1630" y="583" font-family='WenQuanYi Zen Hei' font-size="17" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="1630" dy="0">stress</tspan>
+</text>
+<circle cx="1612" cy="618" r="5.5" fill="#dc2626"/>
+<text x="1630" y="625" font-family='WenQuanYi Zen Hei' font-size="17" font-weight="600" fill="#334155" text-anchor="start">
+<tspan x="1630" dy="0">25% Coll.</tspan>
+</text>
+<path d="M380 535 L455 535" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)" stroke-linecap="round"/>
+<path d="M755 535 L825 535" fill="none" stroke="#ea580c" stroke-width="4" marker-end="url(#arrow)" stroke-linecap="round"/>
+<path d="M1125 535 L1195 535" fill="none" stroke="#7c3aed" stroke-width="4" marker-end="url(#arrow)" stroke-linecap="round"/>
+<path d="M1525 535 L1570 535" fill="none" stroke="#0f766e" stroke-width="4" marker-end="url(#arrow)" stroke-linecap="round"/>
+<rect x="455" y="845" width="1070" height="95" rx="24" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.8" />
+<text x="490" y="883" font-family='WenQuanYi Zen Hei' font-size="24" font-weight="800" fill="#0f172a" text-anchor="start">
+<tspan x="490" dy="0">论文表达重点</tspan>
+</text>
+<text x="490" y="918" font-family='WenQuanYi Zen Hei' font-size="21" font-weight="500" fill="#334155" text-anchor="start">
+<tspan x="490" dy="0">不是把碰撞概率直接变成刹车，而是先约束未来路点，再用方向性风险决定安全动作。</tspan>
+</text>
+<text x="74" y="1072" font-family='WenQuanYi Zen Hei' font-size="15" font-weight="500" fill="#64748b" text-anchor="start">
+<tspan x="74" dy="0">当前综合最优主线：Hybrid+AND+TTC+RearEscape-thr0.30；图中完整三层风险接口只作为扩展能力提示，不作为最优主路径。</tspan>
+</text>
+</svg>
