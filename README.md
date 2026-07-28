@@ -145,9 +145,15 @@ SafeCoDriver/
 
 ## Documentation
 
-Detailed Chinese documentation is available in `docs/`:
-- `260429方法试验说明.md` — Complete method + experiment documentation
-- `README_SafeCoDriver.md` — Algorithm description + reproduction guide
+Current 260728 GitHub backup and reproduction entry points:
+
+- `260728研究点3 GitHub备份说明.md` — final Research Point 3 method, result, and backup summary
+- `docs/GITHUB_BACKUP_MANIFEST_260728.md` — GitHub structure and required-file manifest
+- `docs/REPRODUCE_EXPERIMENTS_260728.md` — concrete reproduction guide for DeepAccident and SUMO
+- `docs/RESTORE_LOCAL_ARTIFACTS.md` — local dataset, simulator, and large artifact restore notes
+
+Older Chinese experiment notes remain under `docs/` for historical context, but
+the 260520/260615/260728 files should be treated as the current source of truth.
 
 ## License
 

@@ -2,7 +2,9 @@
 
 The GitHub upload keeps the reproducible source, summaries, lightweight assets,
 and the archived V2Xverse patch. It does not upload large datasets, CARLA
-installations, third-party working trees, model weights, or generated logs.
+installations, third-party working trees, non-final model weights, or generated
+logs. The final reproducible checkpoint `models/collision_net_best.pt` is the
+one deliberate model-weight exception for the 260728 GitHub backup.
 
 No local files were deleted by the upload. The paths below remain available on
 this machine unless they are removed manually.
@@ -15,8 +17,9 @@ The repository ignores these categories:
   datasets.
 - `third_party/`: OpenCDA, OpenCOOD, V2Xverse, CARLA 0.9.15, CARLA 0.9.10.1,
   downloaded checkpoints, build products, and V2Xverse datasets.
-- `models/`: trained model weights that can be regenerated or copied back from
-  local storage.
+- `models/`: trained model weights are ignored except
+  `models/collision_net_best.pt`, which is tracked for the final reproduction
+  path.
 - generated logs and outputs: `*.log`, `nohup.out`, `experiments/results/`,
   most `results/`, and temporary/cache files.
 - large archives and point clouds such as `*.zip`, `*.tar.gz`, and large
@@ -115,9 +118,11 @@ are intentionally not mirrored in Git.
 
 ## Restore Models And Generated Results
 
-If a workflow expects trained weights under `models/` or third-party checkpoint
-directories, restore them from local storage or regenerate them by rerunning the
-corresponding training/evaluation scripts.
+If a workflow expects non-final trained weights under `models/` or third-party
+checkpoint directories, restore them from local storage or regenerate them by
+rerunning the corresponding training/evaluation scripts. The final Research
+Point 3 reproduction path should already have `models/collision_net_best.pt` in
+Git.
 
 Generated logs do not need to be restored. They are intentionally excluded:
 
