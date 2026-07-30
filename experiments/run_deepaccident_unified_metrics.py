@@ -28,6 +28,7 @@ from experiments.deepaccident_loader import DeepAccidentLoader
 from experiments.run_deepaccident_unified import (
     simulate_codriving_waypoints, check_waypoint_collision)
 from experiments.final_method_configs import final_method_configs
+from experiments.innovation_ablation_configs import innovation_ablation_configs
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -155,6 +156,11 @@ def parse_args():
         default="",
         help="Comma-separated method-name allowlist for targeted runs.",
     )
+    parser.add_argument(
+        "--innovation-ablation",
+        action="store_true",
+        help="Evaluate the 4-innovation ablation matrix instead of the final method list.",
+    )
     return parser.parse_args()
 
 
@@ -253,7 +259,10 @@ def main():
         val_idx = val_idx[:args.max_val_scenarios]
 
     loader = DeepAccidentLoader(split='all')
-    method_configs = final_method_configs(v1, include_full_safety=args.include_full_safety)
+    if args.innovation_ablation:
+        method_configs = innovation_ablation_configs(v1)
+    else:
+        method_configs = final_method_configs(v1, include_full_safety=args.include_full_safety)
     if args.only_methods:
         allowed = {name.strip() for name in args.only_methods.split(",") if name.strip()}
         method_configs = [m for m in method_configs if m[0] in allowed]
@@ -320,6 +329,7 @@ def main():
         val_idx,
         extra_meta={
             "include_full_safety": bool(args.include_full_safety),
+            "innovation_ablation": bool(args.innovation_ablation),
             "max_val_scenarios": int(args.max_val_scenarios),
             "only_methods": args.only_methods,
         },

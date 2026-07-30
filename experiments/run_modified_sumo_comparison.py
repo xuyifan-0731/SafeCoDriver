@@ -39,6 +39,7 @@ from coop_safety.learned.collision_network import CollisionPredictionNetwork
 from coop_safety.learned.hybrid_safety import HybridSafetyConstraint
 from experiments import gen_scenario_gifs as scene_gen
 from experiments.final_method_configs import final_method_configs
+from experiments.innovation_ablation_configs import innovation_ablation_configs
 from experiments.methods import RSSOnly
 from experiments.methods_new_baselines import MAPSafety, RiskMMSafety, UniE2EV2XSafety
 from experiments.run_forced_conflict_and_fa import HybridWithGeometricAND
@@ -576,6 +577,23 @@ def apply_rear_escape_lane() -> bool:
     return False
 
 
+def apply_rear_escape_lane_unchecked() -> bool:
+    """Short-sighted lane escape used by the no-long-horizon ablation."""
+    try:
+        road_id = traci.vehicle.getRoadID("ego")
+        if not road_id or road_id.startswith(":"):
+            return False
+        lane = traci.vehicle.getLaneIndex("ego")
+        n_lanes = traci.edge.getLaneNumber(road_id)
+        for target in (lane + 1, lane - 1):
+            if 0 <= target < n_lanes and target != lane:
+                traci.vehicle.changeLane("ego", target, 2.0)
+                return True
+    except Exception:
+        pass
+    return False
+
+
 def run_scenario(
     net_file: Path,
     rou_file: Path,
@@ -627,6 +645,11 @@ def run_scenario(
                         apply_waypoint_lane_intent(modified, waypoints)
                         if stats.get("lane_escape", 0):
                             if not apply_rear_escape_lane():
+                                stats["target_speed_factor"] = min(
+                                    stats.get("target_speed_factor", 1.0), 0.8
+                                )
+                        if stats.get("lane_escape_unchecked", 0):
+                            if not apply_rear_escape_lane_unchecked():
                                 stats["target_speed_factor"] = min(
                                     stats.get("target_speed_factor", 1.0), 0.8
                                 )
@@ -842,7 +865,9 @@ def random_stress_scenario_defs(seeds: tuple[int, ...] = (42,)):
     return scenarios
 
 
-def method_configs(v1, include_full_safety: bool = False):
+def method_configs(v1, include_full_safety: bool = False, innovation_ablation: bool = False):
+    if innovation_ablation:
+        return innovation_ablation_configs(v1)
     return final_method_configs(v1, include_full_safety=include_full_safety)
 
 
@@ -901,6 +926,8 @@ def parse_args():
                         help="Kept for backward compatibility; final configs are already compact.")
     parser.add_argument("--include-full-safety", action="store_true",
                         help="Include the full SafetyConstraintModule in the method list.")
+    parser.add_argument("--innovation-ablation", action="store_true",
+                        help="Evaluate the 4-innovation ablation matrix instead of the final method list.")
     parser.add_argument("--random-seeds", default="42",
                         help="Comma-separated seeds for --scenario-set random-stress.")
     return parser.parse_args()
@@ -942,7 +969,11 @@ def main() -> None:
     else:
         scenarios = scenario_defs() + stress_scenario_defs()
 
-    methods = method_configs(v1, include_full_safety=args.include_full_safety)
+    methods = method_configs(
+        v1,
+        include_full_safety=args.include_full_safety,
+        innovation_ablation=args.innovation_ablation,
+    )
 
     print("=" * 72)
     print("  Revised SUMO 10-Scenario Comparison")
@@ -1020,6 +1051,7 @@ def main() -> None:
         "scenario_set": args.scenario_set,
         "random_seeds": args.random_seeds,
         "include_full_safety": bool(args.include_full_safety),
+        "innovation_ablation": bool(args.innovation_ablation),
         "checkpoint": ckpt_meta,
         "method_names": [m[0] for m in methods],
         "scenario_names": [s[0] for s in scenarios],

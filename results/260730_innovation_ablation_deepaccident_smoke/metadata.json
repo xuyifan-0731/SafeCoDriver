@@ -1,0 +1,34 @@
+{
+  "platform": "DeepAccident",
+  "checkpoint": {
+    "path": "/raid/xuyifan/jiqiuyu/models/collision_net_best.pt",
+    "sha256": "003b32d0b53efb678f972356605aa5ada020a44228893ef805c0a759844a6b35",
+    "auc": 0.814229377928008,
+    "epoch": 6,
+    "train_scenarios": 82,
+    "val_scenarios": 22
+  },
+  "val_scenario_idx": [
+    7,
+    12
+  ],
+  "method_names": [
+    "Innov-NONE",
+    "Innov-V",
+    "Innov-D",
+    "Innov-M",
+    "Innov-H",
+    "Innov-V+D",
+    "Innov-V+M",
+    "Innov-V+H",
+    "Innov-D+M",
+    "Innov-D+H",
+    "Innov-M+H",
+    "Innov-V+D+M+H"
+  ],
+  "ranking_metric": "WPColl rank*10 + FA(f) rank*5 + Det(s) rank*4 + FA(s) rank*2 + Early rank",
+  "include_full_safety": false,
+  "innovation_ablation": true,
+  "max_val_scenarios": 2,
+  "only_methods": ""
+}

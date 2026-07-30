@@ -1,0 +1,41 @@
+{
+  "platform": "SUMO",
+  "scenario_set": "base",
+  "random_seeds": "42",
+  "include_full_safety": false,
+  "innovation_ablation": true,
+  "checkpoint": {
+    "path": "/raid/xuyifan/jiqiuyu/models/collision_net_best.pt",
+    "sha256": "003b32d0b53efb678f972356605aa5ada020a44228893ef805c0a759844a6b35",
+    "auc": 0.814229377928008,
+    "epoch": 6,
+    "train_scenarios": 82,
+    "val_scenarios": 22
+  },
+  "method_names": [
+    "Innov-NONE",
+    "Innov-V",
+    "Innov-D",
+    "Innov-M",
+    "Innov-H",
+    "Innov-V+D",
+    "Innov-V+M",
+    "Innov-V+H",
+    "Innov-D+M",
+    "Innov-D+H",
+    "Innov-M+H",
+    "Innov-V+D+M+H"
+  ],
+  "scenario_names": [
+    "BS1_blind",
+    "BS1_nonblind",
+    "BS2_blind",
+    "BS2_nonblind",
+    "BS3_blind",
+    "BS3_nonblind",
+    "BS4_blind",
+    "BS4_nonblind",
+    "BS5_blind",
+    "BS5_nonblind"
+  ]
+}

@@ -19,6 +19,10 @@ results/*
 !results/260520_*/
 !results/260520_*/*.csv
 !results/260520_*/*.json
+!results/260730_innovation_ablation_*/
+!results/260730_innovation_ablation_*/*.csv
+!results/260730_innovation_ablation_*/*.json
+!results/260730_innovation_ablation_summary_*.csv
 paper/figures/deepaccident_collision/
 paper/figures/scenario*.png
 paper/figures/scenarios_overview*.png
